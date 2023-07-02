@@ -1,0 +1,161 @@
+.mainpage {
+  max-width: 1300px;
+  margin: 30px auto;
+}
+
+.big-text {
+    font-size: 35px;
+    margin: 50px;
+    font-weight: 580;
+    letter-spacing: 1px;
+}
+
+.page-content {
+    display: flex;
+    justify-content: space-between;
+    min-height: 600px;
+
+}
+
+.product-section {
+    width: 65%;
+    min-height: 300px;
+
+}
+
+.product {
+    height: 270px;
+    display: flex;
+    position: relative;
+
+}
+.remove-button {
+    position: absolute;
+    top: 10px;
+    right: 30px;
+    color: var(--graycolor);
+    cursor: pointer;
+}
+.product-img {
+    height: 210px;
+    min-width: 210px;
+    background-color: var(--soft-darkcolor);
+    border-radius: 10px;
+    position: relative;
+    margin: 30px;
+}
+
+.product-img img{
+    position: absolute;
+    height: 140px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+
+.product-details {
+    display: flex;
+    flex-direction: column ;
+    margin: 30px;
+    justify-content: space-between;
+}
+
+.product-details-det{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.product-details-det div{
+    display: flex;
+    gap: 10px;
+}
+.product-name{
+    font-weight: 550;
+    font-size: 16px;
+
+}
+.product-desc{
+    font-size: 14px;
+    color: var(--graycolor);
+    
+}
+.product-price{
+    font-weight: 550;
+    font-size: 15px;
+    
+}
+.product-details-stock{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+}
+.product-details-stock i{
+    color: green;
+}
+
+.product-details-number {
+    margin: 30px;
+}
+.product-details-number select {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    padding: 6px 15px;
+    border: 1px solid #d8d8d8;
+    border-radius: 4px;
+    transition: border-color 0.3s ease;
+  }
+  
+
+  .order-section {
+    margin-right: 20px;
+    width: 30%;
+    border-radius: 10px;
+    background-color: var(--soft-darkcolor);
+    height: max-content;
+    position: sticky;
+    top: 40px;
+  }
+.order-text{
+    margin: 30px 10px;
+    font-size: 18px;
+    font-weight: 550;
+
+}
+.order-flexy{
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.order-flexy span{
+    color: var(--graycolor);
+}
+.order-flexy h3{
+    font-weight: 550;
+}
+.order-section button{
+    margin: 5%;
+    width: 90%;
+    background-color: var(--darkcolor);
+    color: white;
+
+}
+@media only screen and (max-width: 950px) {
+
+    .page-content {
+        flex-direction: column;
+    }
+    .product-section {
+        width: 90%;
+        min-height: 300px;
+        margin: auto;
+    }
+
+    .order-section {
+        width: 90%;
+        height: max-content;
+        margin: auto;
+      }
+}

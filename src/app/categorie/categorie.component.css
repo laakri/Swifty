@@ -1,0 +1,141 @@
+.mainpage{
+    max-width: 1300px;
+    min-height:600px ;
+    margin: 40px auto;
+}   
+.first-content{
+    height: 240px;
+    width: 100%;
+    border-radius: 20px;
+    margin: auto;
+    background-color: #d9ddfb;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.first-content-left{
+    width: 500px;
+    height: 100%;
+
+}
+.first-content-right {
+    width: 30%;
+}
+
+.first-content-right img{
+    height: 240px ;
+    width: 240px;
+}
+
+.first-content-left h1 {
+    font-size: 35px;
+    line-height: 1.6;
+    font-weight: 550;
+    letter-spacing: 1px;
+    color: black;
+}
+.first-content-left button {
+    width: 150px;
+    height: 40px ;
+    padding: 10px 20px;
+    background-color: black;
+    color: white !important;
+    border-radius: 20px;
+    border: none;
+    justify-content: center;
+
+}
+
+.filter-section{
+    margin: 40px auto;
+}
+
+.filter-container {
+    max-width: 90%;
+    margin: 20px auto;
+    display: flex;
+    align-items: center;
+  }
+  
+  .filter-item {
+    margin-right: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .button-container {
+    margin-left: auto;
+    display: flex;
+    gap: 20px;
+  }
+  
+
+.text-for-section{
+    font-size: 30px;
+    margin:  30px;
+    font-weight: 550;
+
+}
+.product-section{
+    margin: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px 20px ;
+}
+.product{
+    height: 390px;
+    width: 300px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid transparent;
+}
+.product:hover{
+   
+    border: 1px solid gray;
+    overflow: hidden;
+}
+
+
+.product-img-section{
+    width: 100%;
+    height: 57%;
+    background-color: var(--soft-darkcolor);
+    position: relative;    
+}
+.product-img-section img{
+position: absolute;
+height: 160px;
+top: 50%;
+left: 50%;
+transform: translate(-50%,-50%);
+}
+.product-content{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.product-content div {
+    width: 90%;
+    height: 40px;
+    
+    font-size: 20px;
+    font-weight: 550;
+}
+.product-content span {
+    
+    color: var(--graycolor);
+}
+.product-rating {
+    display: flex;
+    align-items: center;
+  }
+  .product-rating i {
+    font-size: 14px; 
+    color: green;   
+}
+  .product-rating span {
+    margin-left: 10px;
+    font-size: 14px;    
+  }

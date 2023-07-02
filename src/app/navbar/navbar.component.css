@@ -1,0 +1,142 @@
+button{
+  height: 35px; 
+  line-height: 1.6;
+}
+.toolbar{
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    width: 1400px;
+    margin: auto;
+    background-color: var(--darkcolor);
+    color: var(--whitecolor);
+}
+.first-toolbar {
+    height: 50px;
+    top: 0;
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+  }
+  .first-toolbar span {
+    color: var(--bordercolor);
+  } 
+  .first-toolbar button {
+    font-size: 14px;
+  } 
+  .first-toolbar button:hover {
+    color: var(--maincolor);
+  } 
+ 
+  .first-toolbar div {
+    font-size: 14px;
+  }
+.secend-toolbar {
+    height: 70px;
+    
+    position: -webkit-sticky; 
+    display: flex;
+    justify-content: space-between;
+    position: sticky;
+    top: 35;
+  }
+  .category-label{
+    margin-right: 10px;
+   }
+  
+  .pi-chevron-down{
+    font-size: 10px;
+    margin-top: 3px;
+  }
+  .logo1 {
+    width: max-content;
+    height: max-content;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .logo1 span {
+    font-size: 27px ;
+    letter-spacing: 1px;
+    margin-left: 5px;
+  }
+  .logo {
+    width: 50px;
+    height: 45px;
+  }
+  .top-bar-button {
+    margin: auto 5px;
+  }
+  button{
+    color: var(--whitecolor);
+    font-size: 16px;
+  }
+  .absolute {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    backdrop-filter: blur(2px);
+  }
+  .home-victors {
+    width: 100%;
+  }
+  
+  .right-navbar-button {
+    align-items: center;
+    display: flex;
+    margin-right: 10px;
+    gap: 20px;
+  }
+  .right-navbar-button img {
+    height: 34px;
+    width: 34px;
+    border-radius: 50%;
+  }
+
+  #button1 {
+    font-size: 16px;
+    border-radius: 20px;
+    background-color: var(--darkcolor);
+    color: var(--whitecolor);
+  }
+  .middle-content{
+    display: flex;
+  }
+  .search-container {
+    display: flex;
+    align-items: center;
+    width:400px ;
+  }
+  
+  input[type="text"] {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    background-color: var(--soft-darkcolor) !important;
+    color: var(--whitecolor);
+    
+  }
+  input[type="text"]::placeholder {
+    color: var(--graycolor);
+  }
+  button[type="submit"] {
+    padding: 8px;
+    height: 27px;
+    width: 27px;
+    margin-left: 10px;
+    border: none;
+    background-color: transparent;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: rgba(0, 153, 255, 0.1);
+  }
+  

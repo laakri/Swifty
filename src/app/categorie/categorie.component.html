@@ -1,0 +1,67 @@
+<div class="mainpage">
+  <div class="first-content">
+    <div class="first-content-left">
+      <h1>Grap Upto 50% Off On Selected Headphone</h1>
+      <button>Buy Now</button>
+    </div>
+    <div class="first-content-right">
+      <img
+        src="../../assets/—Pngtree—creative technology science fiction cyberpunk_9015394.png"
+        alt="saif"
+      />
+    </div>
+  </div>
+
+  <div class="filter-section">
+    <div class="filter-container">
+      <div class="filter-item">
+        <label for="category">Category:</label>
+        <p-dropdown
+          id="category"
+          [options]="categoryOptions"
+          placeholder="Select a category"
+        ></p-dropdown>
+      </div>
+      <div class="filter-item button-container">
+        <p-button
+          type="button"
+          label="Apply"
+          styleClass="p-button-outlined"
+          (click)="applyFilters()"
+        ></p-button>
+        <p-button
+          type="button"
+          label="Reset"
+          styleClass="p-button-outlined"
+          (click)="resetFilters()"
+        ></p-button>
+      </div>
+    </div>
+  </div>
+  <div class="text-for-section">Headphones For You!</div>
+  <div class="product-section">
+    <div class="product" *ngFor="let tb of tab">
+      <div class="product-img-section">
+        <img src="../../assets/headset.png" alt="" />
+      </div>
+      <div class="product-content">
+        <div>Wireless EarBugs IPX8</div>
+        <span>Organic Best Shit in the world </span>
+        <div class="product-rating">
+          <i class="pi pi-star-fill"></i>
+          <i class="pi pi-star-fill"></i>
+          <i class="pi pi-star-fill"></i>
+          <i class="pi pi-star-fill"></i>
+          <i class="pi pi-star"></i>
+
+          <span>(123) </span>
+        </div>
+        <p-button
+          label="Add to cart"
+          routerLink="/product"
+          styleClass="p-button-outlined p-button-secondary"
+        ></p-button>
+      </div>
+    </div>
+  </div>
+</div>

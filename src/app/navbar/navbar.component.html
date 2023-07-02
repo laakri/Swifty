@@ -1,0 +1,72 @@
+<div class="first-toolbar toolbar">
+  <div>+216 24989104</div>
+  <div>Get free delivery on orders over $100</div>
+  <div>
+    <button class="p-button-text" label="Create an account" pButton></button>
+    <span>|</span>
+    <button class="p-button-text" label="Sign In" pButton></button>
+  </div>
+</div>
+<div class="secend-toolbar toolbar">
+  <div class="logo1" routerLink="">
+    <span>Swifty</span>
+  </div>
+  <div class="middle-content">
+    <button
+      class="p-button-text category-btn"
+      routerLinkActive="activebutton"
+      routerLink="categorie"
+      pButton
+      (click)="menu.toggle($event)"
+    >
+      <span class="category-label">Categories</span>
+      <i class="pi pi-chevron-down"></i>
+    </button>
+    <p-tieredMenu
+      #menu
+      [model]="categoryMenu"
+      [popup]="true"
+      [appendTo]="'body'"
+    ></p-tieredMenu>
+
+    <button
+      class="p-button-text"
+      routerLinkActive="activebutton"
+      label="Deals"
+      pButton
+    ></button>
+    <button
+      class="p-button-text"
+      routerLinkActive="activebutton"
+      label="What's new"
+      pButton
+    ></button>
+    <button
+      class="p-button-text"
+      routerLinkActive="activebutton"
+      label="Delivery"
+      pButton
+    ></button>
+  </div>
+  <div class="search-container">
+    <input type="text" pInputText placeholder="Search..." />
+
+    <button type="submit" pButton icon="pi pi-search"></button>
+  </div>
+  <div class="right-navbar-button">
+    <button
+      class="p-button-text"
+      routerLink="cart"
+      pButton
+      icon="pi pi-shopping-cart"
+      routerLinkActive="activebutton"
+    ></button>
+    <button
+      class="p-button-text"
+      (click)="change_theme()"
+      pButton
+      icon="pi pi-sun"
+      ariaLabel="campaign"
+    ></button>
+  </div>
+</div>

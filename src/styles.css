@@ -1,1 +1,92 @@
 /* You can add global styles to this file, and also import other style files */
+@import "primeng/resources/themes/viva-dark/theme.css";
+@import "primeng/resources/primeng.css";
+@import "primeicons/primeicons.css";
+@import 'assets/theme.css';
+
+body{
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: var(--whitecolor);
+    background: var(--darkcolor);
+    font-family: var(--font-family);
+
+    --bordercolor: #1f242e78;
+    --darkcolor: #111827;
+    --soft-darkcolor: #1d2538;
+    --whitecolor: #ffffff;
+    --graycolor: #8a8d8e;
+    --maincolor: #726fdd;
+    --maintranscolor: #3b7fed71;
+    --secendcolor: #c04e14;
+    --darktranscolor: #19181ada;
+    --soft-darktranscolor: #26272b69;
+    --buttonactive:#2e37469c;
+}
+
+body.dark-theme {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: var(--whitecolor);
+  background: var(--darkcolor);
+  font-family: var(--font-family);
+
+  --bordercolor: rgb(219, 219, 219);
+  --darkcolor: #feffff;
+  --soft-darkcolor: #f0f3f7;
+  --whitecolor: #000000;
+  --graycolor: #444444;
+  --maincolor: #4f46e5;
+  --maintranscolor: #85586F71;
+  --secendcolor: #c04e14;
+  --darktranscolor: #fdfdfdce;
+  --soft-darktranscolor: #94959769;
+  --buttonactive: #b7b6e5;
+}
+a,
+button {
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--whtiecolor) !important;
+
+}
+.fas {
+  font-size: 27px;
+}
+ul {
+  list-style-type: none;
+}
+
+/************ scroll bar ****************/
+::-webkit-scrollbar {
+    width: 7px;
+    background-color: var(--darkcolor);
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--whitecolor);
+  }
+  
+  ::-webkit-scrollbar-track {
+    background-color: var(--soft-darkcolor);
+  }
+  /*********************-Active Button********************/
+  
+  .activebutton {
+    background-color: var(--buttonactive);
+  }
+  /*********************-divider********************/
+
+  .p-divider {
+    border-color: var(--bordercolor);
+    border-width: 1px;
+  }
+
+  .activebutton{
+    background-color: var(--soft-darkcolor) !important;
+  }

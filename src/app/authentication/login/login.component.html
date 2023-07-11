@@ -1,1 +1,48 @@
-<p>login works!</p>
+<form (ngSubmit)="login(loginForm)" #loginForm="ngForm">
+  <div class="login-container">
+    <h2>Login</h2>
+
+    <div class="form-group">
+      <label for="gmailname">Gmail</label>
+      <input
+        id="gmailname"
+        type="email"
+        pInputText
+        placeholder="Enter your gmail"
+        name="gmailname"
+        ngModel
+        required
+      />
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input
+        id="password"
+        type="password"
+        pInputText
+        placeholder="Enter your password"
+        name="password"
+        ngModel
+        required
+      />
+    </div>
+    <button
+      type="submit"
+      pButton
+      label="Login"
+      [disabled]="!loginForm.form.valid"
+    ></button>
+    <button
+      class="gmail-btn"
+      type="button"
+      pButton
+      label="Login with Gmail"
+      icon="pi pi-google"
+    ></button>
+
+    <div class="change">
+      Create Account
+      <a [routerLink]="['/auth/signup']">Sign up </a>
+    </div>
+  </div>
+</form>

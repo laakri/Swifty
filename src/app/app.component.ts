@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UsersService } from './services/user.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -6,20 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit {
-  isBrightTheme: any;
+  isAuth = false;
   title = 'Swifty';
-  showLoadingScreen = true;
+  private isAuthListenerSubs!: Subscription;
+
+  constructor(private UsersService: UsersService) {}
 
   ngOnInit(): void {
-    this.isBrightTheme = document.body.classList.contains('bright-theme');
-    const savedTheme = localStorage.getItem('mode');
+    this.isAuth = this.UsersService.getIsAuth();
+    this.isAuthListenerSubs =
+      this.UsersService.getAuthStatusListener().subscribe((isAuthenticated) => {
+        this.isAuth = isAuthenticated;
+      });
 
-    if (savedTheme) {
-      document.body.classList.add(savedTheme);
-    }
-    window.addEventListener('load', () => {
-      this.showLoadingScreen = false;
-      document.querySelector('.root')?.setAttribute('style', 'display: block');
-    });
+    this.isAuth = this.UsersService.getIsAuth();
+    this.UsersService.autoAuthUser();
   }
 }

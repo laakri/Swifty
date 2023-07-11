@@ -1,14 +1,38 @@
 <div class="first-toolbar toolbar">
   <div>+216 24989104</div>
   <div>Get free delivery on orders over $100</div>
-  <div>
-    <button class="p-button-text" label="Create an account" pButton></button>
+  <div *ngIf="!isAuth">
+    <button
+      class="p-button-text"
+      label="Create an account"
+      pButton
+      routerLink="auth/signup"
+    ></button>
     <span>|</span>
-    <button class="p-button-text" label="Sign In" pButton></button>
+    <button
+      class="p-button-text"
+      label="Sign In"
+      pButton
+      routerLink="auth/login"
+    ></button>
+  </div>
+
+  <div *ngIf="isAuth">
+    <button
+      class="p-button-text"
+      label="Logout"
+      pButton
+      class="logout-button"
+      (click)="logout()"
+    ></button>
   </div>
 </div>
-<div class="secend-toolbar toolbar">
+<div
+  class="second-toolbar toolbar"
+  [ngClass]="{ 'navbar-transparent': isNavbarTransparent }"
+>
   <div class="logo1" routerLink="">
+    <img src="../../../assets/mainlogo.png" alt="" />
     <span>Swifty</span>
   </div>
   <div class="middle-content">
@@ -32,6 +56,7 @@
     <button
       class="p-button-text"
       routerLinkActive="activebutton"
+      routerLink="checkout"
       label="Deals"
       pButton
     ></button>

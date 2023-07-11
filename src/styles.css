@@ -14,11 +14,11 @@ body{
     background: var(--darkcolor);
     font-family: var(--font-family);
 
-    --bordercolor: #1f242e78;
+    --bordercolor: #53545878;
     --darkcolor: #111827;
     --soft-darkcolor: #1d2538;
     --whitecolor: #ffffff;
-    --graycolor: #8a8d8e;
+    --graycolor: #b1b6b8;
     --maincolor: #726fdd;
     --maintranscolor: #3b7fed71;
     --secendcolor: #c04e14;
@@ -62,6 +62,15 @@ button {
 ul {
   list-style-type: none;
 }
+input{
+  background-color: var(--soft-darkcolor) !important;
+}
+input::placeholder{
+  background-color: var(--soft-darkcolor);
+  color: var(--graycolor);
+}
+
+
 
 /************ scroll bar ****************/
 ::-webkit-scrollbar {

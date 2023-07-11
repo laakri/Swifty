@@ -1,0 +1,104 @@
+<div class="mainpage">
+  <div class="checkout-container">
+    <div class="left-content">
+      <h2>Contact Information</h2>
+      <div class="form-group">
+        <input
+          id="useremail"
+          type="email"
+          pInputText
+          placeholder="Enter your email"
+        />
+      </div>
+      <div class="newsletter-checkbox">
+        <p-checkbox
+          id="newsletter"
+          [binary]="true"
+          inputId="binary"
+        ></p-checkbox>
+        <label for="newsletter">Email me with news and offers</label>
+      </div>
+      <h2>Shipping</h2>
+      <div class="form-group">
+        <input
+          id="useraddress"
+          type="address"
+          pInputText
+          placeholder="Address"
+        />
+      </div>
+      <div class="form-group form-split">
+        <input
+          class="form-split-input"
+          id="username"
+          type="name"
+          pInputText
+          placeholder="Name"
+        />
+        <input
+          class="form-split-input"
+          id="userlastname"
+          type="lastname"
+          pInputText
+          placeholder="Last Name"
+        />
+      </div>
+
+      <div class="form-group">
+        <input
+          id="useraddress"
+          type="address"
+          pInputText
+          placeholder="Address"
+        />
+      </div>
+      <div class="form-group form-split">
+        <input
+          class="form-split-input"
+          id="userpostal"
+          type="postal"
+          pInputText
+          placeholder="Postal Code"
+        />
+        <input
+          class="form-split-input"
+          id="userlastcity"
+          type="lastcity"
+          pInputText
+          placeholder="City"
+        />
+      </div>
+      <div class="shipping-buttons">
+        <button pButton class="p-button-text">Return to Cart</button>
+        <button pButton>Continue to Shipping</button>
+      </div>
+    </div>
+
+    <div class="right-content">
+      <h2>Your Cart</h2>
+
+      <div class="p-inputgroup promo-code">
+        <input type="text" pInputText placeholder="Promo Code" />
+        <button
+          type="button"
+          pButton
+          icon="pi pi-check"
+          styleClass="p-button-success"
+        ></button>
+      </div>
+
+      <div class="subtotal">
+        <span>Subtotal</span>
+        <span>$123.00</span>
+      </div>
+      <div class="subtotal">
+        <span>Shipping</span>
+        <span>Free</span>
+      </div>
+      <div class="subtotal">
+        <span>Total</span>
+        <span>$123.00</span>
+      </div>
+    </div>
+  </div>
+</div>

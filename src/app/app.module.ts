@@ -14,7 +14,12 @@ import { AuthenticationComponent } from './authentication/authentication.compone
 import { LoginComponent } from './authentication/login/login.component';
 import { SignupComponent } from './authentication/signup/signup.component';
 import { CheckoutPageComponent } from './pages/checkout-page/checkout-page.component';
+import { UserPageComponent } from './pages/user-page.component';
+import { AdminPageComponent } from './pages-dashboard/admin-page.component';
 import { ErrorInterceptor } from './error-interceptor';
+import { AddProductComponent } from './pages-dashboard/add-product/add-product.component';
+import { DashboardComponent } from './pages-dashboard/dashboard/dashboard.component';
+import { ProductListComponent } from './pages-dashboard/product-list/product-list.component';
 
 /**********  Prime NG *************** */
 
@@ -30,6 +35,11 @@ import { CheckboxModule } from 'primeng/checkbox';
 import { MessagesModule } from 'primeng/messages';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
+import { ToolbarDashboardComponent } from './pages-dashboard/toolbar-dashboard/toolbar-dashboard.component';
+import { SidebarDashboardComponent } from './pages-dashboard/sidebar-dashboard/sidebar-dashboard.component';
+import { SidebarModule } from 'primeng/sidebar';
+import { SlideMenuModule } from 'primeng/slidemenu';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -43,6 +53,13 @@ import { ToastModule } from 'primeng/toast';
     LoginComponent,
     SignupComponent,
     CheckoutPageComponent,
+    UserPageComponent,
+    AddProductComponent,
+    DashboardComponent,
+    ProductListComponent,
+    AdminPageComponent,
+    ToolbarDashboardComponent,
+    SidebarDashboardComponent,
   ],
   imports: [
     HttpClientModule,
@@ -61,6 +78,9 @@ import { ToastModule } from 'primeng/toast';
     CheckboxModule,
     MessagesModule,
     ToastModule,
+    SidebarModule,
+    SlideMenuModule,
+    ReactiveFormsModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

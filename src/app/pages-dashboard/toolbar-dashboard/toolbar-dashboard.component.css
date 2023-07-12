@@ -1,0 +1,9 @@
+
+ img{
+    height: 30px;
+    width: 30px;
+    margin-right: 50px;
+}
+.p-toolbar-group-end{
+    gap: 10px;
+}

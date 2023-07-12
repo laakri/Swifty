@@ -1,0 +1,46 @@
+.p-field {
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  input {
+    height: 40px;
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .spec-flex {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .spec-flex input {
+    width: 47%;
+  }
+  
+  .gap {
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  button {
+    width: 200px;
+    background-color: transparent;
+    border: white 1px solid;
+  }
+  
+  
+  .delete-container{
+    display: flex;
+  }

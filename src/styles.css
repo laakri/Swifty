@@ -70,8 +70,6 @@ input::placeholder{
   color: var(--graycolor);
 }
 
-
-
 /************ scroll bar ****************/
 ::-webkit-scrollbar {
     width: 7px;

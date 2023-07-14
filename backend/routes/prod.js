@@ -16,7 +16,7 @@ const storage = multer.diskStorage({
     if (isValid) {
       error = null;
     }
-    cb(error, "backend/file-profile");
+    cb(error, "backend/file-folder");
   },
   filename: (req, file, cb) => {
     const name = file.originalname.toLowerCase().split(" ").join("-");
@@ -25,17 +25,57 @@ const storage = multer.diskStorage({
   },
 });
 
-/******************-Add Prod-**********/
+const upload = multer({ storage: storage });
+
+/****************** Add Product ******************/
+
+router.post("/add-product", upload.array("images"), (req, res) => {
+  const images = req.files.map((file) => {
+    return { url: file.path };
+  });
+
+  const product = new Product({
+    name: req.body.name,
+    price: req.body.price,
+    shortDescription: req.body.shortDescription,
+    description: req.body.description,
+    category: req.body.category,
+    quantity: req.body.quantity,
+    images: images,
+    specifications: req.body.specifications,
+    tags: req.body.tags,
+    isFeatured: req.body.isFeatured,
+  });
+  console.log(req.body);
+
+  product
+    .save()
+    .then((result) => {
+      res.status(201).json({
+        message: "Product added successfully",
+        product: result,
+      });
+    })
+    .catch((error) => {
+      res.status(500).json({
+        message: "Failed to add product",
+        error: error,
+      });
+    });
+});
+
+module.exports = router;
+
+/*
+
+
+*****************-Add Prod-*********
 router.post(
-  "/products",
+  "/AddProduct",
   multer({ storage: storage }).array("images"),
 
   async (req, res) => {
     try {
-      const specifications = [
-        { name: "Color", value: "Black" },
-        { name: "Size", value: "Large" },
-      ];
       const url = req.protocol + "://" + req.get("host");
 
       const {
@@ -45,7 +85,7 @@ router.post(
         description,
         category,
         quantity,
-
+        specifications,
         tags,
         isFeatured,
       } = req.body;
@@ -75,6 +115,4 @@ router.post(
       res.status(500).json({ error: "Failed to create the product" });
     }
   }
-);
-
-module.exports = router;
+);*/

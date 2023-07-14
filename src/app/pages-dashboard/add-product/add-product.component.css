@@ -1,46 +1,72 @@
+.box-form-box{
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+.form-box{
+  height: max-content;
+  min-width: 45%;
+  background-color: #081b32;
+  padding: 20px;
+  border-radius: 10px;
+
+}
 .p-field {
     margin-bottom: 15px;
     display: flex;
     flex-direction: column;
     gap: 10px;
   }
-  
+
   label {
     display: block;
     font-weight: bold;
     margin-bottom: 5px;
   }
   
-  input {
+  input,textarea  {
     height: 40px;
     width: 100%;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    background-color: var(--darkcolor) !important;
   }
-  
+  input::placeholder,textarea::placeholder {
+    background-color: var(--darkcolor);
+    color: var(--graycolor);
+  }
+  .file-upload-container {
+    max-width: 500px; 
+  }
   .spec-flex {
     display: flex;
     justify-content: space-between;
+    gap: 10px;
   }
-  
+  .spec-gap{
+    gap: 10px;
+  }
   .spec-flex input {
     width: 47%;
   }
-  
   .gap {
     gap: 20px;
     display: flex;
     flex-direction: column;
   }
-  
   button {
     width: 200px;
     background-color: transparent;
-    border: white 1px solid;
   }
-  
   
   .delete-container{
     display: flex;
   }
+.add-button{
+  margin: 20px auto;
+  width: 200px;
+}
+.delete-button{
+  border: none !important;
+}

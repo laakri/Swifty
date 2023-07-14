@@ -12,9 +12,5 @@ app-sidebar-dashboard {
 
 .content {
   flex: 1;
-  margin: 30px;
-  padding: 20px;
-  border-radius: 5px;
-  border: 1px solid #0b213f;
-
+  margin: 10px 30px;
 }

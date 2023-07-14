@@ -40,6 +40,8 @@ import { SidebarDashboardComponent } from './pages-dashboard/sidebar-dashboard/s
 import { SidebarModule } from 'primeng/sidebar';
 import { SlideMenuModule } from 'primeng/slidemenu';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BadgeModule } from 'primeng/badge';
+import { FileUploadModule } from 'primeng/fileupload';
 
 @NgModule({
   declarations: [
@@ -81,6 +83,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     SidebarModule,
     SlideMenuModule,
     ReactiveFormsModule,
+    BadgeModule,
+    FileUploadModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

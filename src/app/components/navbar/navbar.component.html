@@ -39,7 +39,7 @@
     <button
       class="p-button-text category-btn"
       routerLinkActive="activebutton"
-      [routerLink]="['v/categorie']"
+      [routerLink]="['categorie']"
       pButton
       (click)="menu.toggle($event)"
     >
@@ -56,7 +56,7 @@
     <button
       class="p-button-text"
       routerLinkActive="activebutton"
-      [routerLink]="['v/checkout']"
+      [routerLink]="['checkout']"
       label="Deals"
       pButton
     ></button>
@@ -68,7 +68,7 @@
     ></button>
     <button
       class="p-button-text"
-      [routerLink]="['v/product']"
+      [routerLink]="['product']"
       routerLinkActive="activebutton"
       label="Delivery"
       pButton
@@ -82,11 +82,12 @@
   <div class="right-navbar-button">
     <button
       class="p-button-text"
-      [routerLink]="['v/cart']"
+      [routerLink]="['cart']"
       pButton
-      icon="pi pi-shopping-cart"
       routerLinkActive="activebutton"
-    ></button>
+    >
+      <i class="pi pi-shopping-cart" pBadge value="22"></i>
+    </button>
     <button
       class="p-button-text"
       (click)="change_theme()"

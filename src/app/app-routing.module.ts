@@ -27,17 +27,18 @@ const routes: Routes = [
       { path: 'cart', component: ShoppingCartComponent },
       { path: 'categorie', component: CategorieComponent },
       { path: 'checkout', component: CheckoutPageComponent },
+      {
+        path: 'auth',
+        component: AuthenticationComponent,
+        children: [
+          { path: '', redirectTo: '/auth/login', pathMatch: 'full' },
+          { path: 'login', component: LoginComponent },
+          { path: 'signup', component: SignupComponent },
+        ],
+      },
     ],
   },
-  {
-    path: 'auth',
-    component: AuthenticationComponent,
-    children: [
-      { path: '', redirectTo: '/auth/login', pathMatch: 'full' },
-      { path: 'login', component: LoginComponent },
-      { path: 'signup', component: SignupComponent },
-    ],
-  },
+
   {
     path: 'a',
     component: AdminPageComponent,

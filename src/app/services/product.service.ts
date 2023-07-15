@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Product, Specification } from '../models/product.model';
 
@@ -7,7 +7,7 @@ import { Product, Specification } from '../models/product.model';
   providedIn: 'root',
 })
 export class ProductService {
-  apiUrl = 'http://localhost:4401';
+  private apiUrl = 'http://localhost:4401';
 
   constructor(private http: HttpClient) {}
 
@@ -19,23 +19,25 @@ export class ProductService {
     formData.append('description', product.description);
     formData.append('category', product.category);
     formData.append('quantity', product.quantity.toString());
+
     for (let i = 0; i < product.images.length; i++) {
-      formData.append('images', product.images[i]);
+      console.log(product.images[i]);
+      formData.append('images', product.images[i], product.images[i].name);
     }
-    for (let i = 0; i < product.specifications.length; i++) {
-      formData.append(
-        `specifications[${i}].name`,
-        product.specifications[i].name
-      );
-      formData.append(
-        `specifications[${i}].value`,
-        product.specifications[i].value
-      );
-    }
-    for (let i = 0; i < product.tags.length; i++) {
-      formData.append(`tags[${i}]`, product.tags[i]);
-    }
-    formData.append('isFeatured', product.isFeatured.toString());
+
+    console.log(formData.getAll('images'));
+
+    // for (let i = 0; i < product.specifications.length; i++) {
+    //   const specification: Specification = product.specifications[i];
+    //   formData.append(`specifications[${i}][name]`, specification.name);
+    //   formData.append(`specifications[${i}][value]`, specification.value);
+    // }
+
+    // for (let i = 0; i < product.tags.length; i++) {
+    //   formData.append(`tags[${i}]`, product.tags[i]);
+    // }
+
+    // formData.append('isFeatured', product.isFeatured.toString());
 
     return this.http.post<Product>(
       `${this.apiUrl}/api/prods/add-product`,

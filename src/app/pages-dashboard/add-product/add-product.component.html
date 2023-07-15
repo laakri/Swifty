@@ -143,27 +143,17 @@
     <div class="form-box">
       <div class="p-field">
         <label for="images">Images</label>
-        <div formArrayName="images" class="gap file-upload-container">
-          <ng-container
-            *ngFor="let image of imageControls.controls; let i = index"
-          >
-            <div class="delete-container" [formGroupName]="i">
-              <p-fileUpload
-                name="images"
-                url="https://www.primefaces.org/cdn/api/upload.php"
-                (onSelect)="onImageSelected($event, i)"
-                accept="image/*"
-              ></p-fileUpload>
-              <button
-                class="delete-button"
-                pButton
-                type="button"
-                icon="pi pi-times"
-                (click)="removeImage(i)"
-              ></button>
-            </div>
-          </ng-container>
-          <button pButton type="button" (click)="addImage()">Add Image</button>
+        <div class="gap file-upload-container">
+          <div class="delete-container">
+            <p-fileUpload
+              name="images"
+              url="https://www.primefaces.org/cdn/api/upload.php"
+              (onSelect)="onImageSelected($event)"
+              accept="image/*"
+              aria-multiline="true"
+              [multiple]="true"
+            ></p-fileUpload>
+          </div>
         </div>
       </div>
     </div>

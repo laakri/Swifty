@@ -8,6 +8,7 @@ import {
 } from '@angular/forms';
 import { FileSelectEvent } from 'primeng/fileupload';
 import { ProductService } from 'src/app/services/product.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-add-product',
@@ -18,7 +19,11 @@ export class AddProductComponent {
   productForm: FormGroup;
   imageControls!: FormArray;
 
-  constructor(private fb: FormBuilder, private productService: ProductService) {
+  constructor(
+    private http: HttpClient,
+    private fb: FormBuilder,
+    private productService: ProductService
+  ) {
     this.productForm = this.fb.group({
       name: ['', Validators.required],
       price: ['', Validators.required],
@@ -71,13 +76,19 @@ export class AddProductComponent {
   }
   /*************** Image *******************/
 
-  addImage(): void {
-    this.imageControls.push(this.createImage());
+  onImageSelected(event: FileSelectEvent): void {
+    const files = event.files;
+
+    if (files && files.length > 0) {
+      const fileArray = Array.from(files) as File[];
+
+      this.productForm.get('images')?.patchValue(fileArray);
+
+      console.log(fileArray);
+    }
   }
-  removeImage(index: number): void {
-    this.imageControls.removeAt(index);
-  }
-  onImageSelected(event: FileSelectEvent, index: number): void {
+
+  onImageSelectefd(event: FileSelectEvent, index: number): void {
     const file = event.files[0]; // Get the selected file
 
     if (file) {
@@ -85,10 +96,8 @@ export class AddProductComponent {
       imageControl.patchValue({ file }); // Set the file value in the form control
 
       // Log the file object
-      console.log('Selected file:', file);
     }
   }
-
   createImage(): FormGroup {
     return this.fb.group({
       file: [null, Validators.required], // Add a new form control for the file
@@ -101,16 +110,21 @@ export class AddProductComponent {
       return;
     }
 
-    const productData = this.productForm.value;
-    console.log(productData);
-    this.productService.addProduct(productData).subscribe(
-      (response) => {
-        console.log('Product added successfully:', response);
-        this.productForm.reset();
-      },
-      (error) => {
-        console.error('Failed to add product:', error);
-      }
-    );
+    console.log(this.productForm.value);
+
+    //   newFunction();
+
+    //   function newFunction() {
+    //     const productData = this.productForm.value;
+    //     this.productService.addProduct(productData).subscribe(
+    //       (response) => {
+    //         console.log('Product added successfully:', response);
+    //         /*this.productForm.reset();*/
+    //       },
+    //       (error) => {
+    //         console.error('Failed to add product:', error);
+    //       }
+    //     );
+    //   }
   }
 }

@@ -15,26 +15,53 @@
   <div class="filter-section">
     <div class="filter-container">
       <div class="filter-item">
-        <label for="category">Category:</label>
-        <p-dropdown
+        <p-multiSelect
           id="category"
           [options]="categoryOptions"
-          placeholder="Select a category"
-        ></p-dropdown>
+          [(ngModel)]="selectedCity"
+          [showClear]="true"
+          [filter]="true"
+          [placeholder]="'Category'"
+          [style]="{ width: '100%' }"
+        ></p-multiSelect>
       </div>
+      <div class="filter-item">
+        <p-multiSelect
+          id="category"
+          [options]="colorOptions"
+          [(ngModel)]="selectedCity"
+          [showClear]="true"
+          [filter]="true"
+          [placeholder]="'Color'"
+          [style]="{ width: '100%' }"
+        ></p-multiSelect>
+      </div>
+      <div class="filter-item">
+        <p-multiSelect
+          id="category"
+          [options]="priceOptions"
+          [(ngModel)]="selectedCity"
+          [showClear]="true"
+          [filter]="true"
+          [placeholder]="'Price'"
+          [style]="{ width: '100%' }"
+        ></p-multiSelect>
+      </div>
+
       <div class="filter-item button-container">
-        <p-button
+        <button
+          pButton
           type="button"
           label="Apply"
-          styleClass="p-button-outlined"
+          class="shit"
           (click)="applyFilters()"
-        ></p-button>
-        <p-button
+        ></button>
+        <button
+          pButton
           type="button"
           label="Reset"
-          styleClass="p-button-outlined"
           (click)="resetFilters()"
-        ></p-button>
+        ></button>
       </div>
     </div>
   </div>
@@ -42,7 +69,7 @@
   <div class="product-section">
     <div class="product" *ngFor="let tb of tab">
       <div class="product-img-section">
-        <img src="../../assets/headset.png" alt="" />
+        <img src="../../assets/t-shirt.png" alt="" />
       </div>
       <div class="product-content">
         <div>Wireless EarBugs IPX8</div>
@@ -56,11 +83,15 @@
 
           <span>(123) </span>
         </div>
-        <p-button
-          label="Add to cart"
-          [routerLink]="['v/product']"
-          styleClass="p-button-outlined p-button-secondary"
-        ></p-button>
+        <div class="product-content-bottom">
+          <button
+            pButton
+            label="Add to cart"
+            routerLink="../../v/product"
+            styleClass="p-button-outlined p-button-secondary"
+          ></button>
+          <h5>120.00</h5>
+        </div>
       </div>
     </div>
   </div>

@@ -1,1 +1,52 @@
-<p>product-list works!</p>
+<div class="search-bar">
+  <div class="search-input">
+    <span class="p-input-icon-left">
+      <i class="pi pi-search"></i>
+      <input
+        type="text"
+        pInputText
+        [(ngModel)]="searchText"
+        (input)="searchProducts()"
+        placeholder="Search..."
+      />
+    </span>
+  </div>
+  <div class="filter-dropdown">
+    <p-dropdown
+      [options]="sortingOptions"
+      [(ngModel)]="selectedSortingOption"
+      (onChange)="onSortChange()"
+      placeholder="Sort by"
+    ></p-dropdown>
+  </div>
+</div>
+
+<div class="product-table">
+  <p-table
+    [value]="products"
+    [paginator]="true"
+    [rows]="10"
+    [rowsPerPageOptions]="[2, 10, 20]"
+    [totalRecords]="totalRecords"
+    [loading]="loading"
+  >
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Category</th>
+        <th>Quantity</th>
+        <th>Average Rating</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-product>
+      <tr>
+        <td>{{ product.name }}</td>
+        <td>{{ product.price }}</td>
+        <td>{{ product.category }}</td>
+        <td>{{ product.quantity }}</td>
+        <td>{{ product.averageRating }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

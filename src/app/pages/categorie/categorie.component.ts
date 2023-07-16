@@ -6,11 +6,24 @@ import { Component } from '@angular/core';
   styleUrls: ['./categorie.component.css'],
 })
 export class CategorieComponent {
+  selectedCity!: any;
+  selectedCities: any[] = [];
+
   tab = [1, 2, 3, 4, 1, 2, 3, 4];
   categoryOptions: any[] = [
-    { label: 'Category 1', value: 'category1' },
-    { label: 'Category 2', value: 'category2' },
-    { label: 'Category 3', value: 'category3' },
+    { label: 'T-shirt', value: 'category1' },
+    { label: 'Pants', value: 'category2' },
+    { label: 'Casquette', value: 'category3' },
+  ];
+  colorOptions: any[] = [
+    { label: 'Red', value: 'red' },
+    { label: 'yellow', value: 'yellow' },
+    { label: 'black', value: 'black' },
+  ];
+  priceOptions: any[] = [
+    { label: '$10 - $100', value: '100' },
+    { label: '$100 - $200', value: '200' },
+    { label: '$200 - $300', value: '300' },
   ];
   applyFilters() {
     // Logic for applying filters

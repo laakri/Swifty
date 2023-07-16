@@ -18,6 +18,8 @@ import { HttpClient } from '@angular/common/http';
 export class AddProductComponent {
   productForm: FormGroup;
   imageControls!: FormArray;
+  imagess!: File[];
+  uploadedFiles: any[] = [];
 
   constructor(
     private http: HttpClient,
@@ -76,55 +78,36 @@ export class AddProductComponent {
   }
   /*************** Image *******************/
 
-  onImageSelected(event: FileSelectEvent): void {
+  onImageSelected(event: any): void {
     const files = event.files;
-
-    if (files && files.length > 0) {
-      const fileArray = Array.from(files) as File[];
-
-      this.productForm.get('images')?.patchValue(fileArray);
-
-      console.log(fileArray);
+    for (let file of event.files) {
+      this.uploadedFiles.push(file);
     }
+    this.imagess = event.files;
   }
 
-  onImageSelectefd(event: FileSelectEvent, index: number): void {
-    const file = event.files[0]; // Get the selected file
-
-    if (file) {
-      const imageControl = this.imageControls.controls[index];
-      imageControl.patchValue({ file }); // Set the file value in the form control
-
-      // Log the file object
-    }
-  }
   createImage(): FormGroup {
     return this.fb.group({
       file: [null, Validators.required], // Add a new form control for the file
     });
   }
+
   /*************** addProduct *******************/
 
   addProduct() {
     if (this.productForm.invalid) {
       return;
     }
-
-    console.log(this.productForm.value);
-
-    //   newFunction();
-
-    //   function newFunction() {
-    //     const productData = this.productForm.value;
-    //     this.productService.addProduct(productData).subscribe(
-    //       (response) => {
-    //         console.log('Product added successfully:', response);
-    //         /*this.productForm.reset();*/
-    //       },
-    //       (error) => {
-    //         console.error('Failed to add product:', error);
-    //       }
-    //     );
-    //   }
+    this.imagess = this.productForm.value.images;
+    const productData = this.productForm.value;
+    this.productService.addProduct(productData, this.imagess).subscribe(
+      (response) => {
+        console.log('Product added successfully:', response);
+        /*this.productForm.reset();*/
+      },
+      (error) => {
+        console.error('Failed to add product:', error);
+      }
+    );
   }
 }

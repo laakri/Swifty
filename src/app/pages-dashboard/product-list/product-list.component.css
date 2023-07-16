@@ -1,0 +1,27 @@
+.product-table {
+    margin-top: 20px;
+  }
+  
+  .search-bar {
+    display: flex;
+    align-items: center;
+    margin: 30px 10px;
+  }
+  
+  .search-input {
+    flex: 1;
+  }
+  
+  .search-input .p-input-icon-left {
+    position: relative;
+  }
+  
+  .search-input input {
+    padding-left: 2.5rem;
+  }
+  
+  .filter-dropdown {
+    margin-left: 20px;
+    width: 200px;
+  }
+  

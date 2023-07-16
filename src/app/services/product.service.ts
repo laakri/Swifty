@@ -11,7 +11,7 @@ export class ProductService {
 
   constructor(private http: HttpClient) {}
 
-  addProduct(product: Product): Observable<Product> {
+  addProduct(product: Product, imagess: File[]): Observable<Product> {
     const formData = new FormData();
     formData.append('name', product.name);
     formData.append('price', product.price.toString());
@@ -20,12 +20,9 @@ export class ProductService {
     formData.append('category', product.category);
     formData.append('quantity', product.quantity.toString());
 
-    for (let i = 0; i < product.images.length; i++) {
-      console.log(product.images[i]);
-      formData.append('images', product.images[i], product.images[i].name);
+    for (let i = 0; i < imagess.length; i++) {
+      formData.append('images', imagess[i], imagess[i].name);
     }
-
-    console.log(formData.getAll('images'));
 
     // for (let i = 0; i < product.specifications.length; i++) {
     //   const specification: Specification = product.specifications[i];

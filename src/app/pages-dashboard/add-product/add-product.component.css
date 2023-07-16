@@ -6,7 +6,8 @@
 .form-box{
   height: max-content;
   min-width: 45%;
-  background-color: #081b32;
+  /*background-color: #081b32;*/
+  background-color: var(--soft-darkcolor);
   padding: 20px;
   border-radius: 10px;
 

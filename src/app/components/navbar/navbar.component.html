@@ -40,12 +40,11 @@
       class="p-button-text category-btn"
       routerLinkActive="activebutton"
       [routerLink]="['categorie']"
+      label="Categories"
       pButton
       (click)="menu.toggle($event)"
-    >
-      <span class="category-label">Categories</span>
-      <i class="pi pi-chevron-down"></i>
-    </button>
+      icon="pi pi-chevron-down"
+    ></button>
     <p-tieredMenu
       #menu
       [model]="categoryMenu"

@@ -144,11 +144,11 @@
       <div class="p-field">
         <label for="images">Images</label>
         <div class="gap file-upload-container">
-          <div class="delete-container">
+          <div>
             <p-fileUpload
               name="images"
               url="https://www.primefaces.org/cdn/api/upload.php"
-              (onSelect)="onImageSelected($event)"
+              (onUpload)="onImageSelected($event)"
               accept="image/*"
               aria-multiline="true"
               [multiple]="true"

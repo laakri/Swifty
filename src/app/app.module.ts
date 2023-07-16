@@ -20,6 +20,7 @@ import { ErrorInterceptor } from './error-interceptor';
 import { AddProductComponent } from './pages-dashboard/add-product/add-product.component';
 import { DashboardComponent } from './pages-dashboard/dashboard/dashboard.component';
 import { ProductListComponent } from './pages-dashboard/product-list/product-list.component';
+import { UsersListComponent } from './pages-dashboard/users-list/users-list.component';
 
 /**********  Prime NG *************** */
 
@@ -42,6 +43,9 @@ import { SlideMenuModule } from 'primeng/slidemenu';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BadgeModule } from 'primeng/badge';
 import { FileUploadModule } from 'primeng/fileupload';
+import { TableModule } from 'primeng/table';
+import { ListboxModule } from 'primeng/listbox';
+import { MultiSelectModule } from 'primeng/multiselect';
 
 @NgModule({
   declarations: [
@@ -62,6 +66,7 @@ import { FileUploadModule } from 'primeng/fileupload';
     AdminPageComponent,
     ToolbarDashboardComponent,
     SidebarDashboardComponent,
+    UsersListComponent,
   ],
   imports: [
     HttpClientModule,
@@ -85,6 +90,10 @@ import { FileUploadModule } from 'primeng/fileupload';
     ReactiveFormsModule,
     BadgeModule,
     FileUploadModule,
+    TableModule,
+    DropdownModule,
+    ListboxModule,
+    MultiSelectModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

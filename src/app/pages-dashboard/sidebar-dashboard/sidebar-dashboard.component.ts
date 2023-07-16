@@ -38,6 +38,11 @@ export class SidebarDashboardComponent implements OnInit {
             icon: 'pi pi-list',
             routerLink: '/a/list-product',
           },
+          {
+            label: 'Users',
+            icon: 'pi pi-users',
+            routerLink: '/a/list-users',
+          },
         ],
       },
     ];

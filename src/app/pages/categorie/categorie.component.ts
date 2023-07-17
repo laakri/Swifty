@@ -25,6 +25,15 @@ export class CategorieComponent {
     { label: '$100 - $200', value: '200' },
     { label: '$200 - $300', value: '300' },
   ];
+  sortingOptions: any[] = [
+    { label: 'Price - Low to High', value: 'lowToHigh' },
+    { label: 'Price - High to Low', value: 'highToLow' },
+  ];
+  selectedSortingOption: string = '';
+  onSortChange() {
+    // Perform the sorting logic based on the selectedSortingOption
+    // You can update the products array with the sorted results
+  }
   applyFilters() {
     // Logic for applying filters
   }

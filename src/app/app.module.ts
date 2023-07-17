@@ -46,7 +46,10 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { TableModule } from 'primeng/table';
 import { ListboxModule } from 'primeng/listbox';
 import { MultiSelectModule } from 'primeng/multiselect';
-
+import { CarouselModule } from 'primeng/carousel';
+import { TabViewModule } from 'primeng/tabview';
+import { CardModule } from 'primeng/card';
+import { DividerModule } from 'primeng/divider';
 @NgModule({
   declarations: [
     AppComponent,
@@ -94,6 +97,10 @@ import { MultiSelectModule } from 'primeng/multiselect';
     DropdownModule,
     ListboxModule,
     MultiSelectModule,
+    CarouselModule,
+    TabViewModule,
+    CardModule,
+    DividerModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

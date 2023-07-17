@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import "primeng/resources/primeng.css";
 @import "primeicons/primeicons.css";
-@import "/src/assets/theme-light.css";
+@import "/src/assets/theme/theme-light.css";
 
 body.light-theme{
     height: 100%;
@@ -36,7 +36,7 @@ body {
   background: var(--darkcolor);
   font-family: var(--font-family);
 
-  --bordercolor: rgb(219, 219, 219);
+  --bordercolor: rgb(238, 238, 238);
   --darkcolor: #feffff;
   --soft-darkcolor: #f0f3f7;
   --whitecolor: #000000;

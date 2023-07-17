@@ -21,7 +21,6 @@
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "node_modules/primeng/resources/primeng.min.css",
-              "src/assets/theme.css",
               "src/styles.css"
             ],
             "scripts": []

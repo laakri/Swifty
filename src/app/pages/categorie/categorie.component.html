@@ -47,8 +47,15 @@
           [style]="{ width: '100%' }"
         ></p-multiSelect>
       </div>
-
-      <div class="filter-item button-container">
+      <div class="filter-dropdown">
+        <p-dropdown
+          [options]="sortingOptions"
+          [(ngModel)]="selectedSortingOption"
+          (onChange)="onSortChange()"
+          placeholder="Sort by"
+        ></p-dropdown>
+      </div>
+      <div class="button-container">
         <button
           pButton
           type="button"

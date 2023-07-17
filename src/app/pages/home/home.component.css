@@ -5,7 +5,7 @@
     position: relative;
   }
   .homepage-background-img {
-    background-image: url(../../../assets/main-image.png);
+    background-image: url(../../../assets/homepage/main-image.png);
     position: absolute;
     width: 750px;
     height: 750px;
@@ -19,20 +19,21 @@
     -o-background-size: cover;
   }
   .mainpage {
-    max-width: 1350px;
+    max-width: 1400px;
     margin: auto;
-    min-height: 1200px;
+    min-height: 400px;
   }
   
 /***********************************************************************/
 .first-content {
     margin: auto 0;
     padding-left: 20px;
-    height: 500px;
+    min-height: 800px;
     max-width: 700px;
     animation-name: slide-in-left;
     animation-duration: 1s;
     border: transparent 1px solid;
+
   }
   .first-content-field {
     width: 500px;
@@ -98,3 +99,196 @@
       opacity: 1;
     }
   }
+/***********************************************************************/
+
+  .category-content {
+    display: flex;
+    min-height: 700px;
+    margin: 40px auto;
+    gap: 10px;
+  }
+  
+  .left-div,
+  .right-div {
+    flex-basis: 50%;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden; /* Ensures the gradient does not overflow */
+  }
+  
+  .left-div {
+    background-image: url('../../../assets/homepage/fashionable-young-caucasian-brunette-hoodie-jeans-likes-listen-music-with-headphones-purple-background-technological-device-concept.jpg');
+    width: 200px;
+  }
+  
+  .right-div {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .top-right,
+  .bottom-right {
+    flex-basis: 50%;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden; 
+  }
+  
+  .top-right {
+    background-image: url('../../../assets/homepage/model3.jpg');
+    height: 100px;
+  }
+  
+  .bottom-right {
+    background-image: url('../../../assets/homepage/full-length-portrait-amazed-beautiful-lady-jeans-curly-curious-girl-jumping.jpg');
+    margin-bottom: 0;
+    height: 100px;
+  }
+  
+  .small-text {
+    color: #fff;
+    font-size: 16px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+  }
+  
+  .small-text-bottom {
+    color: #fff;
+    font-size: 20px;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  /* Add linear gradient shadow */
+  .left-div::before,
+  .right-div::before,
+  .top-right::before,
+  .bottom-right::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    background-image: linear-gradient(45deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 200%);
+  }
+  
+  .bottom-right::before {
+    background-image: linear-gradient(-45deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.5) 200%);
+  }
+/***********************************************************************/
+
+
+.carousel-header {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+}
+
+.carousel-header h4 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.carousel-header span {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.carousel-header a {
+  color:  var(--maincolor) !important;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.carousel-header a:hover {
+  color: #ad46ee !important;
+}
+
+.carousel-content {
+  flex: 0 0 90%;
+  margin-top: 20px;
+
+}
+
+.slide-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.slide-content img {
+  height: 400px;
+  width: 350px;
+  border-radius: 5px;
+  object-fit: cover;
+}
+/***********************************************************************/
+.gift-content {
+  padding: 20px;
+}
+
+.gift-header {
+text-align: center;
+  margin-bottom: 20px;
+}
+
+.tab-view {
+  display: flex;
+  justify-content: center;
+  color: gray;
+}
+::ng-deep .p-tabview .p-tabview-nav {
+  display: flex;
+  justify-content: center;
+  font-size: 20px !important;
+}
+::ng-deep .p-tabView {
+  background-color: #a12121 !important;
+}
+
+
+.tab-panel-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+
+.small-card {
+  width: 380px;
+  padding: 0;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;  
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.small-card img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  margin: 0;
+}
+
+.card-text {
+  margin-top: 10px;
+  padding: 0 10px;
+}
+
+

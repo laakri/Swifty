@@ -1,7 +1,10 @@
 .navbar-transparent {
   background-color: transparent;
 }
-button{
+
+a,
+button {
+  color: var(--whitecolor) !important;
   height: 35px; 
   line-height: 1.6;
 }

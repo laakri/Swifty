@@ -32,7 +32,7 @@
   [ngClass]="{ 'navbar-transparent': isNavbarTransparent }"
 >
   <div class="logo1" routerLink="">
-    <img src="../../../assets/mainlogo.png" alt="" />
+    <img src="../../../assets/mainlogo-purple.png" alt="" />
     <span>Swifty</span>
   </div>
   <div class="middle-content">
@@ -86,7 +86,11 @@
       pButton
       routerLinkActive="activebutton"
     >
-      <i class="pi pi-shopping-cart" pBadge value="22"></i>
+      <i
+        class="pi pi-shopping-cart"
+        pBadge
+        [value]="cartQuantity.toString()"
+      ></i>
     </button>
     <button
       class="p-button-text"

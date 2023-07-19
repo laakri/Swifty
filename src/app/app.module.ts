@@ -50,6 +50,13 @@ import { CarouselModule } from 'primeng/carousel';
 import { TabViewModule } from 'primeng/tabview';
 import { CardModule } from 'primeng/card';
 import { DividerModule } from 'primeng/divider';
+import { PaginatorModule } from 'primeng/paginator';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { FooterComponent } from './components/footer/footer.component';
+import { GalleriaModule } from 'primeng/galleria';
+import { ImageModule } from 'primeng/image';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { ConfirmationService } from 'primeng/api';
 @NgModule({
   declarations: [
     AppComponent,
@@ -70,6 +77,7 @@ import { DividerModule } from 'primeng/divider';
     ToolbarDashboardComponent,
     SidebarDashboardComponent,
     UsersListComponent,
+    FooterComponent,
   ],
   imports: [
     HttpClientModule,
@@ -101,10 +109,16 @@ import { DividerModule } from 'primeng/divider';
     TabViewModule,
     CardModule,
     DividerModule,
+    PaginatorModule,
+    ProgressSpinnerModule,
+    GalleriaModule,
+    ImageModule,
+    InputNumberModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     MessageService,
+    ConfirmationService,
   ],
   bootstrap: [AppComponent],
 })

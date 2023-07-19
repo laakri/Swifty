@@ -20,98 +20,99 @@
       </div>
     </div>
   </div>
-  <div class="mainpage">
-    <div class="carousel-header">
-      <h4>Category Title</h4>
-      <span>Dui id ornare arcu odio ut sem nulla pharetra diam.</span>
-      <a href="#">Explore Collections</a>
-    </div>
+</div>
 
-    <div class="carousel-content">
-      <p-carousel
-        [circular]="true"
-        [value]="carouselItems"
-        [numVisible]="3"
-        [numScroll]="1"
-        [responsiveOptions]="responsiveOptions"
-        autoPlayInterval="3000"
-      >
-        <ng-template let-item pTemplate="item">
-          <div class="slide-content">
-            <img [src]="item.image" alt="Slide Image" />
-          </div>
-        </ng-template>
-      </p-carousel>
-    </div>
+<div class="mainpage">
+  <div class="carousel-header">
+    <h4>Category Title</h4>
+    <span>Dui id ornare arcu odio ut sem nulla pharetra diam.</span>
+    <a href="#">Explore Collections</a>
   </div>
-  <div class="mainpage">
-    <div class="carousel-header">
-      <h4>Category Title</h4>
-      <span>Dui id ornare arcu odio ut sem nulla pharetra diam.</span>
-      <a href="#">Explore Collections</a>
+
+  <div class="carousel-content">
+    <p-carousel
+      [circular]="true"
+      [value]="carouselItems"
+      [numVisible]="3"
+      [numScroll]="1"
+      [responsiveOptions]="responsiveOptions"
+      autoPlayInterval="3000"
+    >
+      <ng-template let-item pTemplate="item">
+        <div class="slide-content">
+          <img [src]="item.image" alt="Slide Image" />
+        </div>
+      </ng-template>
+    </p-carousel>
+  </div>
+</div>
+<div class="mainpage">
+  <div class="carousel-header">
+    <h4>Category Title</h4>
+    <span>Dui id ornare arcu odio ut sem nulla pharetra diam.</span>
+    <a href="#">Explore Collections</a>
+  </div>
+  <div class="category-content">
+    <div class="left-div">
+      <span class="small-text">T-Shirt</span>
+      <span class="small-text-bottom"
+        >Shop now
+        <i class="pi pi-arrow-right"></i>
+      </span>
     </div>
-    <div class="category-content">
-      <div class="left-div">
-        <span class="small-text">T-Shirt</span>
+    <div class="right-div">
+      <div class="top-right">
+        <span class="small-text">Cool</span>
+        <span class="small-text-bottom"
+          >Shop now
+
+          <i class="pi pi-arrow-right"></i>
+        </span>
+      </div>
+      <div class="bottom-right">
+        <span class="small-text">Chill</span>
         <span class="small-text-bottom"
           >Shop now
           <i class="pi pi-arrow-right"></i>
         </span>
       </div>
-      <div class="right-div">
-        <div class="top-right">
-          <span class="small-text">Cool</span>
-          <span class="small-text-bottom"
-            >Shop now
-
-            <i class="pi pi-arrow-right"></i>
-          </span>
-        </div>
-        <div class="bottom-right">
-          <span class="small-text">Chill</span>
-          <span class="small-text-bottom"
-            >Shop now
-            <i class="pi pi-arrow-right"></i>
-          </span>
-        </div>
-      </div>
     </div>
   </div>
-  <div class="mainpage">
-    <div class="gift-content">
-      <div class="gift-header">
-        <h1>Best Gift</h1>
-      </div>
-      <p-tabView class="tab-view" [style]="{ 'background-color': 'red' }">
-        <p-tabPanel header="Women">
-          <div class="tab-panel-content">
-            <div class="card" *ngFor="let gift of giftsForWomen">
-              <div class="small-card">
-                <img src="{{ gift.image }}" alt="Gift Image" />
-                <div class="card-text">
-                  <h4>{{ gift.title }}</h4>
-                  <p-divider></p-divider>
-                  <p>{{ gift.description }}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </p-tabPanel>
-        <p-tabPanel header="Men">
-          <div class="tab-panel-content">
-            <div class="card" *ngFor="let gift of giftsForMen">
-              <div class="small-card">
-                <img src="{{ gift.image }}" alt="Gift Image" />
-                <div class="card-text">
-                  <h4>{{ gift.title }}</h4>
-                  <p-divider></p-divider>
-                  <p>{{ gift.description }}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </p-tabPanel>
-      </p-tabView>
+</div>
+<div class="mainpage">
+  <div class="gift-content">
+    <div class="gift-header">
+      <h1>Best Gift</h1>
     </div>
+    <p-tabView class="tab-view" [style]="{ 'background-color': 'red' }">
+      <p-tabPanel header="Women">
+        <div class="tab-panel-content">
+          <div class="card" *ngFor="let gift of giftsForWomen">
+            <div class="small-card">
+              <img src="{{ gift.image }}" alt="Gift Image" />
+              <div class="card-text">
+                <h4>{{ gift.title }}</h4>
+                <p-divider></p-divider>
+                <p>{{ gift.description }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </p-tabPanel>
+      <p-tabPanel header="Men">
+        <div class="tab-panel-content">
+          <div class="card" *ngFor="let gift of giftsForMen">
+            <div class="small-card">
+              <img src="{{ gift.image }}" alt="Gift Image" />
+              <div class="card-text">
+                <h4>{{ gift.title }}</h4>
+                <p-divider></p-divider>
+                <p>{{ gift.description }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </p-tabPanel>
+    </p-tabView>
   </div>
 </div>

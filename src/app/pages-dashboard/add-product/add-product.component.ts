@@ -9,6 +9,7 @@ import {
 import { FileSelectEvent } from 'primeng/fileupload';
 import { ProductService } from 'src/app/services/product.service';
 import { HttpClient } from '@angular/common/http';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-add-product',
@@ -24,7 +25,8 @@ export class AddProductComponent {
   constructor(
     private http: HttpClient,
     private fb: FormBuilder,
-    private productService: ProductService
+    private productService: ProductService,
+    private messageService: MessageService
   ) {
     this.productForm = this.fb.group({
       name: ['', Validators.required],
@@ -83,7 +85,7 @@ export class AddProductComponent {
     for (let file of event.files) {
       this.uploadedFiles.push(file);
     }
-    this.imagess = event.files;
+    this.imagess = files;
   }
 
   createImage(): FormGroup {
@@ -98,11 +100,14 @@ export class AddProductComponent {
     if (this.productForm.invalid) {
       return;
     }
-    this.imagess = this.productForm.value.images;
     const productData = this.productForm.value;
     this.productService.addProduct(productData, this.imagess).subscribe(
       (response) => {
-        console.log('Product added successfully:', response);
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success Message',
+          detail: 'Product added successfully:',
+        });
         /*this.productForm.reset();*/
       },
       (error) => {

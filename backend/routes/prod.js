@@ -32,8 +32,6 @@ const upload = multer({ storage: storage });
 
 router.post("/add-product", upload.array("images"), async (req, res) => {
   try {
-    console.log(req.body.images); // Console log the files/images array
-
     const url = req.protocol + "://" + req.get("host");
 
     const {
@@ -49,7 +47,7 @@ router.post("/add-product", upload.array("images"), async (req, res) => {
     } = req.body;
 
     const images = req.files.map((file) => ({
-      url: url + "/backend/file-folder/" + file.filename,
+      url: url + "/file-folder/" + file.filename,
     }));
 
     const product = new Product({
@@ -71,6 +69,93 @@ router.post("/add-product", upload.array("images"), async (req, res) => {
   } catch (error) {
     console.error("Error:", error);
     res.status(500).json({ error: "Failed to create the product" });
+  }
+});
+/****************** Get All Products ******************/
+
+router.get("/products", async (req, res) => {
+  try {
+    const page = req.query.page ? parseInt(req.query.page) : 1;
+    const limit = req.query.limit ? parseInt(req.query.limit) : 12;
+    const startIndex = (page - 1) * limit;
+    const endIndex = page * limit;
+
+    const productsCount = await Product.countDocuments();
+
+    const products = await Product.find()
+      .select(
+        "-specifications -tags -isFeatured -quantity -description -updatedAt -__v "
+      )
+      .skip(startIndex)
+      .limit(limit)
+      .exec();
+
+    const productsWithFirstImage = products.map((product) => {
+      const firstImage =
+        product.images && product.images.length > 0
+          ? product.images[0].url
+          : null;
+
+      if (firstImage) {
+        product.images[0] = { url: firstImage };
+      }
+
+      return {
+        ...product.toObject(),
+        images: firstImage ? [product.images[0]] : [],
+      };
+    });
+
+    const pagination = {
+      totalProducts: productsCount,
+      totalPages: Math.ceil(productsCount / limit),
+      currentPage: page,
+    };
+
+    res.status(200).json({ products: productsWithFirstImage, pagination });
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ error: "Failed to fetch products" });
+  }
+});
+/****************** Add Product ******************/
+router.get("/product/:id", async (req, res) => {
+  try {
+    const productId = req.params.id;
+    const product = await Product.findById(productId).populate("reviews");
+    if (!product) {
+      return res.status(404).json({ error: "Product not found" });
+    }
+    res.json(product);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+/****************** Get Cart Products ******************/
+router.post("/get-cart-products", async (req, res) => {
+  const { productIds } = req.body;
+
+  try {
+    const products = await Product.find({ _id: { $in: productIds } });
+
+    const formattedProducts = products.map((product) => {
+      const firstImage =
+        product.images.length > 0 ? product.images[0].url : null;
+      return {
+        id: product._id,
+        name: product.name,
+        price: product.price,
+        quantity: product.quantity,
+        image: firstImage,
+      };
+    });
+
+    res.json(formattedProducts);
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ error: "Internal server error" });
   }
 });
 

@@ -1,7 +1,7 @@
 .mainpage1 {
     background: var(--darkcolor);
     color: var(--whitecolor);
-    height: 85vh;
+    height: calc(100vh - 120px);
     position: relative;
   }
   .homepage-background-img {

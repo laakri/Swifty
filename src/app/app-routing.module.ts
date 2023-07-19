@@ -24,7 +24,7 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: '/v/home', pathMatch: 'full' },
       { path: 'home', component: HomeComponent },
-      { path: 'product', component: ProductPageComponent },
+      { path: 'product/:id', component: ProductPageComponent },
       { path: 'cart', component: ShoppingCartComponent },
       { path: 'categorie', component: CategorieComponent },
       { path: 'checkout', component: CheckoutPageComponent },

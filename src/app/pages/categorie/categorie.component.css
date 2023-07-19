@@ -1,3 +1,8 @@
+a,
+button {
+  color: var(--whitecolor) !important;
+ 
+}
 .mainpage{
     max-width: 1300px;
     min-height:600px ;
@@ -86,6 +91,7 @@
 }
 .product-section{
     justify-content: center;
+    min-height: 700px;
     margin: 20px auto;
     display: flex;
     flex-wrap: wrap;

@@ -3,7 +3,7 @@
 @import "primeicons/primeicons.css";
 @import "/src/assets/theme/theme-light.css";
 
-body.light-theme{
+body{
     height: 100%;
     width: 100%;
     margin: 0;
@@ -26,7 +26,7 @@ body.light-theme{
     --buttonactive:#2e37469c;
 }
 
-body {
+body.light-theme {
   height: 100%;
   width: 100%;
   margin: 0;
@@ -52,8 +52,6 @@ a,
 button {
   cursor: pointer;
   text-decoration: none;
-  color: var(--whtiecolor) !important;
-
 }
 .fas {
   font-size: 27px;
@@ -72,7 +70,7 @@ input::placeholder{
 
 /************ scroll bar ****************/
 ::-webkit-scrollbar {
-    width: 7px;
+    width: 8px;
     background-color: var(--darkcolor);
   }
   ::-webkit-scrollbar-thumb {
@@ -99,6 +97,9 @@ input::placeholder{
     background-color: var(--soft-darkcolor) !important;
   }
 
-  /*********************-dropdown********************/
-
- 
+  /*********************-loading********************/
+  .loading-indicator{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

@@ -2,6 +2,7 @@ import { Component, OnInit, HostListener, Renderer2 } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import { UsersService } from '../../services/user.service';
+import { CartBadgeService } from 'src/app/services/cart-badge.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,13 +12,14 @@ import { UsersService } from '../../services/user.service';
 export class NavbarComponent implements OnInit {
   isAuth = false;
   private isAuthListenerSubs!: Subscription;
+  cartQuantity: number = 0;
 
   isBrightTheme = false;
   categoryMenu: MenuItem[] | undefined;
 
   constructor(
     private UsersService: UsersService,
-    private renderer: Renderer2
+    private cartBadgeService: CartBadgeService
   ) {}
 
   isNavbarTransparent = true;
@@ -30,7 +32,10 @@ export class NavbarComponent implements OnInit {
       this.isNavbarTransparent = true;
     }
   }
-
+  getTotalCartQuantity(): number {
+    const cartItems = JSON.parse(localStorage.getItem('cartItems') || '[]');
+    return cartItems.reduce((sum: number) => sum + 1, 0);
+  }
   ngOnInit(): void {
     // Check the theme
     this.isBrightTheme = localStorage.getItem('mode') === 'bright-theme';
@@ -42,6 +47,13 @@ export class NavbarComponent implements OnInit {
         this.isAuth = isAuthenticated;
       });
 
+    // Check the Cart badge
+    const totalQuantity = this.getTotalCartQuantity();
+    this.cartBadgeService.updateCartQuantity(totalQuantity);
+
+    this.cartBadgeService.cartQuantity$.subscribe((quantity) => {
+      this.cartQuantity = quantity;
+    });
     // the Category menu action
     this.categoryMenu = [
       {

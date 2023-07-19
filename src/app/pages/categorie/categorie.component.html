@@ -11,7 +11,6 @@
       />
     </div>
   </div>
-
   <div class="filter-section">
     <div class="filter-container">
       <div class="filter-item">
@@ -72,32 +71,45 @@
       </div>
     </div>
   </div>
-  <div class="text-for-section">Headphones For You!</div>
-  <div class="product-section">
-    <div class="product" *ngFor="let tb of tab">
+  <div class="text-for-section">Best Quality For You!</div>
+  <p-paginator
+    [rows]="pageSize"
+    [totalRecords]="totalProducts"
+    (onPageChange)="onPageChange($event)"
+  ></p-paginator>
+  <div *ngIf="loading" class="loading-indicator">
+    <p-progressSpinner></p-progressSpinner>
+  </div>
+  <div class="product-section" *ngIf="!loading">
+    <!-- Loading indicator -->
+
+    <!-- Empty content message -->
+    <div
+      *ngIf="products.length === 0 && !loading"
+      class="empty-content-message"
+    >
+      No products available.
+    </div>
+    <div class="product" *ngFor="let product of products">
       <div class="product-img-section">
-        <img src="../../assets/t-shirt.png" alt="" />
+        <img [src]="product.images[0].url" alt="" />
       </div>
       <div class="product-content">
-        <div>Wireless EarBugs IPX8</div>
-        <span>Organic Best Shit in the world </span>
+        <div>{{ product.name }}</div>
+        <span>{{ product.shortDescription }}</span>
         <div class="product-rating">
-          <i class="pi pi-star-fill"></i>
-          <i class="pi pi-star-fill"></i>
-          <i class="pi pi-star-fill"></i>
-          <i class="pi pi-star-fill"></i>
-          <i class="pi pi-star"></i>
-
-          <span>(123) </span>
+          <i class="pi pi-star-fill"></i> <i class="pi pi-star-fill"></i>
+          <i class="pi pi-star-fill"></i> <i class="pi pi-star-fill"></i>
+          <i class="pi pi-star"></i> <span>(123) </span>
         </div>
         <div class="product-content-bottom">
           <button
             pButton
             label="Add to cart"
-            routerLink="../../v/product"
+            [routerLink]="['../../v/product', product.id]"
             styleClass="p-button-outlined p-button-secondary"
           ></button>
-          <h5>120.00</h5>
+          <h5>{{ product.price }}</h5>
         </div>
       </div>
     </div>

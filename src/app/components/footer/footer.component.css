@@ -1,0 +1,40 @@
+.footer {
+    background-color: var(--soft-darkcolor);
+    padding: 20px;
+  }
+  
+  .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .footer-column {
+    flex: 1;
+    margin-right: 20px;
+  }
+  
+  .footer-column h4 {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .footer-column p, .footer-column ul {
+    margin-bottom: 10px;
+  }
+  
+  .social-icons {
+    display: flex;
+  }
+  
+  .social-icon {
+    margin-right: 10px;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .social-icon:hover {
+    color: #ff6600;
+  }
+  

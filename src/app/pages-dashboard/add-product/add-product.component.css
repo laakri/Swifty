@@ -71,3 +71,8 @@
 .delete-button{
   border: none !important;
 }
+@media only screen and (max-width: 1450px) {
+  .form-box {
+    min-width: 100%;
+  }
+}

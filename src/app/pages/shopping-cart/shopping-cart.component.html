@@ -1,39 +1,63 @@
 <div class="mainpage">
   <div class="big-text">Shopping Cart</div>
+
   <div class="page-content">
     <div class="product-section">
-      <div *ngFor="let shit of shits">
+      <ng-container *ngIf="cartItems.length === 0" class="empty-cart-message">
+        <div class="empty-cart-message">
+          <i class="pi pi-shopping-cart empty-cart-icon"></i>
+          <p>Your cart is empty.</p>
+          <p-button
+            label="Back to Categories"
+            [routerLink]="['/v/categorie']"
+            styleClass="p-button-outlined p-button"
+          ></p-button>
+        </div>
+      </ng-container>
+      <div *ngFor="let item of cartItems">
         <div class="product">
           <p-button
             icon="pi pi-times"
             class="remove-button"
             styleClass="p-button-text p-button-rounded"
+            (click)="removeProduct(item)"
           ></p-button>
 
           <div class="product-img">
-            <img src="../../assets/headset.png" alt="" />
+            <img [src]="item.image" alt="" />
           </div>
           <div class="product-details">
             <div class="product-details-det">
-              <div class="product-name">Basic Tee</div>
+              <div class="product-name">{{ item.name }}</div>
               <div>
                 <span class="product-desc">Sienna</span>
                 <span class="product-desc">|</span>
                 <span class="product-desc">Large</span>
               </div>
-              <div class="product-price">$32.00</div>
+              <div class="product-price">{{ item.price }}</div>
             </div>
             <div class="product-details-stock">
-              <i class="pi pi-check-square"></i>
-              <span> in stock</span>
+              <i
+                [ngClass]="getStatusIcon(item.status)"
+                [ngStyle]="getStatusColor(item.status)"
+              ></i>
+              <span>{{ item.status }}</span>
             </div>
           </div>
           <div class="product-details-number">
-            <select name="" id="">
-              <option value="1">1</option>
-              <option value="1">2</option>
-              <option value="1">3</option>
-            </select>
+            <p-inputNumber
+              [min]="1"
+              [max]="20"
+              [ngModel]="item.quantityuser"
+              [showButtons]="true"
+              buttonLayout="horizontal"
+              decrementButtonClass="p-button-text"
+              incrementButtonClass="p-button-text"
+              incrementButtonIcon="pi pi-plus"
+              decrementButtonIcon="pi pi-minus"
+              [inputStyle]="{ width: '50px', 'border-radius': '5px' }"
+              (ngModelChange)="updateQuantity(item, $event)"
+            ></p-inputNumber>
           </div>
         </div>
         <hr class="p-divider" />
@@ -43,19 +67,19 @@
       <div class="order-text">Order summary</div>
       <div class="order-flexy">
         <span>Subtotal</span>
-        <h3>$99.00</h3>
+        <h3>{{ subtotals }}</h3>
       </div>
 
       <div class="order-flexy">
-        <span>Subtotal</span>
-        <h3>$99.00</h3>
+        <span>Delivery</span>
+        <h3>$7</h3>
       </div>
 
       <div class="order-flexy">
         <h3>Order total</h3>
-        <h3>$200.00</h3>
+        <h3>{{ (+subtotals + 7).toFixed(2) }}</h3>
       </div>
-      <button pButton label="Checkout"></button>
+      <button pButton label="Checkout" (click)="checkout()"></button>
     </div>
   </div>
 </div>

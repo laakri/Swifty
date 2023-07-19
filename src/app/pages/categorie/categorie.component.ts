@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { GetProduct } from '../../models/product.model';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-categorie',
@@ -8,7 +10,58 @@ import { Component } from '@angular/core';
 export class CategorieComponent {
   selectedCity!: any;
   selectedCities: any[] = [];
+  products: GetProduct[] = [];
+  displayedProducts: GetProduct[] = []; // Products to be displayed on the current page
+  totalProducts: number = 0; // Total number of products
+  currentPage: number = 1; // Current page
+  pageSize: number = 12; // Number of products per page
+  loading: boolean = false; // Loading indicator
 
+  constructor(private productService: ProductService) {}
+
+  ngOnInit() {
+    this.getProducts();
+  }
+  getProducts() {
+    const queryParams = {
+      page: this.currentPage.toString(),
+      limit: this.pageSize.toString(),
+    };
+    this.loading = true;
+
+    this.productService.getProducts(queryParams).subscribe(
+      (response: any) => {
+        if (response.products && Array.isArray(response.products)) {
+          this.products = response.products;
+        } else {
+          this.products = [];
+        }
+        this.totalProducts = response.pagination.totalProducts;
+        this.loading = false;
+      },
+      (error) => {
+        console.error('Error:', error);
+        // Handle the error
+      }
+    );
+  }
+
+  onSortChange() {
+    // Perform the sorting logic based on the selectedSortingOption
+    // You can update the products array with the sorted results
+  }
+  applyFilters() {
+    // Logic for applying filters
+  }
+
+  resetFilters() {
+    // Logic for resetting filters
+  }
+
+  onPageChange(event: any) {
+    this.currentPage = event.page + 1;
+    this.getProducts();
+  }
   tab = [1, 2, 3, 4, 1, 2, 3, 4];
   categoryOptions: any[] = [
     { label: 'T-shirt', value: 'category1' },
@@ -30,15 +83,4 @@ export class CategorieComponent {
     { label: 'Price - High to Low', value: 'highToLow' },
   ];
   selectedSortingOption: string = '';
-  onSortChange() {
-    // Perform the sorting logic based on the selectedSortingOption
-    // You can update the products array with the sorted results
-  }
-  applyFilters() {
-    // Logic for applying filters
-  }
-
-  resetFilters() {
-    // Logic for resetting filters
-  }
 }

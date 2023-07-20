@@ -5,13 +5,11 @@ const categorySchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  description: {
+
+  gender: {
     type: String,
+    enum: ["Men", "Women", "Neutral"],
     required: true,
-  },
-  parentCategory: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Category",
   },
 });
 

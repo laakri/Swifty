@@ -4,6 +4,12 @@
     height: calc(100vh - 120px);
     position: relative;
   }
+  a,button{
+    color: var(--whitecolor);
+}
+button:hover{
+  color: var(--whitecolor);
+}
   .homepage-background-img {
     background-image: url(../../../assets/homepage/main-image.png);
     position: absolute;
@@ -68,12 +74,17 @@
   }
   .first-content-field-button-section button:last-child{
     background-color:transparent !important;
-    border: none;
+    border: transparent solid 1px;
     display: flex;
     gap: 10px;
   }
+  .first-content-field-button-section button:first-child:hover{
+    border: var(--maincolor) solid 1px;
+    color: var(--maincolor);
+  }
   .first-content-field-button-section button:last-child:hover{
-    border: white solid 1px;
+    border: var(--whitecolor) solid 1px;
+    color: var(--whitecolor);
   }
   @-webkit-keyframes slide-in-left {
     0% {

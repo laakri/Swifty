@@ -162,7 +162,7 @@ export class UsersService {
               detail: successMessage,
             });
 
-            this.router.navigate(['/categorie']);
+            this.router.navigate(['/v/categorie']);
           }
         },
         (error) => {

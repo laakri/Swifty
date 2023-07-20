@@ -2,78 +2,103 @@
   <div class="checkout-container">
     <div class="left-content">
       <h2>Contact Information</h2>
-      <div class="form-group">
-        <input
-          id="useremail"
-          type="email"
-          pInputText
-          placeholder="Enter your email"
-        />
-      </div>
-      <div class="newsletter-checkbox">
-        <p-checkbox
-          id="newsletter"
-          [binary]="true"
-          inputId="binary"
-        ></p-checkbox>
-        <label for="newsletter">Email me with news and offers</label>
-      </div>
-      <h2>Shipping</h2>
-      <div class="form-group">
-        <input
-          id="useraddress"
-          type="address"
-          pInputText
-          placeholder="Address"
-        />
-      </div>
-      <div class="form-group form-split">
-        <input
-          class="form-split-input"
-          id="username"
-          type="name"
-          pInputText
-          placeholder="Name"
-        />
-        <input
-          class="form-split-input"
-          id="userlastname"
-          type="lastname"
-          pInputText
-          placeholder="Last Name"
-        />
-      </div>
 
-      <div class="form-group">
-        <input
-          id="useraddress"
-          type="address"
-          pInputText
-          placeholder="Address"
-        />
-      </div>
-      <div class="form-group form-split">
-        <input
-          class="form-split-input"
-          id="userpostal"
-          type="postal"
-          pInputText
-          placeholder="Postal Code"
-        />
-        <input
-          class="form-split-input"
-          id="userlastcity"
-          type="lastcity"
-          pInputText
-          placeholder="City"
-        />
-      </div>
-      <div class="shipping-buttons">
-        <button pButton class="p-button-text">Return to Cart</button>
-        <button pButton>Continue to Shipping</button>
-      </div>
+      <!-- Add the form element with [formGroup] directive -->
+      <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <!-- Add the formControlName directive for the 'email' field -->
+          <input
+            id="useremail"
+            type="email"
+            pInputText
+            placeholder="Enter your email"
+            formControlName="email"
+          />
+        </div>
+        <div class="newsletter-checkbox">
+          <!-- Add the formControlName directive for the 'newsletter' field -->
+          <p-checkbox
+            id="newsletter"
+            [binary]="true"
+            inputId="binary"
+            formControlName="newsletter"
+          ></p-checkbox>
+          <label for="newsletter">Email me with news and offers</label>
+        </div>
+        <h2>Shipping</h2>
+        <div class="form-group p-inputgroup">
+          <span class="p-inputgroup-addon">
+            <i class="pi pi-phone"></i>
+          </span>
+          <!-- Add the formControlName directive for the 'phone' field -->
+          <input
+            id="userphone"
+            pInputMask
+            type="number"
+            mask="999-99-9999"
+            placeholder="Enter your phone"
+            formControlName="phone"
+          />
+        </div>
+        <div class="form-group form-split">
+          <!-- Add the formControlName directive for the 'name' field -->
+          <input
+            class="form-split-input"
+            id="username"
+            type="text"
+            pInputText
+            placeholder="Name"
+            formControlName="name"
+          />
+          <!-- Add the formControlName directive for the 'lastname' field -->
+          <input
+            class="form-split-input"
+            id="userlastname"
+            type="text"
+            pInputText
+            placeholder="Last Name"
+            formControlName="lastname"
+          />
+        </div>
+
+        <div class="form-group">
+          <!-- Add the formControlName directive for the 'address' field -->
+          <input
+            id="useraddress"
+            type="text"
+            pInputText
+            placeholder="Address"
+            formControlName="address"
+          />
+        </div>
+        <div class="form-group form-split">
+          <!-- Add the formControlName directive for the 'postal' field -->
+          <input
+            class="form-split-input"
+            id="userpostal"
+            type="text"
+            pInputText
+            placeholder="Postal Code"
+            formControlName="postal"
+          />
+          <!-- Add the formControlName directive for the 'lastcity' field -->
+          <input
+            class="form-split-input"
+            id="userlastcity"
+            type="text"
+            pInputText
+            placeholder="City"
+            formControlName="lastcity"
+          />
+        </div>
+        <div class="shipping-buttons">
+          <button type="button" pButton class="p-button-text">
+            Return to Cart
+          </button>
+          <button type="submit" pButton>Continue to Shipping</button>
+        </div>
+      </form>
     </div>
-
     <div class="right-content">
       <h2>Your Cart</h2>
 

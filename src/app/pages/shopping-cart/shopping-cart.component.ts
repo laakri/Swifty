@@ -4,6 +4,7 @@ import { ProductService } from 'src/app/services/product.service';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { ConfirmationService } from 'primeng/api';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -110,6 +111,7 @@ export class ShoppingCartComponent implements OnInit {
       return { color: 'gray' };
     }
   }
+
   checkout() {
     const outOfStockItems = this.cartItems.filter(
       (item) => item.status === 'Out of stock'
@@ -118,19 +120,20 @@ export class ShoppingCartComponent implements OnInit {
     if (outOfStockItems.length > 0) {
       this.messageService.add({
         severity: 'warn',
-        summary: 'Out of Stock',
+        summary: 'Some Items Are Out of Stock',
         detail:
-          'Some items are out of stock. Please remove them from the cart.',
-        life: 5000,
+          'Before proceeding to checkout, please review your cart. Some items are currently out of stock. You can remove them to continue.',
+        life: 6000,
       });
     } else {
-      // Display the confirmation popup before navigating to checkout
       this.confirmationService.confirm({
         message: 'Are you sure you want to proceed to checkout?',
-        acceptLabel: 'Yes',
+        header: 'Confirm Checkout',
+        icon: 'pi pi-shopping-cart',
+        acceptLabel: 'Yes, Proceed',
         rejectLabel: 'No',
+
         accept: () => {
-          // User clicked 'Yes,' navigate to the checkout page
           this.router.navigateByUrl('/v/checkout');
         },
       });

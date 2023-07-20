@@ -3,28 +3,32 @@
     min-height:600px ;
     margin: 50px auto;
 }   
-
+a,button{
+    color: var(--whitecolor);
+}
 .checkout-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 }
   
   .left-content {
     padding: 20px;
     width: 45%;
+    
+  }
+  form{
     display: flex;
     flex-direction: column;
     gap:20px;
   }
-  
   .right-content {
     border-radius:20px ;
     padding: 20px;
-    width: 45%;
+    width: 40%;
     background-color: var(--soft-darkcolor);
     height: max-content;
 }
-  input {
+.p-inputMask,input {
     width: 100%;
     padding: 8px;
     border: 1px solid #ccc;
@@ -57,6 +61,11 @@
     justify-content: space-around;
 
 }
+.shipping-buttons button:first-child{
+    color: var(--maincolor);
+    background-color: transparent;
+    border: var(--maincolor) solid 1px;
+}
 .shipping-buttons button:last-child{
     background-color: transparent;
     border: var(--whitecolor) solid 1px;
@@ -72,4 +81,23 @@
 .subtotal:last-child{
     font-weight: 600;
     font-size: 18px;
+}
+@media only screen and (max-width: 1100px) {
+
+    .checkout-container {
+        flex-direction: column;
+    }
+    .left-content {
+        width: 90%;
+        min-height: 300px;
+        margin: auto;
+        order: 2;
+    }
+
+    .right-content {
+        width: 90%;
+        height: max-content;
+        margin: auto;
+        order: 1;
+      }
 }

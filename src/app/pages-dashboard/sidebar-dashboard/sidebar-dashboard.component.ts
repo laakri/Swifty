@@ -29,7 +29,12 @@ export class SidebarDashboardComponent implements OnInit {
         label: 'Product ',
         items: [
           {
-            label: 'Add',
+            label: 'Category',
+            icon: 'pi pi-folder-open',
+            routerLink: '/a/add-category',
+          },
+          {
+            label: 'Add Product',
             icon: 'pi pi-plus-circle',
             routerLink: '/a/add-product',
           },

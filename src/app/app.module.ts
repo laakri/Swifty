@@ -21,6 +21,7 @@ import { AddProductComponent } from './pages-dashboard/add-product/add-product.c
 import { DashboardComponent } from './pages-dashboard/dashboard/dashboard.component';
 import { ProductListComponent } from './pages-dashboard/product-list/product-list.component';
 import { UsersListComponent } from './pages-dashboard/users-list/users-list.component';
+import { AddCategoryComponent } from './pages-dashboard/add-category/add-category.component';
 
 /**********  Prime NG *************** */
 
@@ -57,6 +58,10 @@ import { GalleriaModule } from 'primeng/galleria';
 import { ImageModule } from 'primeng/image';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { ConfirmationService } from 'primeng/api';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { InputMaskModule } from 'primeng/inputmask';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
 @NgModule({
   declarations: [
     AppComponent,
@@ -78,6 +83,7 @@ import { ConfirmationService } from 'primeng/api';
     SidebarDashboardComponent,
     UsersListComponent,
     FooterComponent,
+    AddCategoryComponent,
   ],
   imports: [
     HttpClientModule,
@@ -114,11 +120,15 @@ import { ConfirmationService } from 'primeng/api';
     GalleriaModule,
     ImageModule,
     InputNumberModule,
+    ConfirmDialogModule,
+    RadioButtonModule,
+    InputMaskModule,
+    ConfirmPopupModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    MessageService,
     ConfirmationService,
+    MessageService,
   ],
   bootstrap: [AppComponent],
 })

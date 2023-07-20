@@ -1,0 +1,64 @@
+<form (ngSubmit)="addCategory()" class="category-form">
+  <div class="form-group">
+    <label for="name">Category Name</label>
+    <input
+      [(ngModel)]="category.name"
+      name="name"
+      id="name"
+      pInputText
+      placeholder="Category Name"
+      [required]="true"
+      class="form-control"
+    />
+  </div>
+  <div class="form-group">
+    <label for="gender">Gender</label>
+    <p-dropdown
+      [(ngModel)]="category.gender"
+      name="gender"
+      id="gender"
+      [options]="genderOptions"
+      placeholder="Select Gender"
+    ></p-dropdown>
+  </div>
+  <button
+    type="submit"
+    pButton
+    label="Add Category"
+    class="btn btn-primary"
+  ></button>
+</form>
+<h2>Categories</h2>
+<div *ngIf="categories.length === 0; else categoryList">
+  <p>No categories found.</p>
+</div>
+<ng-template #categoryList>
+  <table class="category-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Gender</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let category of categories">
+        <td>{{ category.name }}</td>
+        <td>{{ category.gender }}</td>
+        <td>
+          <!-- Add your edit category button here -->
+        </td>
+        <td>
+          <button
+            pButton
+            label="Delete"
+            class="btn btn-danger"
+            (click)="deleteCategory(category._id, $event)"
+          ></button>
+          <p-confirmPopup></p-confirmPopup>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</ng-template>

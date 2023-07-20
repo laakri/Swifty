@@ -32,7 +32,8 @@
   [ngClass]="{ 'navbar-transparent': isNavbarTransparent }"
 >
   <div class="logo1" routerLink="">
-    <img src="../../../assets/mainlogo-purple.png" alt="" />
+    <img [src]="getImgSrc()" alt="Logo" />
+
     <span>Swifty</span>
   </div>
   <div class="middle-content">

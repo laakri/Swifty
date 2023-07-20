@@ -14,6 +14,7 @@ import { AddProductComponent } from './pages-dashboard/add-product/add-product.c
 import { DashboardComponent } from './pages-dashboard/dashboard/dashboard.component';
 import { ProductListComponent } from './pages-dashboard/product-list/product-list.component';
 import { UsersListComponent } from './pages-dashboard/users-list/users-list.component';
+import { AddCategoryComponent } from './pages-dashboard/add-category/add-category.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/v/home', pathMatch: 'full' },
@@ -49,6 +50,7 @@ const routes: Routes = [
       { path: 'add-product', component: AddProductComponent },
       { path: 'list-product', component: ProductListComponent },
       { path: 'list-users', component: UsersListComponent },
+      { path: 'add-category', component: AddCategoryComponent },
     ],
   },
 ];

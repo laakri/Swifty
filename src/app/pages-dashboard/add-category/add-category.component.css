@@ -1,6 +1,6 @@
 .category-form {
   max-width: 400px;
-  margin: 0 auto;
+  margin: 20px;
 }
 
 .form-group {
@@ -35,5 +35,11 @@ label {
 }
 
 .btn:hover {
-  background-color: #0056b3;
+  background-color: #f0f0f0;
+  border:transparent solid 1px !important;
+
+}
+p-table button{
+  color: rgb(64, 64, 64) !important ;
+  border:rgb(64, 64, 64)  solid 1px !important;
 }

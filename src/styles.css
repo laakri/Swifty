@@ -3,7 +3,7 @@
 @import "primeicons/primeicons.css";
 @import "/src/assets/theme/theme-light.css";
 
-body{
+body.light-theme{
     height: 100%;
     width: 100%;
     margin: 0;
@@ -26,7 +26,7 @@ body{
     --buttonactive:#2e37469c;
 }
 
-body.light-theme {
+body {
   height: 100%;
   width: 100%;
   margin: 0;

@@ -32,6 +32,20 @@ router.get("/get-categories", async (req, res) => {
     res.status(500).json({ message: "An error occurred" });
   }
 });
+
+// GET /gender/:gender
+router.get("/gender/:gender", async (req, res) => {
+  try {
+    const { gender } = req.params;
+    // Retrieve categories from the database based on the gender
+    const categories = await Category.find({ gender });
+    res.status(200).json(categories);
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ message: "An error occurred" });
+  }
+});
+
 // PUT /categories/:id
 router.put("/update-categories/:id", async (req, res) => {
   try {

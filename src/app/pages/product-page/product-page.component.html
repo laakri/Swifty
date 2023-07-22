@@ -35,7 +35,9 @@
         <i class="pi pi-star"></i>
         <span>(123) </span>
       </div>
-      <div class="product-price">{{ product?.price }} DT</div>
+      <div class="product-price">
+        {{ product?.price }} <i style="font-size: 12px"> DT</i>
+      </div>
       <div class="product-price-details">You can pay per month or 2 weeks</div>
       <div class="product-count">
         <div class="quantity-control">
@@ -70,8 +72,93 @@
   <div class="mainpage">
     <div class="secend-content">
       <div class="secend-content-details">
+        <h3>Specifications</h3>
+        <div class="secend-content-details-card">
+          <ul class="p-list-group">
+            <li
+              *ngFor="let spec of product?.specifications"
+              class="p-list-group-item"
+            >
+              <div class="spec-name">{{ spec.name }}:</div>
+
+              <div class="spec-value">{{ spec.value }}</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="secend-content-details">
         <h3>More Details</h3>
         <span>{{ product?.description }}</span>
+      </div>
+      <div class="secend-content-details">
+        <h3>Tags</h3>
+        <div class="secend-content-tags">
+          <span *ngFor="let tag of product?.tags"
+            >#{{ parseTag(tag).tag }}</span
+          >
+        </div>
+      </div>
+      <div class="secend-content-details">
+        <div class="secend-content-details-review-flex">
+          <div class="review-form" *ngIf="showReviewForm">
+            <h3>Write Your Review</h3>
+            <div class="p-inputgroup">
+              <p-rating [(ngModel)]="rating" [cancel]="false"></p-rating>
+            </div>
+            <div class="p-inputgroup">
+              <textarea
+                rows="5"
+                pInputTextarea
+                placeholder="Your review..."
+                [(ngModel)]="reviewComment"
+              ></textarea>
+            </div>
+            <button pButton label="Submit" (click)="submitReview()"></button>
+          </div>
+
+          <div class="review">
+            <h1>3.0</h1>
+            <p-rating
+              [(ngModel)]="rating"
+              [readonly]="true"
+              [cancel]="false"
+            ></p-rating>
+            <h4>85 Reviews</h4>
+            <button pButton (click)="addReview()">Write review</button>
+          </div>
+        </div>
+
+        <div class="review-flex">
+          <div class="review-flex-item" *ngFor="let item of items">
+            <div class="review-flex-item-flex">
+              <div class="review-flex-item-flex-l">
+                <img src="../../../assets/user.png" alt="user" />
+                <span class="review-flex-item-flex-l-name"
+                  >Saif Edinne Jelassi</span
+                >
+                <span>1d ago</span>
+              </div>
+              <div class="review-flex-item-flex-r">
+                <p-rating
+                  [(ngModel)]="rating"
+                  [readonly]="true"
+                  [cancel]="false"
+                ></p-rating>
+              </div>
+            </div>
+            <div class="review-flex-item-content">
+              Etiam tempor orci eu lobortis elementum nibh tellus. Auctor eu
+              augue ut lectus arcu bibendum at varius vel. Id aliquet lectus
+              proin nibh nisl. Lorem ipsum dolor sit amet consectetur.
+            </div>
+          </div>
+        </div>
+        <div class="review">
+          <p-button
+            label="Show more"
+            styleClass="p-button-outlined p-button-secondary"
+          ></p-button>
+        </div>
       </div>
     </div>
   </div>

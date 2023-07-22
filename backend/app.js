@@ -9,6 +9,7 @@ const categRoutes = require("./routes/category");
 const orderRoutes = require("./routes/order");
 const returnRoutes = require("./routes/return");
 const couponRoutes = require("./routes/coupon");
+const reviewRoutes = require("./routes/review");
 
 const app = express();
 
@@ -53,5 +54,6 @@ app.use("/api/categs", categRoutes);
 app.use("/api/order", orderRoutes);
 app.use("/api/return", returnRoutes);
 app.use("/api/coupon", couponRoutes);
+app.use("/api/review", reviewRoutes);
 
 module.exports = app;

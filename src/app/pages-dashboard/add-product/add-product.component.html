@@ -63,15 +63,12 @@
       </div>
 
       <div class="p-field">
-        <label for="category">Category</label>
-        <input
-          type="text"
-          id="category"
-          pInputText
-          formControlName="category"
-          required
-          placeholder="Enter category"
-        />
+        <label for="isFeatured">Is Featured</label>
+        <p-inputSwitch
+          id="isFeatured"
+          formControlName="isFeatured"
+          binary="true"
+        ></p-inputSwitch>
       </div>
     </div>
 
@@ -138,6 +135,45 @@
           </ng-container>
           <button pButton type="button" (click)="addTag()">Add Tag</button>
         </div>
+      </div>
+    </div>
+
+    <div class="form-box">
+      <div class="p-field">
+        <label>Gender</label>
+        <div class="gap1">
+          <p-radioButton
+            name="gender"
+            value="male"
+            formControlName="gender"
+            label="Male"
+          ></p-radioButton>
+          <p-radioButton
+            name="gender"
+            value="female"
+            formControlName="gender"
+            label="Female"
+          ></p-radioButton>
+          <p-radioButton
+            name="gender"
+            value="other"
+            formControlName="gender"
+            label="Other"
+          ></p-radioButton>
+        </div>
+      </div>
+
+      <div class="p-field">
+        <label for="category">Category</label>
+        <ng-container *ngIf="productForm.get('gender')">
+          <p-dropdown
+            [options]="getCategoryOptions()"
+            formControlName="category"
+            [placeholder]="'No categories available'"
+            optionLabel="name"
+          >
+          </p-dropdown>
+        </ng-container>
       </div>
     </div>
     <div class="form-box">

@@ -62,6 +62,11 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { InputMaskModule } from 'primeng/inputmask';
 import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { InputSwitchModule } from 'primeng/inputswitch';
+import { ChipsModule } from 'primeng/chips';
+import { RatingModule } from 'primeng/rating';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -124,6 +129,10 @@ import { ConfirmPopupModule } from 'primeng/confirmpopup';
     RadioButtonModule,
     InputMaskModule,
     ConfirmPopupModule,
+    InputSwitchModule,
+    ChipsModule,
+    RatingModule,
+    InputTextareaModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

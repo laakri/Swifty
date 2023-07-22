@@ -3,6 +3,9 @@
   gap: 30px;
   flex-wrap: wrap;
 }
+a,button{
+ color: var(--whitecolor); 
+}
 .form-box{
   height: max-content;
   min-width: 45%;
@@ -55,6 +58,11 @@
     gap: 20px;
     display: flex;
     flex-direction: column;
+  }
+  .gap1 {
+    gap: 20px;
+    display: flex;
+    flex-direction: row;
   }
   button {
     width: 200px;

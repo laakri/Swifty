@@ -1,3 +1,4 @@
+// add-category.component.ts
 import { Component, OnInit } from '@angular/core';
 import { Category } from 'src/app/models/category.model';
 import { CategoryService } from 'src/app/services/category.service';
@@ -21,18 +22,22 @@ export class AddCategoryComponent implements OnInit {
     { label: 'Neutral', value: 'Neutral' },
   ];
   categories: Category[] = [];
+  editingCategory!: Category | null;
 
   constructor(
     private categoryService: CategoryService,
     private messageService: MessageService,
     private confirmationService: ConfirmationService
   ) {}
+
   ngOnInit(): void {
     this.loadCategories();
   }
+
   addCategory(): void {
     this.categoryService.addCategory(this.category).subscribe(
       (response) => {
+        this.loadCategories();
         console.log('Category added successfully');
         this.messageService.add({
           severity: 'success',
@@ -47,11 +52,11 @@ export class AddCategoryComponent implements OnInit {
       }
     );
   }
+
   loadCategories(): void {
     this.categoryService.getCategories().subscribe(
       (categories) => {
         this.categories = categories;
-        console.log(this.categories);
       },
       (error) => {
         console.error('Error loading categories:', error);
@@ -59,18 +64,46 @@ export class AddCategoryComponent implements OnInit {
       }
     );
   }
+  editCategory(category: Category): void {
+    this.editingCategory = { ...category };
+  }
+
+  updateCategory(): void {
+    if (this.editingCategory) {
+      this.categoryService
+        .updateCategory(this.editingCategory._id, this.editingCategory)
+        .subscribe(
+          () => {
+            console.log('Category updated successfully');
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Category Updated',
+              detail: 'Category has been updated successfully.',
+            });
+            this.editingCategory = null; // Clear the editing category after successful update
+            this.loadCategories(); // Refresh the category list after successful update
+          },
+          (error) => {
+            console.error('Error updating category:', error);
+            // Handle error cases and display appropriate notifications to the user
+          }
+        );
+    }
+  }
+
+  cancelEdit(): void {
+    this.editingCategory = null; // Clear the editing category to close the edit form
+  }
 
   deleteCategory(categoryId: string, event: Event): void {
-    // Show the confirmation popup
     this.confirmationService.confirm({
       target: event.target as EventTarget,
       message: 'Are you sure you want to delete this category?',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        // User confirmed, delete the category
         this.categoryService.deleteCategory(categoryId).subscribe(
           () => {
-            this.loadCategories(); // Refresh the category list after successful deletion
+            this.loadCategories();
             console.log('Category deleted successfully');
             this.messageService.add({
               severity: 'success',

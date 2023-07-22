@@ -32,22 +32,28 @@
 <div *ngIf="categories.length === 0; else categoryList">
   <p>No categories found.</p>
 </div>
+
 <ng-template #categoryList>
-  <table class="category-table">
-    <thead>
+  <p-table [value]="categories" class="category-table">
+    <ng-template pTemplate="header">
       <tr>
         <th>Name</th>
         <th>Gender</th>
         <th>Edit</th>
         <th>Delete</th>
       </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let category of categories">
+    </ng-template>
+    <ng-template pTemplate="body" let-category>
+      <tr>
         <td>{{ category.name }}</td>
         <td>{{ category.gender }}</td>
         <td>
-          <!-- Add your edit category button here -->
+          <button
+            pButton
+            label="Update"
+            class="btn btn-primary"
+            (click)="editCategory(category)"
+          ></button>
         </td>
         <td>
           <button
@@ -59,6 +65,6 @@
           <p-confirmPopup></p-confirmPopup>
         </td>
       </tr>
-    </tbody>
-  </table>
+    </ng-template>
+  </p-table>
 </ng-template>

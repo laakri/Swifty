@@ -98,7 +98,7 @@ button {
     gap: 30px  ;
 }
 .product{
-    height: 430px;
+    height: max-content;
     width: 280px;
     border-radius: 10px;
     overflow: hidden;

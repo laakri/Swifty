@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Product, GetProduct } from '../models/product.model';
+import { Product, GetProduct, Specification } from '../models/product.model';
 
 @Injectable({
   providedIn: 'root',
@@ -24,17 +24,17 @@ export class ProductService {
       formData.append('images', imagess[i], imagess[i].name);
     }
 
-    // for (let i = 0; i < product.specifications.length; i++) {
-    //   const specification: Specification = product.specifications[i];
-    //   formData.append(`specifications[${i}][name]`, specification.name);
-    //   formData.append(`specifications[${i}][value]`, specification.value);
-    // }
+    for (let i = 0; i < product.specifications.length; i++) {
+      const specification: Specification = product.specifications[i];
+      formData.append(`specifications[${i}][name]`, specification.name);
+      formData.append(`specifications[${i}][value]`, specification.value);
+    }
+    for (let i = 0; i < product.tags.length; i++) {
+      console.log(product.tags[i]);
+      formData.append(`tags[${i}]`, JSON.stringify(product.tags[i])); // stringify the tags
+    }
 
-    // for (let i = 0; i < product.tags.length; i++) {
-    //   formData.append(`tags[${i}]`, product.tags[i]);
-    // }
-
-    // formData.append('isFeatured', product.isFeatured.toString());
+    formData.append('isFeatured', product.isFeatured.toString());
 
     return this.http.post<Product>(
       `${this.apiUrl}/api/prods/add-product`,

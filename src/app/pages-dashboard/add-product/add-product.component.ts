@@ -8,24 +8,33 @@ import {
 } from '@angular/forms';
 import { FileSelectEvent } from 'primeng/fileupload';
 import { ProductService } from 'src/app/services/product.service';
+import { CategoryService } from 'src/app/services/category.service';
 import { HttpClient } from '@angular/common/http';
 import { MessageService } from 'primeng/api';
+import { Category } from 'src/app/models/category.model';
 
 @Component({
   selector: 'app-add-product',
   templateUrl: './add-product.component.html',
   styleUrls: ['./add-product.component.css'],
 })
-export class AddProductComponent {
+export class AddProductComponent implements OnInit {
   productForm: FormGroup;
   imageControls!: FormArray;
   imagess!: File[];
   uploadedFiles: any[] = [];
 
+  maleCategories: Category[] = [];
+  femaleCategories: Category[] = [];
+  otherCategories: Category[] = [];
+
+  // ... Rest of the component ...
+
   constructor(
     private http: HttpClient,
     private fb: FormBuilder,
     private productService: ProductService,
+    private CategoryService: CategoryService,
     private messageService: MessageService
   ) {
     this.productForm = this.fb.group({
@@ -34,6 +43,7 @@ export class AddProductComponent {
       shortDescription: ['', Validators.required],
       description: ['', Validators.required],
       category: ['', Validators.required],
+      gender: ['', Validators.required],
       quantity: ['', Validators.required],
       images: this.fb.array([]),
       specifications: this.fb.array([this.createSpecification()]),
@@ -42,7 +52,57 @@ export class AddProductComponent {
     });
     this.imageControls = this.productForm.get('images') as FormArray;
   }
+  ngOnInit(): void {
+    this.fetchCategoriesByGender();
+  }
 
+  getCategoryOptions(): Category[] {
+    const gender = this.productForm.get('gender')?.value;
+    switch (gender) {
+      case 'male':
+        return this.maleCategories;
+      case 'female':
+        return this.femaleCategories;
+      case 'other':
+        return this.otherCategories;
+      default:
+        return [];
+    }
+  }
+
+  fetchCategoriesByGender() {
+    this.CategoryService.getCategoriesByGender('Men').subscribe(
+      (categories) => {
+        console.log(categories);
+        this.maleCategories = categories;
+      },
+      (error) => {
+        console.error('Failed to fetch male categories:', error);
+      }
+    );
+
+    this.CategoryService.getCategoriesByGender('Women').subscribe(
+      (categories) => {
+        console.log(categories);
+
+        this.femaleCategories = categories;
+      },
+      (error) => {
+        console.error('Failed to fetch female categories:', error);
+      }
+    );
+
+    this.CategoryService.getCategoriesByGender('Neutral').subscribe(
+      (categories) => {
+        console.log(categories);
+
+        this.otherCategories = categories;
+      },
+      (error) => {
+        console.error('Failed to fetch other categories:', error);
+      }
+    );
+  }
   /*************** Specification *******************/
   get specificationControls() {
     return this.productForm.get('specifications') as FormArray;
@@ -72,9 +132,11 @@ export class AddProductComponent {
       tag: ['', Validators.required],
     });
   }
+
   addTag(): void {
-    this.tagControls.push(this.fb.control(''));
+    this.tagControls.push(this.createTag());
   }
+
   removeTag(index: number): void {
     this.tagControls.removeAt(index);
   }
@@ -101,6 +163,7 @@ export class AddProductComponent {
       return;
     }
     const productData = this.productForm.value;
+    console.log(productData);
     this.productService.addProduct(productData, this.imagess).subscribe(
       (response) => {
         this.messageService.add({

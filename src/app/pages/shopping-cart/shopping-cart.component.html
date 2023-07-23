@@ -1,19 +1,21 @@
 <div class="mainpage">
   <div class="big-text">Shopping Cart</div>
-
-  <div class="page-content">
+  <ng-container *ngIf="cartItems.length === 0" class="empty-cart-message">
+    <div class="empty-cart-message">
+      <i class="pi pi-shopping-cart empty-cart-icon"></i>
+      <p>Your cart is empty. Click below to explore our products.</p>
+      <button
+        pButton
+        class="p-button-primary empty-button"
+        [routerLink]="['/v/categorie']"
+      >
+        Explore Products
+        <i class="pi pi-arrow-right"></i>
+      </button>
+    </div>
+  </ng-container>
+  <div class="page-content" *ngIf="cartItems.length > 0">
     <div class="product-section">
-      <ng-container *ngIf="cartItems.length === 0" class="empty-cart-message">
-        <div class="empty-cart-message">
-          <i class="pi pi-shopping-cart empty-cart-icon"></i>
-          <p>Your cart is empty.</p>
-          <p-button
-            label="Back to Categories"
-            [routerLink]="['/v/categorie']"
-            styleClass="p-button-outlined p-button"
-          ></p-button>
-        </div>
-      </ng-container>
       <div *ngFor="let item of cartItems">
         <div class="product">
           <p-button

@@ -105,14 +105,14 @@ button {
     border: 2px solid transparent;
 }
 .product:hover{
-    border: 2px solid var(--soft-darkcolor);
+    background-color: var(--soft-darkcolor);
     overflow: hidden;
 }
 
 
 .product-img-section{
     width: 100%;
-    height: 60%;
+    height: 270px;
     background-color: var(--soft-darkcolor);
 }
 .product-img-section img{

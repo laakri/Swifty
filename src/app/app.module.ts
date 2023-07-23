@@ -22,6 +22,7 @@ import { DashboardComponent } from './pages-dashboard/dashboard/dashboard.compon
 import { ProductListComponent } from './pages-dashboard/product-list/product-list.component';
 import { UsersListComponent } from './pages-dashboard/users-list/users-list.component';
 import { AddCategoryComponent } from './pages-dashboard/add-category/add-category.component';
+import { OrderPageComponent } from './pages/order-page/order-page.component';
 
 /**********  Prime NG *************** */
 
@@ -89,6 +90,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     UsersListComponent,
     FooterComponent,
     AddCategoryComponent,
+    OrderPageComponent,
   ],
   imports: [
     HttpClientModule,

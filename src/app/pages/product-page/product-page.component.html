@@ -1,4 +1,8 @@
-<div class="mainpage">
+<p-progressSpinner
+  *ngIf="isLoading"
+  styleClass="custom-spinner"
+></p-progressSpinner>
+<div class="mainpage" *ngIf="!isLoading">
   <div class="url-section">URLI SECTION / PRODUCTCATEGORY / PRODUCT</div>
   <div class="first-content">
     <div class="first-content-left">
@@ -10,6 +14,9 @@
         [numVisible]="5"
         [activeIndex]="activeIndex"
         [showItemNavigators]="true"
+        [showItemNavigatorsOnHover]="true"
+        [autoPlay]="true"
+        [circular]="true"
       >
         <ng-template pTemplate="item" let-item>
           <img [src]="item.url" style="width: 100%" class="item-image" />
@@ -28,12 +35,12 @@
         {{ product?.shortDescription }}
       </div>
       <div class="product-rating">
-        <i class="pi pi-star-fill"></i>
-        <i class="pi pi-star-fill"></i>
-        <i class="pi pi-star-fill"></i>
-        <i class="pi pi-star-fill"></i>
-        <i class="pi pi-star"></i>
-        <span>(123) </span>
+        <p-rating
+          [ngModel]="product?.averageRating"
+          [readonly]="true"
+          [cancel]="false"
+        ></p-rating>
+        <span>({{ product?.lengthRating }}) </span>
       </div>
       <div class="product-price">
         {{ product?.price }} <i style="font-size: 12px"> DT</i>
@@ -100,63 +107,78 @@
       </div>
       <div class="secend-content-details">
         <div class="secend-content-details-review-flex">
-          <div class="review-form" *ngIf="showReviewForm">
-            <h3>Write Your Review</h3>
-            <div class="p-inputgroup">
-              <p-rating [(ngModel)]="rating" [cancel]="false"></p-rating>
-            </div>
-            <div class="p-inputgroup">
-              <textarea
-                rows="5"
-                pInputTextarea
-                placeholder="Your review..."
-                [(ngModel)]="reviewComment"
-              ></textarea>
-            </div>
-            <button pButton label="Submit" (click)="submitReview()"></button>
-          </div>
-
           <div class="review">
-            <h1>3.0</h1>
+            <h1>{{ product?.averageRating?.toFixed(1) ?? "N/A" }}</h1>
             <p-rating
-              [(ngModel)]="rating"
+              [ngModel]="product?.averageRating"
               [readonly]="true"
               [cancel]="false"
             ></p-rating>
-            <h4>85 Reviews</h4>
+            <h4>{{ product?.lengthRating }} Reviews</h4>
             <button pButton (click)="addReview()">Write review</button>
+          </div>
+
+          <div class="review-form" *ngIf="showReviewForm">
+            <form [formGroup]="reviewForm" (ngSubmit)="submitReview()">
+              <h3>Write Your Review</h3>
+              <div class="p-inputgroup">
+                <p-rating
+                  formControlName="rating"
+                  [ngModel]="rating"
+                ></p-rating>
+              </div>
+              <div class="p-inputgroup">
+                <textarea
+                  rows="5"
+                  pInputTextarea
+                  placeholder="Your review..."
+                  formControlName="comment"
+                ></textarea>
+              </div>
+              <button pButton type="submit" label="Submit Review"></button>
+            </form>
           </div>
         </div>
 
         <div class="review-flex">
-          <div class="review-flex-item" *ngFor="let item of items">
+          <p-progressSpinner
+            *ngIf="isLoading"
+            styleClass="custom-spinner"
+          ></p-progressSpinner>
+          <div class="review-flex-item" *ngFor="let review of reviews">
             <div class="review-flex-item-flex">
               <div class="review-flex-item-flex-l">
                 <img src="../../../assets/user.png" alt="user" />
-                <span class="review-flex-item-flex-l-name"
-                  >Saif Edinne Jelassi</span
+                <span class="review-flex-item-flex-l-name">
+                  {{ review.userId.name }}</span
                 >
+
                 <span>1d ago</span>
               </div>
               <div class="review-flex-item-flex-r">
                 <p-rating
-                  [(ngModel)]="rating"
+                  [(ngModel)]="review.rating"
                   [readonly]="true"
                   [cancel]="false"
                 ></p-rating>
               </div>
             </div>
             <div class="review-flex-item-content">
-              Etiam tempor orci eu lobortis elementum nibh tellus. Auctor eu
-              augue ut lectus arcu bibendum at varius vel. Id aliquet lectus
-              proin nibh nisl. Lorem ipsum dolor sit amet consectetur.
+              {{ review.comment }}
             </div>
           </div>
         </div>
         <div class="review">
+          <p-progressSpinner
+            *ngIf="isLoading"
+            styleClass="custom-spinner"
+          ></p-progressSpinner>
+
           <p-button
             label="Show more"
             styleClass="p-button-outlined p-button-secondary"
+            (click)="showMoreReviews()"
+            *ngIf="hasMoreReviews"
           ></p-button>
         </div>
       </div>

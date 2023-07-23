@@ -12,6 +12,7 @@ export interface Product {
   tags: string[];
   isFeatured: boolean;
   averageRating?: number; // Optional property
+  lengthRating?: number; // Optional property
 }
 export interface GetProduct {
   _id: string;

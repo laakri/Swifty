@@ -217,7 +217,6 @@ export class UsersService {
     clearTimeout(this.tokenTimer);
     this.clearAuthData();
     console.log('Logout runs seccesfully!');
-    this.router.navigate(['/Homepage/View']);
   }
 
   private setAuthTimer(duration: number) {

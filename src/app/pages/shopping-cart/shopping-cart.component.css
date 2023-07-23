@@ -1,6 +1,7 @@
 .mainpage {
   max-width: 1300px;
   margin: 30px auto;
+  min-height: 580px;
 }
 
 .big-text {
@@ -10,17 +11,37 @@
     letter-spacing: 1px;
 }
 .empty-cart-message {
+    margin: 80px auto;
+    padding: 20px 30px 40px 30px;
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
-    padding: 40px;
-    text-align: center;
+    align-items: center;
+    flex-direction: column;
+    width: 380px;
+    gap: 20px;
+    
+
   }
-  
+  .empty-cart-message p{
+    font-size: 18px;
+    text-align: center;
+}
+  .empty-button{
+    width: max-content;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--maincolor);
+    border:var(--maincolor) solid 1px ;
+    background-color: transparent;
+}
+
+.empty-button i{
+    font-size: 12px;
+}
   .empty-cart-icon {
     font-size: 4rem;
-    color: #ccc;
+    color: var(--graycolor);
     margin-bottom: 10px;
   }
   
@@ -28,7 +49,7 @@
 .page-content {
     display: flex;
     justify-content: space-between;
-    min-height: 600px;
+    min-height: 650px;
 
 }
 

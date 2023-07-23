@@ -18,4 +18,10 @@ export class ReviewService {
       reviewData
     );
   }
+
+  getReviewsForProduct(productId: string, skip: number): Observable<any> {
+    return this.http.get<any>(
+      `${this.apiUrl}/product/${productId}/reviews?skip=${skip}`
+    );
+  }
 }

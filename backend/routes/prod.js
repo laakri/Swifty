@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const multer = require("multer");
 const Product = require("../models/prod");
+const Review = require("../models/review");
 
 const MIME_TYPE_MAP = {
   "image/png": "png",
@@ -71,8 +72,33 @@ router.post("/add-product", upload.array("images"), async (req, res) => {
     res.status(500).json({ error: "Failed to create the product" });
   }
 });
-/****************** Get All Products ******************/
 
+/****************** Get All Products ******************/
+const calculateAverageRating = async (productId) => {
+  try {
+    const reviews = await Review.find({ productId });
+    if (reviews.length === 0) {
+      return 0;
+    }
+    const totalRating = reviews.reduce((sum, review) => sum + review.rating, 0);
+    return totalRating / reviews.length;
+  } catch (error) {
+    console.error(error);
+    return 0;
+  }
+};
+const calculateLengthRating = async (productId) => {
+  try {
+    const reviews = await Review.find({ productId });
+    if (reviews.length === 0) {
+      return 0;
+    }
+    return reviews.length;
+  } catch (error) {
+    console.error(error);
+    return 0;
+  }
+};
 router.get("/products", async (req, res) => {
   try {
     const page = req.query.page ? parseInt(req.query.page) : 1;
@@ -118,14 +144,25 @@ router.get("/products", async (req, res) => {
     res.status(500).json({ error: "Failed to fetch products" });
   }
 });
-/****************** Add Product ******************/
+
+/****************** Get Product By Id ******************/
+
 router.get("/product/:id", async (req, res) => {
   try {
     const productId = req.params.id;
-    const product = await Product.findById(productId).populate("reviews");
+    const product = await Product.findById(productId);
+
     if (!product) {
       return res.status(404).json({ error: "Product not found" });
     }
+
+    // Calculate the average rating using the custom function
+    const averageRating = await calculateAverageRating(productId);
+    product.averageRating = averageRating;
+
+    const lengthRating = await calculateLengthRating(productId);
+    product.lengthRating = lengthRating;
+
     res.json(product);
   } catch (error) {
     console.error(error);
@@ -158,5 +195,4 @@ router.post("/get-cart-products", async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 });
-
 module.exports = router;

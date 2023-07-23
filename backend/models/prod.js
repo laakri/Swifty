@@ -74,17 +74,8 @@ const productSchema = new mongoose.Schema(
 );
 
 // Virtual property to calculate the average rating of a product
-productSchema.virtual("averageRating").get(function () {
-  if (this.reviews.length === 0) {
-    return 0;
-  }
-
-  const totalRating = this.reviews.reduce(
-    (sum, review) => sum + review.rating,
-    0
-  );
-  return totalRating / this.reviews.length;
-});
+productSchema.virtual("averageRating");
+productSchema.virtual("lengthRating");
 
 const Product = mongoose.model("Product", productSchema);
 

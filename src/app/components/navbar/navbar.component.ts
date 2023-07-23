@@ -87,8 +87,8 @@ export class NavbarComponent implements OnInit {
   getImgSrc(): string {
     const isBrightTheme = document.body.classList.contains('light-theme');
     return isBrightTheme
-      ? '../../../assets/mainlogo.png'
-      : '../../../assets/mainlogo-black.png';
+      ? '../../../assets/mainlogo-black.png'
+      : '../../../assets/mainlogo.png';
   }
   logout() {
     this.UsersService.logout();

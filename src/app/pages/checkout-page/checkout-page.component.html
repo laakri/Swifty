@@ -1,6 +1,21 @@
 <div class="mainpage">
-  <div class="checkout-container">
+  <div *ngIf="items.length === 0" class="empty-section">
+    <i class="pi pi-tags empty-cart-icon"></i>
+    <p>Your cart is empty. Click below to explore our products.</p>
+    <button pButton class="p-button-primary" [routerLink]="['/v/categorie']">
+      Explore Products
+      <i class="pi pi-arrow-right"></i>
+    </button>
+  </div>
+  <div class="checkout-container" *ngIf="items.length > 0">
     <div class="left-content">
+      <div class="account-creation-banner">
+        <p>Want faster checkout next time?</p>
+        <button pButton class="p-button-primary" (click)="onCreateAccount()">
+          Create an Account
+          <i class="pi pi-arrow-right"></i>
+        </button>
+      </div>
       <h2>Contact Information</h2>
 
       <!-- Add the form element with [formGroup] directive -->
@@ -27,15 +42,13 @@
         </div>
         <h2>Shipping</h2>
         <div class="form-group p-inputgroup">
+          <!-- Add the formControlName directive for the 'phone' field -->
           <span class="p-inputgroup-addon">
             <i class="pi pi-phone"></i>
           </span>
-          <!-- Add the formControlName directive for the 'phone' field -->
           <input
             id="userphone"
-            pInputMask
             type="number"
-            mask="999-99-9999"
             placeholder="Enter your phone"
             formControlName="phone"
           />
@@ -114,15 +127,15 @@
 
       <div class="subtotal">
         <span>Subtotal</span>
-        <span>$123.00</span>
+        <span>{{ totalPrice }} <i style="font-size: 12px">DT</i></span>
       </div>
       <div class="subtotal">
         <span>Shipping</span>
-        <span>Free</span>
+        <span>7 <i style="font-size: 12px">DT</i></span>
       </div>
       <div class="subtotal">
         <span>Total</span>
-        <span>$123.00</span>
+        <span>{{ totalPrice + 7 }} <i style="font-size: 12px">DT</i></span>
       </div>
     </div>
   </div>

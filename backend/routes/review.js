@@ -40,5 +40,29 @@ router.post("/:productId/reviews", async (req, res) => {
     res.status(500).json({ message: "An error occurred" });
   }
 });
+// Fetch reviews for a specific product with pagination
+router.get("/product/:id/reviews", async (req, res) => {
+  try {
+    const productId = req.params.id;
+    const skip = parseInt(req.query.skip) || 0;
+    const limit = 4;
+    const reviews = await Review.find({ productId })
+      .limit(limit)
+      .skip(skip)
+      .populate("userId", "name imgPath");
+
+    if (!reviews) {
+      return res.status(404).json({ error: "Reviews not found" });
+    }
+
+    const totalReviews = await Review.countDocuments({ productId });
+    const hasMoreReviews = skip + reviews.length < totalReviews;
+
+    res.json({ reviews, totalReviews, hasMoreReviews });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
 
 module.exports = router;

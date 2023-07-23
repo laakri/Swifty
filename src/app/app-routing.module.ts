@@ -15,6 +15,7 @@ import { DashboardComponent } from './pages-dashboard/dashboard/dashboard.compon
 import { ProductListComponent } from './pages-dashboard/product-list/product-list.component';
 import { UsersListComponent } from './pages-dashboard/users-list/users-list.component';
 import { AddCategoryComponent } from './pages-dashboard/add-category/add-category.component';
+import { OrderPageComponent } from './pages/order-page/order-page.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/v/home', pathMatch: 'full' },
@@ -29,6 +30,7 @@ const routes: Routes = [
       { path: 'cart', component: ShoppingCartComponent },
       { path: 'categorie', component: CategorieComponent },
       { path: 'checkout', component: CheckoutPageComponent },
+      { path: 'order/:id', component: OrderPageComponent },
       {
         path: 'auth',
         component: AuthenticationComponent,

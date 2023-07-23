@@ -5,6 +5,10 @@ import { ProductService } from 'src/app/services/product.service';
 import { MessageService } from 'primeng/api';
 import { CartBadgeService } from 'src/app/services/cart-badge.service';
 import { ReviewService } from 'src/app/services/review.service';
+import { Review } from 'src/app/models/review.model';
+
+import { UsersService } from 'src/app/services/user.service';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-product-page',
@@ -16,17 +20,23 @@ export class ProductPageComponent implements OnInit {
   product: Product | undefined;
   responsiveOptions: any[]; // Add responsiveOptions property
   activeIndex: number = 0; // Add activeIndex property
-  rating: number = 5;
-  items = [1, 1, 1, 1];
+  averageRating: number = 2.5;
   showReviewForm: boolean = false;
-  reviewComment: string = '';
+  reviewForm: any;
+  reviews: Review[] = [];
+  isLoading: boolean = true; // Add the isLoading variable
+  currentSkip = 0;
+  hasMoreReviews: boolean = true;
+  rating = 0;
 
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
     private messageService: MessageService,
     private cartBadgeService: CartBadgeService,
-    private reviewService: ReviewService
+    private reviewService: ReviewService,
+    private userService: UsersService,
+    private formBuilder: FormBuilder
   ) {
     this.responsiveOptions = [
       {
@@ -48,12 +58,21 @@ export class ProductPageComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.isLoading = true;
+
     this.route.paramMap.subscribe((params) => {
       const productId = params.get('id');
       if (productId) {
         this.getProduct(productId);
       }
     });
+    this.reviews = [];
+    this.showMoreReviews();
+    this.reviewForm = this.formBuilder.group({
+      rating: [5, Validators.required],
+      comment: ['', Validators.required],
+    });
+    this.isLoading = false;
   }
   parseTag(tag: string): { tag: string } {
     return JSON.parse(tag);
@@ -62,7 +81,7 @@ export class ProductPageComponent implements OnInit {
     this.productService.getProductById(productId).subscribe(
       (product: Product) => {
         this.product = product;
-        console.log(this.product);
+        this.isLoading = false;
       },
       (error: any) => {
         console.error('Error:', error);
@@ -107,35 +126,65 @@ export class ProductPageComponent implements OnInit {
       }
     }
   }
+
+  showMoreReviews() {
+    this.route.paramMap.subscribe((params) => {
+      const productId = params.get('id');
+      if (productId) {
+        const skip = this.reviews.length;
+        this.isLoading = true;
+        this.reviewService.getReviewsForProduct(productId, skip).subscribe(
+          (response: any) => {
+            const { reviews, hasMoreReviews } = response;
+            if (reviews.length > 0) {
+              this.reviews.push(...reviews);
+              console.log(this.reviews);
+              this.isLoading = false;
+            }
+            this.hasMoreReviews = hasMoreReviews;
+          },
+          (error: any) => {
+            console.error('Error:', error);
+            this.isLoading = false;
+          }
+        );
+      }
+    });
+  }
+
   addReview() {
     // Show the review form when the button is clicked
     this.showReviewForm = !this.showReviewForm;
   }
 
   submitReview() {
-    const reviewData = {
-      rating: 5,
-      comment: 'This product is great!',
-      userId: '64ac30c7974aab3cef764208',
-    };
-    this.route.paramMap.subscribe((params) => {
-      const productId = params.get('id');
-      if (productId) {
-        this.reviewService.addReview(productId, reviewData).subscribe(
-          (response) => {
-            // Handle success
-            this.messageService.add({
-              severity: 'success',
-              summary: 'Success',
-              detail: 'Review added successfully',
-            });
-          },
-          (error) => {
-            // Handle error
-            console.error('Error adding review:', error);
-          }
-        );
-      }
-    });
+    if (this.reviewForm.valid) {
+      const reviewData = {
+        rating: this.reviewForm.value.rating,
+        comment: this.reviewForm.value.comment,
+        userId: this.userService.getUserId(),
+      };
+      this.route.paramMap.subscribe((params) => {
+        const productId = params.get('id');
+        if (productId) {
+          this.reviewService.addReview(productId, reviewData).subscribe(
+            (response) => {
+              // Handle success
+              this.messageService.add({
+                severity: 'success',
+                summary: 'Success',
+                detail: 'Review added successfully',
+              });
+              // Reset the form fields after submission
+              this.reviewForm.reset();
+            },
+            (error) => {
+              // Handle error
+              console.error('Error adding review:', error);
+            }
+          );
+        }
+      });
+    }
   }
 }

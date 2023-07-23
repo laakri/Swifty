@@ -1,6 +1,6 @@
 .mainpage{
     max-width: 1300px;
-    min-height:600px ;
+    min-height:520px ;
     margin: 50px auto;
 }   
 a,button{
@@ -11,10 +11,71 @@ a,button{
     justify-content: space-around;
 }
   
-  .left-content {
+.left-content {
     padding: 20px;
     width: 45%;
-    
+}
+.empty-section{
+    margin: 80px auto;
+    padding: 20px 30px 40px 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 380px;
+    gap: 20px;
+}
+.empty-cart-icon {
+    font-size: 4rem;
+    color: var(--graycolor);
+    margin-bottom: 10px;
+  }
+.empty-section button{
+    width: max-content;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--maincolor);
+    border:var(--maincolor) solid 1px ;
+    background-color: transparent;
+}
+
+.empty-section button i{
+    font-size: 12px;
+}
+.empty-section p{
+    font-size: 18px;
+    text-align: center;
+}
+/* CSS for the Account Creation Banner */
+.account-creation-banner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to right,#273239, #516974);
+    padding: 10px 20px; 
+    border-radius: 10px;
+    color: white;
+  }
+  
+  .account-creation-banner p {
+    margin: 0; /* Remove default margin for the paragraph */
+    font-size: 16px; /* Adjust font size as needed */
+    font-weight: bold;
+  }
+  
+  .account-creation-banner button {
+    font-size: 14px; /* Adjust font size as needed */
+    padding: 8px 16px; /* Adjust padding as needed */
+    border-radius: 20px;
+    color: white;
+    background-color: #607c8a;
+    border:none ;
+    display: flex;
+    gap: 5px;
+  }
+  .account-creation-banner button i{
+    font-size: 12px; /* Adjust font size as needed */
   }
   form{
     display: flex;

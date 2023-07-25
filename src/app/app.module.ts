@@ -25,6 +25,7 @@ import { AddCategoryComponent } from './pages-dashboard/add-category/add-categor
 import { OrderPageComponent } from './pages/order-page/order-page.component';
 
 /**********  Prime NG *************** */
+import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 import { ButtonModule } from 'primeng/button';
 import { ToolbarModule } from 'primeng/toolbar';
@@ -135,6 +136,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     ChipsModule,
     RatingModule,
     InputTextareaModule,
+    NgxSkeletonLoaderModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

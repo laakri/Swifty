@@ -11,16 +11,7 @@
       class="form-control"
     />
   </div>
-  <div class="form-group">
-    <label for="gender">Gender</label>
-    <p-dropdown
-      [(ngModel)]="category.gender"
-      name="gender"
-      id="gender"
-      [options]="genderOptions"
-      placeholder="Select Gender"
-    ></p-dropdown>
-  </div>
+
   <button
     type="submit"
     pButton
@@ -38,7 +29,6 @@
     <ng-template pTemplate="header">
       <tr>
         <th>Name</th>
-        <th>Gender</th>
         <th>Edit</th>
         <th>Delete</th>
       </tr>
@@ -46,7 +36,6 @@
     <ng-template pTemplate="body" let-category>
       <tr>
         <td>{{ category.name }}</td>
-        <td>{{ category.gender }}</td>
         <td>
           <button
             pButton

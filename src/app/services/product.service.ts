@@ -17,9 +17,9 @@ export class ProductService {
     formData.append('price', product.price.toString());
     formData.append('shortDescription', product.shortDescription);
     formData.append('description', product.description);
+    formData.append('gender', product.gender);
     formData.append('category', product.category);
     formData.append('quantity', product.quantity.toString());
-    console.log(imagess);
     for (let i = 0; i < imagess.length; i++) {
       formData.append('images', imagess[i], imagess[i].name);
     }

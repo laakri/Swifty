@@ -40,13 +40,13 @@ router.post("/add-product", upload.array("images"), async (req, res) => {
       price,
       shortDescription,
       description,
+      gender,
       category,
       quantity,
       specifications,
       tags,
       isFeatured,
     } = req.body;
-
     const images = req.files.map((file) => ({
       url: url + "/file-folder/" + file.filename,
     }));
@@ -56,6 +56,7 @@ router.post("/add-product", upload.array("images"), async (req, res) => {
       price,
       shortDescription,
       description,
+      gender,
       category,
       quantity,
       images,
@@ -73,7 +74,7 @@ router.post("/add-product", upload.array("images"), async (req, res) => {
   }
 });
 
-/****************** Get All Products ******************/
+/****************** Calculate AverageRating ******************/
 const calculateAverageRating = async (productId) => {
   try {
     const reviews = await Review.find({ productId });
@@ -99,23 +100,53 @@ const calculateLengthRating = async (productId) => {
     return 0;
   }
 };
+
+/****************** Get All Products ******************/
 router.get("/products", async (req, res) => {
   try {
+    console.log(req.query);
     const page = req.query.page ? parseInt(req.query.page) : 1;
     const limit = req.query.limit ? parseInt(req.query.limit) : 12;
     const startIndex = (page - 1) * limit;
-    const endIndex = page * limit;
 
-    const productsCount = await Product.countDocuments();
+    // Extract the filter parameters from query parameters
+    const category = req.query.category ? req.query.category : null;
+    const priceRange = req.query.priceRange ? req.query.priceRange : null;
+    const sortOption = req.query.sortOption ? req.query.sortOption : null;
 
-    const products = await Product.find()
+    // Prepare the filter object based on the selected filters
+    const filter = {};
+    if (category) {
+      filter.category = category;
+    }
+    if (priceRange) {
+      // Assuming price range is in the format of "minPrice-maxPrice"
+      const [minPrice, maxPrice] = priceRange.split("-");
+      filter.price = { $gte: parseFloat(minPrice), $lte: parseFloat(maxPrice) };
+    }
+
+    // Prepare the sort object based on the selected sorting option
+    const sort = {};
+    if (sortOption === "lowToHigh") {
+      sort.price = 1;
+    } else if (sortOption === "highToLow") {
+      sort.price = -1;
+    }
+
+    // Get the total count of products based on the filter
+    const productsCount = await Product.countDocuments(filter);
+
+    // Fetch the products based on the filter and sort options
+    const products = await Product.find(filter)
       .select(
-        "-specifications -tags -isFeatured -quantity -description -updatedAt -__v "
+        "-specifications -tags -isFeatured -quantity -description -updatedAt -__v"
       )
+      .sort(sort)
       .skip(startIndex)
       .limit(limit)
       .exec();
 
+    // Update the first image of each product in the response
     const productsWithFirstImage = products.map((product) => {
       const firstImage =
         product.images && product.images.length > 0

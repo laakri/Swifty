@@ -17,9 +17,7 @@ export class CategoryService {
   getCategories(): Observable<Category[]> {
     return this.http.get<Category[]>(`${this.apiUrl}/get-categories`);
   }
-  getCategoriesByGender(gender: string): Observable<Category[]> {
-    return this.http.get<Category[]>(`${this.apiUrl}/gender/${gender}`);
-  }
+
   updateCategory(categoryId: string, category: Category): Observable<any> {
     return this.http.put(
       `${this.apiUrl}/update-categories/${categoryId}`,

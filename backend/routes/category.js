@@ -6,10 +6,10 @@ const Category = require("../models/category");
 // POST /categories
 router.post("/add-categorie", async (req, res) => {
   try {
-    const { name, gender } = req.body;
+    const { name } = req.body;
 
     // Create a new category object
-    const category = new Category({ name, gender });
+    const category = new Category({ name });
 
     // Save the category to the database
     await category.save();
@@ -33,24 +33,11 @@ router.get("/get-categories", async (req, res) => {
   }
 });
 
-// GET /gender/:gender
-router.get("/gender/:gender", async (req, res) => {
-  try {
-    const { gender } = req.params;
-    // Retrieve categories from the database based on the gender
-    const categories = await Category.find({ gender });
-    res.status(200).json(categories);
-  } catch (error) {
-    console.error("Error:", error);
-    res.status(500).json({ message: "An error occurred" });
-  }
-});
-
 // PUT /categories/:id
 router.put("/update-categories/:id", async (req, res) => {
   try {
     const categoryId = req.params.id;
-    const { name, gender } = req.body;
+    const { name } = req.body;
 
     // Find the category in the database by ID
     const category = await Category.findById(categoryId);
@@ -61,7 +48,6 @@ router.put("/update-categories/:id", async (req, res) => {
 
     // Update the category fields
     category.name = name;
-    category.gender = gender;
 
     // Save the updated category to the database
     await category.save();

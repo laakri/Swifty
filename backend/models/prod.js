@@ -20,6 +20,10 @@ const productSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    gender: {
+      type: String,
+      required: true,
+    },
     category: {
       type: String,
       required: true,

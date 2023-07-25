@@ -14,13 +14,8 @@ export class AddCategoryComponent implements OnInit {
   category: Category = {
     _id: '',
     name: '',
-    gender: 'Men',
   };
-  genderOptions: any[] = [
-    { label: 'Men', value: 'Men' },
-    { label: 'Women', value: 'Women' },
-    { label: 'Neutral', value: 'Neutral' },
-  ];
+
   categories: Category[] = [];
   editingCategory!: Category | null;
 
@@ -44,11 +39,9 @@ export class AddCategoryComponent implements OnInit {
           summary: 'Category Added',
           detail: 'Category has been added successfully.',
         });
-        // Handle any additional actions or notifications upon successful category addition
       },
       (error) => {
         console.error('Error adding category:', error);
-        // Handle error cases and display appropriate notifications to the user
       }
     );
   }
@@ -60,7 +53,6 @@ export class AddCategoryComponent implements OnInit {
       },
       (error) => {
         console.error('Error loading categories:', error);
-        // Handle error cases and display appropriate notifications to the user
       }
     );
   }
@@ -80,19 +72,18 @@ export class AddCategoryComponent implements OnInit {
               summary: 'Category Updated',
               detail: 'Category has been updated successfully.',
             });
-            this.editingCategory = null; // Clear the editing category after successful update
-            this.loadCategories(); // Refresh the category list after successful update
+            this.editingCategory = null;
+            this.loadCategories();
           },
           (error) => {
             console.error('Error updating category:', error);
-            // Handle error cases and display appropriate notifications to the user
           }
         );
     }
   }
 
   cancelEdit(): void {
-    this.editingCategory = null; // Clear the editing category to close the edit form
+    this.editingCategory = null;
   }
 
   deleteCategory(categoryId: string, event: Event): void {

@@ -1,4 +1,4 @@
-<div class="mainpage">
+<div class="mainpage" #content>
   <div class="first-content">
     <div class="first-content-left">
       <h1>Grap Upto 50% Off On Selected Headphone</h1>
@@ -17,13 +17,16 @@
         <p-multiSelect
           id="category"
           [options]="categoryOptions"
-          [(ngModel)]="selectedCity"
+          [(ngModel)]="selectedCategory"
           [showClear]="true"
           [filter]="true"
           [placeholder]="'Category'"
           [style]="{ width: '100%' }"
+          styleClass="custom-multiselect"
+          (onClear)="onCategoryClear()"
         ></p-multiSelect>
       </div>
+      <!--
       <div class="filter-item">
         <p-multiSelect
           id="category"
@@ -35,15 +38,17 @@
           [style]="{ width: '100%' }"
         ></p-multiSelect>
       </div>
+      -->
       <div class="filter-item">
         <p-multiSelect
           id="category"
           [options]="priceOptions"
-          [(ngModel)]="selectedCity"
+          [(ngModel)]="selectedPriceRange"
           [showClear]="true"
           [filter]="true"
           [placeholder]="'Price'"
           [style]="{ width: '100%' }"
+          (onClear)="onPriceRangeClear()"
         ></p-multiSelect>
       </div>
       <div class="filter-dropdown">
@@ -73,6 +78,7 @@
   </div>
   <div class="text-for-section">Best Quality For You!</div>
   <p-paginator
+    [style]="{ background: 'transparent' }"
     [rows]="pageSize"
     [totalRecords]="totalProducts"
     (onPageChange)="onPageChange($event)"

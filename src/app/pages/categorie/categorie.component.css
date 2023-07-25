@@ -1,3 +1,6 @@
+/* styles.css (global CSS file) or your component's CSS file */
+
+
 a,
 button {
   color: var(--whitecolor) !important;

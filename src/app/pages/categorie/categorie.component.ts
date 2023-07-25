@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { GetProduct } from '../../models/product.model';
-import { ProductService } from 'src/app/services/product.service';
+import { ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'app-categorie',
@@ -8,8 +8,9 @@ import { ProductService } from 'src/app/services/product.service';
   styleUrls: ['./categorie.component.css'],
 })
 export class CategorieComponent {
-  selectedCity!: any;
-  selectedCities: any[] = [];
+  selectedCategory: any = '';
+  selectedPriceRange: any = '';
+  selectedSortingOption: string = '';
   products: GetProduct[] = [];
   displayedProducts: GetProduct[] = []; // Products to be displayed on the current page
   totalProducts: number = 0; // Total number of products
@@ -22,11 +23,16 @@ export class CategorieComponent {
   ngOnInit() {
     this.getProducts();
   }
+
   getProducts() {
     const queryParams = {
       page: this.currentPage.toString(),
       limit: this.pageSize.toString(),
+      category: this.selectedCategory,
+      priceRange: this.selectedPriceRange,
+      sortOption: this.selectedSortingOption,
     };
+    console.log(queryParams);
     this.loading = true;
 
     this.productService.getProducts(queryParams).subscribe(
@@ -42,31 +48,48 @@ export class CategorieComponent {
       (error) => {
         console.error('Error:', error);
         // Handle the error
+        this.loading = false;
       }
     );
   }
+  onCategoryClear() {
+    this.selectedCategory = '';
+    this.applyFilters(); // Apply filters after clearing
+  }
 
-  onSortChange() {
-    // Perform the sorting logic based on the selectedSortingOption
-    // You can update the products array with the sorted results
+  onPriceRangeClear() {
+    this.selectedPriceRange = '';
+    this.applyFilters(); // Apply filters after clearing
   }
   applyFilters() {
-    // Logic for applying filters
+    this.currentPage = 1;
+    this.getProducts();
+  }
+
+  onSortChange() {
+    this.currentPage = 1;
   }
 
   resetFilters() {
-    // Logic for resetting filters
+    this.currentPage = 1;
+    this.selectedCategory = '';
+    this.selectedPriceRange = '';
+    this.selectedSortingOption = '';
+    this.getProducts();
   }
 
   onPageChange(event: any) {
     this.currentPage = event.page + 1;
     this.getProducts();
   }
+
   tab = [1, 2, 3, 4, 1, 2, 3, 4];
   categoryOptions: any[] = [
-    { label: 'T-shirt', value: 'category1' },
-    { label: 'Pants', value: 'category2' },
-    { label: 'Casquette', value: 'category3' },
+    { label: 'T-shirt', value: 'T-shirt' },
+    { label: 'Pants', value: 'Pants' },
+    { label: 'Short', value: 'Short' },
+    { label: 'Shoes', value: 'Shoes' },
+    { label: 'Shirt', value: 'Shirt' },
   ];
   colorOptions: any[] = [
     { label: 'Red', value: 'red' },
@@ -74,13 +97,12 @@ export class CategorieComponent {
     { label: 'black', value: 'black' },
   ];
   priceOptions: any[] = [
-    { label: '$10 - $100', value: '100' },
-    { label: '$100 - $200', value: '200' },
-    { label: '$200 - $300', value: '300' },
+    { label: '$0 - $10', value: '0-10' },
+    { label: '$10 - $100', value: '10-100' },
+    { label: '$100 - $500', value: '100-500' },
   ];
   sortingOptions: any[] = [
     { label: 'Price - Low to High', value: 'lowToHigh' },
     { label: 'Price - High to Low', value: 'highToLow' },
   ];
-  selectedSortingOption: string = '';
 }

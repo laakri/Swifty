@@ -24,9 +24,7 @@ export class AddProductComponent implements OnInit {
   imagess!: File[];
   uploadedFiles: any[] = [];
 
-  maleCategories: Category[] = [];
-  femaleCategories: Category[] = [];
-  otherCategories: Category[] = [];
+  showedCategories: Category[] = [];
 
   // ... Rest of the component ...
 
@@ -60,46 +58,23 @@ export class AddProductComponent implements OnInit {
     const gender = this.productForm.get('gender')?.value;
     switch (gender) {
       case 'male':
-        return this.maleCategories;
+        return this.showedCategories;
       case 'female':
-        return this.femaleCategories;
+        return this.showedCategories;
       case 'other':
-        return this.otherCategories;
+        return this.showedCategories;
       default:
         return [];
     }
   }
 
   fetchCategoriesByGender() {
-    this.CategoryService.getCategoriesByGender('Men').subscribe(
+    this.CategoryService.getCategories().subscribe(
       (categories) => {
-        console.log(categories);
-        this.maleCategories = categories;
+        this.showedCategories = categories;
       },
       (error) => {
         console.error('Failed to fetch male categories:', error);
-      }
-    );
-
-    this.CategoryService.getCategoriesByGender('Women').subscribe(
-      (categories) => {
-        console.log(categories);
-
-        this.femaleCategories = categories;
-      },
-      (error) => {
-        console.error('Failed to fetch female categories:', error);
-      }
-    );
-
-    this.CategoryService.getCategoriesByGender('Neutral').subscribe(
-      (categories) => {
-        console.log(categories);
-
-        this.otherCategories = categories;
-      },
-      (error) => {
-        console.error('Failed to fetch other categories:', error);
       }
     );
   }
@@ -163,7 +138,7 @@ export class AddProductComponent implements OnInit {
       return;
     }
     const productData = this.productForm.value;
-    console.log(productData);
+    productData.category = this.productForm.value.category.name;
     this.productService.addProduct(productData, this.imagess).subscribe(
       (response) => {
         this.messageService.add({

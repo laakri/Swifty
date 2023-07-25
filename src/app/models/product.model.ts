@@ -4,6 +4,7 @@ export interface Product {
   price: number;
   shortDescription: string;
   description: string;
+  gender: string;
   category: string;
   quantity: number;
   images: File[];
@@ -19,6 +20,7 @@ export interface GetProduct {
   name: string;
   price: string;
   shortDescription: string;
+  gender: string;
   category: string;
   images: { url: string }[]; // Update the type to include url property
   reviews: any[];

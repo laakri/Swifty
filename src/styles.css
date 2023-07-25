@@ -103,3 +103,97 @@ input::placeholder{
     align-items: center;
     justify-content: center;
 }
+  /*********************-multiselect********************/
+
+.p-multiselect {
+  background: var(--soft-darkcolor);
+  color: var(--whitecolor); 
+}
+
+.p-multiselect .p-multiselect-label {
+  border-radius:7px ;
+  background: var(--soft-darkcolor); 
+  color: var(--whitecolor); 
+}
+
+.p-multiselect .p-multiselect-trigger {
+  background: var(--soft-darkcolor); 
+  color: var(--whitecolor); 
+}
+.p-multiselect-panel {
+  background: var(--soft-darkcolor); 
+  color: var(--whitecolor); 
+}
+
+.p-multiselect-panel .p-multiselect-header {
+  background: var(--soft-darkcolor); 
+  color: var(--whitecolor); 
+}
+.p-multiselect-panel .p-multiselect-item {
+  color: var(--whitecolor); 
+  background: var(--soft-darkcolor); 
+}
+.p-multiselect-panel .p-multiselect-items .p-multiselect-item {
+  color: var(--whitecolor); 
+    }
+  /*********************-dropdown********************/
+
+.p-dropdown {
+      color: var(--whitecolor); 
+      background: var(--soft-darkcolor);  
+}
+  
+.p-dropdown .p-dropdown-label {
+  background: var(--soft-darkcolor); 
+  color: var(--whitecolor); 
+}  
+.p-dropdown-panel {
+    color: var(--whitecolor); 
+    background: var(--soft-darkcolor);  
+}
+.p-dropdown-panel .p-dropdown-items .p-dropdown-item {
+   color: var(--whitecolor); 
+}
+  /*********************-menu********************/
+
+.p-menu {
+  background: var(--soft-darkcolor);  
+  color: var(--whitecolor); 
+}
+
+.p-menu .p-menuitem-text {
+  color: var(--whitecolor) !important; 
+}
+
+.p-menu .p-menuitem-icon {
+  color: var(--whitecolor) !important; /* Replace with your desired icon color */
+}
+.p-menu .p-menuitem-link:hover {
+  background-color: var(--darkcolor) !important; /* Replace with your desired hover background color */
+}
+.p-menu.p-contextmenu .p-submenu-list .p-submenu-header {
+  background-color: var(--soft-darkcolor) !important; /* Replace with your desired background color */
+}
+  /*********************-toolbar********************/
+
+.p-toolbar {
+  background-color: var(--soft-darkcolor); 
+  border: none;
+}
+  /*********************-table********************/
+
+.p-dialog.p-confirm-dialog .p-dialog-header {
+  background: var(--soft-darkcolor);
+  color: var(--whitecolor) !important; 
+}
+
+.p-dialog.p-confirm-dialog .p-dialog-content {
+  background: var(--soft-darkcolor);
+  color: var(--whitecolor) !important; 
+}
+
+/* Change the background and text color of the dialog footer */
+.p-dialog.p-confirm-dialog .p-dialog-footer {
+  background: var(--soft-darkcolor);
+  color: var(--whitecolor) !important; 
+}

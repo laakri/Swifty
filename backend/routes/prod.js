@@ -104,7 +104,6 @@ const calculateLengthRating = async (productId) => {
 /****************** Get All Products ******************/
 router.get("/products", async (req, res) => {
   try {
-    console.log(req.query);
     const page = req.query.page ? parseInt(req.query.page) : 1;
     const limit = req.query.limit ? parseInt(req.query.limit) : 12;
     const startIndex = (page - 1) * limit;
@@ -121,7 +120,7 @@ router.get("/products", async (req, res) => {
     }
     if (priceRange) {
       // Assuming price range is in the format of "minPrice-maxPrice"
-      const [minPrice, maxPrice] = priceRange.split("-");
+      const [minPrice, maxPrice] = priceRange.split("-").map(parseFloat);
       filter.price = { $gte: parseFloat(minPrice), $lte: parseFloat(maxPrice) };
     }
 

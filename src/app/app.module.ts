@@ -25,7 +25,6 @@ import { AddCategoryComponent } from './pages-dashboard/add-category/add-categor
 import { OrderPageComponent } from './pages/order-page/order-page.component';
 
 /**********  Prime NG *************** */
-import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 
 import { ButtonModule } from 'primeng/button';
 import { ToolbarModule } from 'primeng/toolbar';
@@ -68,6 +67,7 @@ import { InputSwitchModule } from 'primeng/inputswitch';
 import { ChipsModule } from 'primeng/chips';
 import { RatingModule } from 'primeng/rating';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { SliderModule } from 'primeng/slider';
 
 @NgModule({
   declarations: [
@@ -136,7 +136,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     ChipsModule,
     RatingModule,
     InputTextareaModule,
-    NgxSkeletonLoaderModule,
+    SliderModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

@@ -39,18 +39,6 @@
         ></p-multiSelect>
       </div>
       -->
-      <div class="filter-item">
-        <p-multiSelect
-          id="category"
-          [options]="priceOptions"
-          [(ngModel)]="selectedPriceRange"
-          [showClear]="true"
-          [filter]="true"
-          [placeholder]="'Price'"
-          [style]="{ width: '100%' }"
-          (onClear)="onPriceRangeClear()"
-        ></p-multiSelect>
-      </div>
       <div class="filter-dropdown">
         <p-dropdown
           [options]="sortingOptions"
@@ -59,6 +47,21 @@
           placeholder="Sort by"
         ></p-dropdown>
       </div>
+      <div class="filter-item price-range-display-gap">
+        <div class="price-range-display">
+          {{ selectedPriceRange[0] }} - {{ selectedPriceRange[1] }} DT
+        </div>
+        <p-slider
+          [(ngModel)]="selectedPriceRange"
+          [range]="true"
+          [min]="0"
+          [max]="500"
+          [step]="10"
+          [style]="{ width: '100%' }"
+          (onChange)="updatePriceRangeDisplay()"
+        ></p-slider>
+      </div>
+
       <div class="button-container">
         <button
           pButton

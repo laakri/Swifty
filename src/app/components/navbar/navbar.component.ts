@@ -55,22 +55,6 @@ export class NavbarComponent implements OnInit {
       this.cartQuantity = quantity;
     });
     // the Category menu action
-    this.categoryMenu = [
-      {
-        label: 'Men',
-        items: [
-          { label: 'T-Shirt', routerLink: '/men/t-shirt' },
-          { label: 'Pants', routerLink: '/men/pants' },
-        ],
-      },
-      {
-        label: 'Women',
-        items: [
-          { label: 'Dresses', routerLink: '/women/dresses' },
-          { label: 'Skirts', routerLink: '/women/skirts' },
-        ],
-      },
-    ];
   }
 
   change_theme(): void {

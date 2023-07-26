@@ -180,7 +180,7 @@ input::placeholder{
   background-color: var(--soft-darkcolor); 
   border: none;
 }
-  /*********************-table********************/
+  /*********************-dialog********************/
 
 .p-dialog.p-confirm-dialog .p-dialog-header {
   background: var(--soft-darkcolor);
@@ -196,4 +196,28 @@ input::placeholder{
 .p-dialog.p-confirm-dialog .p-dialog-footer {
   background: var(--soft-darkcolor);
   color: var(--whitecolor) !important; 
+}
+  /*********************-slider********************/
+
+.p-slider {
+  background: #f0f0f0;
+}
+
+/* Change the color of the slider handle when not hovered or focused */
+.p-slider .p-slider-handle {
+  width: 15px;
+  height: 15px;
+  background: #7584f5;
+  border-color: var(--maincolor);
+}
+
+/* Change the color of the slider handle when hovered */
+.p-slider .p-slider-handle:hover {
+  background: #7584f5;
+  border-color: #7584f5;
+}
+
+/* Change the color of the slider range between handles */
+.p-slider .p-slider-range {
+  background: #7584f5;
 }

@@ -1,130 +1,82 @@
-<div class="mainpage">
-  <ng-container *ngIf="isLoading">
-    <!-- Skeleton Loader for first content -->
-    <div class="skeleton-container">
-      <div class="skeleton-image"></div>
-      <div class="skeleton-details">
-        <div class="skeleton-title"></div>
-        <div class="skeleton-description"></div>
-        <div class="skeleton-rating"></div>
-        <div class="skeleton-price"></div>
-        <div class="skeleton-price-details"></div>
-        <div class="skeleton-product-count"></div>
-        <div class="skeleton-button-section">
-          <div class="skeleton-button"></div>
-          <div class="skeleton-button"></div>
-        </div>
-        <div class="skeleton-delevery-section">
-          <div class="skeleton-delevery-icon"></div>
-          <div class="skeleton-delevery-text"></div>
-        </div>
+<p-progressSpinner
+  *ngIf="isLoading"
+  styleClass="custom-spinner"
+></p-progressSpinner>
+<div class="mainpage" *ngIf="!isLoading">
+  <div class="url-section">URLI SECTION / PRODUCTCATEGORY / PRODUCT</div>
+  <div class="first-content">
+    <div class="first-content-left">
+      <p-galleria
+        class="galleria"
+        [value]="product?.images"
+        [responsiveOptions]="responsiveOptions"
+        [containerStyle]="{ 'max-width': '550px' }"
+        [numVisible]="5"
+        [activeIndex]="activeIndex"
+        [showItemNavigators]="true"
+        [showItemNavigatorsOnHover]="true"
+        [autoPlay]="true"
+        [circular]="true"
+      >
+        <ng-template pTemplate="item" let-item>
+          <img [src]="item.url" style="width: 100%" class="item-image" />
+        </ng-template>
+
+        <ng-template pTemplate="thumbnail" let-item>
+          <div class="grid grid-nogutter justify-content-center">
+            <img [src]="item.url" class="thumbnail-image" />
+          </div>
+        </ng-template>
+      </p-galleria>
+    </div>
+    <div class="first-content-right">
+      <div class="product-object">{{ product?.name }}</div>
+      <div class="product-description">
+        {{ product?.shortDescription }}
       </div>
-    </div>
-
-    <!-- Skeleton Loader for second content -->
-    <div class="skeleton-container">
-      <!-- Add skeleton loader markup here -->
-      <!-- ... -->
-    </div>
-
-    <!-- Skeleton Loader for third content -->
-    <div class="skeleton-container">
-      <!-- Add skeleton loader markup here -->
-      <!-- ... -->
-    </div>
-
-    <!-- Skeleton Loader for fourth content -->
-    <div class="skeleton-container">
-      <!-- Add skeleton loader markup here -->
-      <!-- ... -->
-    </div>
-
-    <!-- Skeleton Loader for fifth content -->
-    <div class="skeleton-container">
-      <!-- Add skeleton loader markup here -->
-      <!-- ... -->
-    </div>
-  </ng-container>
-
-  <ng-container *ngIf="!isLoading">
-    <!-- Actual content -->
-    <div class="url-section">URLI SECTION / PRODUCTCATEGORY / PRODUCT</div>
-    <div class="first-content">
-      <div class="first-content-left">
-        <p-galleria
-          class="galleria"
-          [value]="product?.images"
-          [responsiveOptions]="responsiveOptions"
-          [containerStyle]="{ 'max-width': '550px' }"
-          [numVisible]="5"
-          [activeIndex]="activeIndex"
-          [showItemNavigators]="true"
-          [showItemNavigatorsOnHover]="true"
-          [autoPlay]="true"
-          [circular]="true"
-        >
-          <ng-template pTemplate="item" let-item>
-            <img [src]="item.url" style="width: 100%" class="item-image" />
-          </ng-template>
-
-          <ng-template pTemplate="thumbnail" let-item>
-            <div class="grid grid-nogutter justify-content-center">
-              <img [src]="item.url" class="thumbnail-image" />
-            </div>
-          </ng-template>
-        </p-galleria>
+      <div class="product-rating">
+        <p-rating
+          [ngModel]="product?.averageRating"
+          [readonly]="true"
+          [cancel]="false"
+        ></p-rating>
+        <span>({{ product?.lengthRating }}) </span>
       </div>
-      <div class="first-content-right">
-        <div class="product-object">{{ product?.name }}</div>
-        <div class="product-description">
-          {{ product?.shortDescription }}
-        </div>
-        <div class="product-rating">
-          <p-rating
-            [ngModel]="product?.averageRating"
-            [readonly]="true"
-            [cancel]="false"
-          ></p-rating>
-          <span>({{ product?.lengthRating }}) </span>
-        </div>
-        <div class="product-price">
-          {{ product?.price }} <i style="font-size: 12px"> DT</i>
-        </div>
-        <div class="product-price-details">
-          You can pay per month or 2 weeks
-        </div>
-        <div class="product-count">
-          <div class="quantity-control">
-            <div class="card flex justify-content-center">
-              <p-inputNumber
-                [min]="1"
-                [max]="20"
-                [(ngModel)]="quantity"
-                [showButtons]="true"
-                buttonLayout="horizontal"
-                decrementButtonClass="p-button-text"
-                incrementButtonClass="p-button-text"
-                incrementButtonIcon="pi pi-plus"
-                decrementButtonIcon="pi pi-minus"
-                [inputStyle]="{ width: '50px', 'border-radius': '5px' }"
-              ></p-inputNumber>
-            </div>
+      <div class="product-price">
+        {{ product?.price }} <i style="font-size: 12px"> DT</i>
+      </div>
+      <div class="product-price-details">You can pay per month or 2 weeks</div>
+      <div class="product-count">
+        <div class="quantity-control">
+          <div class="card flex justify-content-center">
+            <p-inputNumber
+              [min]="1"
+              [max]="20"
+              [(ngModel)]="quantity"
+              [showButtons]="true"
+              buttonLayout="horizontal"
+              decrementButtonClass="p-button-text"
+              incrementButtonClass="p-button-text"
+              incrementButtonIcon="pi pi-plus"
+              decrementButtonIcon="pi pi-minus"
+              [inputStyle]="{ width: '50px', 'border-radius': '5px' }"
+            ></p-inputNumber>
           </div>
         </div>
-        <div class="product-button-section">
-          <button pButton id="button-buy">Buy Now</button>
-          <button pButton id="button-cart" (click)="addToCart()">
-            Add to Cart
-          </button>
-        </div>
-        <div class="delevery-section">
-          <div><i class="pi pi-car"></i> <span>Free Shit</span></div>
-          <a href="Borni.com"
-            >enter your code to get a free delevery anywhere</a
-          >
-        </div>
+      </div>
+      <div class="product-button-section">
+        <button pButton id="button-buy">Buy Now</button>
+        <button pButton id="button-cart" (click)="addToCart()">
+          Add to Cart
+        </button>
+      </div>
+      <div class="delevery-section">
+        <div><i class="pi pi-car"></i> <span>Free Shit</span></div>
+        <a href="Borni.com">enter your code to get a free delevery anywhere</a>
       </div>
     </div>
+  </div>
+  <div class="mainpage">
     <div class="secend-content">
       <div class="secend-content-details">
         <h3>Specifications</h3>
@@ -135,6 +87,7 @@
               class="p-list-group-item"
             >
               <div class="spec-name">{{ spec.name }}:</div>
+
               <div class="spec-value">{{ spec.value }}</div>
             </li>
           </ul>
@@ -230,5 +183,5 @@
         </div>
       </div>
     </div>
-  </ng-container>
+  </div>
 </div>

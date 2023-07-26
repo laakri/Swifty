@@ -38,21 +38,19 @@
   </div>
   <div class="middle-content">
     <button
-      class="p-button-text category-btn"
+      class="p-button-text"
       routerLinkActive="activebutton"
       [routerLink]="['categorie']"
-      label="Categories"
+      label="Women"
       pButton
-      (click)="menu.toggle($event)"
-      icon="pi pi-chevron-down"
-      iconPos="right"
     ></button>
-    <p-tieredMenu
-      #menu
-      [model]="categoryMenu"
-      [popup]="true"
-      [appendTo]="'body'"
-    ></p-tieredMenu>
+    <button
+      class="p-button-text"
+      routerLinkActive="activebutton"
+      [routerLink]="['categorie']"
+      label="Men"
+      pButton
+    ></button>
 
     <button
       class="p-button-text"
@@ -64,14 +62,8 @@
     <button
       class="p-button-text"
       routerLinkActive="activebutton"
+      [routerLink]="['order/15166']"
       label="What's new"
-      pButton
-    ></button>
-    <button
-      class="p-button-text"
-      [routerLink]="['product']"
-      routerLinkActive="activebutton"
-      label="Delivery"
       pButton
     ></button>
   </div>

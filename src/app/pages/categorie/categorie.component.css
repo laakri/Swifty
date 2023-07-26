@@ -71,7 +71,21 @@ button {
     flex-grow: 1;
     margin-right: 20px;
   }
-  
+  .price-range-display-gap{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin: auto 20px;
+    max-width: 200px;
+    border: 1px solid #ced5db;
+    border-radius: 5px;
+    padding: 7px 20px;
+    background-color: var(--soft-darkcolor);
+}
+  .price-range-display {
+    text-align: center;
+    color: gray;
+  }
   
   .button-container {
     margin-left: 10px;

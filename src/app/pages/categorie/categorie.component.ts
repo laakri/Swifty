@@ -9,7 +9,7 @@ import { ProductService } from '../../services/product.service';
 })
 export class CategorieComponent {
   selectedCategory: any = '';
-  selectedPriceRange: any = '';
+  selectedPriceRange: number[] = [0, 500];
   selectedSortingOption: string = '';
   products: GetProduct[] = [];
   displayedProducts: GetProduct[] = []; // Products to be displayed on the current page
@@ -23,15 +23,23 @@ export class CategorieComponent {
   ngOnInit() {
     this.getProducts();
   }
-
   getProducts() {
     const queryParams = {
       page: this.currentPage.toString(),
       limit: this.pageSize.toString(),
       category: this.selectedCategory,
-      priceRange: this.selectedPriceRange,
+      priceRange: this.selectedPriceRange.join('-'),
       sortOption: this.selectedSortingOption,
     };
+
+    // Loop through each property of queryParams
+    Object.keys(queryParams).forEach((key) => {
+      const value = queryParams[key as keyof typeof queryParams];
+      if (value === null) {
+        queryParams[key as keyof typeof queryParams] = '';
+      }
+    });
+
     console.log(queryParams);
     this.loading = true;
 
@@ -52,15 +60,10 @@ export class CategorieComponent {
       }
     );
   }
-  onCategoryClear() {
-    this.selectedCategory = '';
-    this.applyFilters(); // Apply filters after clearing
-  }
+  updatePriceRangeDisplay() {}
+  onCategoryClear() {}
 
-  onPriceRangeClear() {
-    this.selectedPriceRange = '';
-    this.applyFilters(); // Apply filters after clearing
-  }
+  onPriceRangeClear() {}
   applyFilters() {
     this.currentPage = 1;
     this.getProducts();
@@ -73,7 +76,7 @@ export class CategorieComponent {
   resetFilters() {
     this.currentPage = 1;
     this.selectedCategory = '';
-    this.selectedPriceRange = '';
+    this.selectedPriceRange = [0, 500];
     this.selectedSortingOption = '';
     this.getProducts();
   }

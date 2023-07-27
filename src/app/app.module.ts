@@ -23,7 +23,7 @@ import { ProductListComponent } from './pages-dashboard/product-list/product-lis
 import { UsersListComponent } from './pages-dashboard/users-list/users-list.component';
 import { AddCategoryComponent } from './pages-dashboard/add-category/add-category.component';
 import { OrderPageComponent } from './pages/order-page/order-page.component';
-
+import { AddCouponComponent } from './pages-dashboard/add-coupon/add-coupon.component';
 /**********  Prime NG *************** */
 
 import { ButtonModule } from 'primeng/button';
@@ -68,7 +68,7 @@ import { ChipsModule } from 'primeng/chips';
 import { RatingModule } from 'primeng/rating';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { SliderModule } from 'primeng/slider';
-
+import { CalendarModule } from 'primeng/calendar';
 @NgModule({
   declarations: [
     AppComponent,
@@ -92,6 +92,7 @@ import { SliderModule } from 'primeng/slider';
     FooterComponent,
     AddCategoryComponent,
     OrderPageComponent,
+    AddCouponComponent,
   ],
   imports: [
     HttpClientModule,
@@ -137,6 +138,7 @@ import { SliderModule } from 'primeng/slider';
     RatingModule,
     InputTextareaModule,
     SliderModule,
+    CalendarModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

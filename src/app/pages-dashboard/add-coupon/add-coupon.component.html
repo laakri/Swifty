@@ -1,0 +1,67 @@
+<div class="coupon-form">
+  <h2>Add Coupon</h2>
+  <form [formGroup]="couponForm" (ngSubmit)="onSubmit()">
+    <div class="p-fluid">
+      <div class="flex">
+        <div class="p-field">
+          <label for="code">Coupon Code</label>
+          <div class="coupon-field">
+            <input
+              type="text"
+              id="code"
+              pInputText
+              formControlName="code"
+              placeholder="Enter coupon code"
+            />
+            <button
+              pButton
+              type="button"
+              label="Generate"
+              (click)="generateRandomCode()"
+              style="margin-left: 10px"
+            ></button>
+          </div>
+        </div>
+        <div class="p-field">
+          <label for="discount">Discount (%)</label>
+
+          <p-inputNumber
+            inputId="discount"
+            formControlName="discount"
+            placeholder="Enter discount percentage"
+          ></p-inputNumber>
+        </div>
+      </div>
+      <div class="flex">
+        <div class="p-field">
+          <label for="validFrom">Valid From</label>
+          <p-calendar
+            id="validFrom"
+            formControlName="validFrom"
+            [showIcon]="true"
+            dateFormat="yy-mm-dd"
+            placeholder="Select valid from date"
+          ></p-calendar>
+        </div>
+        <div class="p-field">
+          <label for="validTo">Valid To</label>
+          <p-calendar
+            id="validTo"
+            formControlName="validTo"
+            [showIcon]="true"
+            dateFormat="yy-mm-dd"
+            placeholder="Select valid to date"
+          ></p-calendar>
+        </div>
+      </div>
+
+      <button
+        pButton
+        class="add-button"
+        type="submit"
+        label="Add Coupon"
+        [disabled]="!couponForm.valid"
+      ></button>
+    </div>
+  </form>
+</div>

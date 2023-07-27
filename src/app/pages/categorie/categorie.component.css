@@ -15,12 +15,14 @@ button {
     height: 240px;
     width: 100%;
     border-radius: 20px;
+    border: none;
     margin: auto;
-    background-color: #d9ddfb;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    background-color: #f2e3cf;
 }
+ 
 .first-content-left{
     width: 500px;
     height: 100%;
@@ -32,7 +34,7 @@ button {
 
 .first-content-right img{
     height: 240px ;
-    width: 240px;
+
 }
 
 .first-content-left h1 {
@@ -40,7 +42,7 @@ button {
     line-height: 1.6;
     font-weight: 550;
     letter-spacing: 1px;
-    color: black;
+    color: #000; 
 }
 .first-content-left button {
     width: 150px;

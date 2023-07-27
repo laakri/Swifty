@@ -1,16 +1,25 @@
 <div class="mainpage" #content>
-  <div class="first-content">
-    <div class="first-content-left">
-      <h1>Grap Upto 50% Off On Selected Headphone</h1>
-      <button>Buy Now</button>
-    </div>
-    <div class="first-content-right">
-      <img
-        src="../../assets/—Pngtree—creative technology science fiction cyberpunk_9015394.png"
-        alt="saif"
-      />
-    </div>
-  </div>
+  <p-carousel
+    [value]="carouselItems"
+    [numVisible]="1"
+    [numScroll]="1"
+    [circular]="true"
+    [autoplayInterval]="5000"
+    [responsiveOptions]="responsiveOptions"
+  >
+    <ng-template let-item pTemplate="item">
+      <div class="first-content">
+        <div class="first-content-left">
+          <h1>Welcome To Swifty <br />Check Our Offers</h1>
+          <button>Buy Now</button>
+        </div>
+        <div class="first-content-right">
+          <img [src]="item.imageUrl" alt="saif" />
+        </div>
+      </div>
+    </ng-template>
+  </p-carousel>
+
   <div class="filter-section">
     <div class="filter-container">
       <div class="filter-item">

@@ -1,9 +1,11 @@
 const mongoose = require("mongoose");
+const uniqueValidator = require("mongoose-unique-validator");
 
 const couponSchema = new mongoose.Schema(
   {
     code: {
       type: String,
+      unique: true,
       required: true,
     },
     discount: {
@@ -21,6 +23,7 @@ const couponSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+couponSchema.plugin(uniqueValidator);
 
 const Coupon = mongoose.model("Coupon", couponSchema);
 

@@ -17,12 +17,41 @@ export class CategorieComponent {
   currentPage: number = 1; // Current page
   pageSize: number = 12; // Number of products per page
   loading: boolean = false; // Loading indicator
+  carouselItems!: any[];
+  responsiveOptions!: any[];
 
   constructor(private productService: ProductService) {}
 
   ngOnInit() {
+    this.carouselItems = [
+      {
+        imageUrl: '../../assets/excellent-smiling-.png',
+      },
+      {
+        imageUrl:
+          '../../assets/pretty-lady-polka-dot-outfit-smiling-pink-wall-removebg-preview.png',
+      },
+    ];
     this.getProducts();
+    this.responsiveOptions = [
+      {
+        breakpoint: '1024px',
+        numVisible: 1,
+        numScroll: 1,
+      },
+      {
+        breakpoint: '768px',
+        numVisible: 1,
+        numScroll: 1,
+      },
+      {
+        breakpoint: '560px',
+        numVisible: 1,
+        numScroll: 1,
+      },
+    ];
   }
+
   getProducts() {
     const queryParams = {
       page: this.currentPage.toString(),

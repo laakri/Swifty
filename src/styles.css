@@ -199,25 +199,45 @@ input::placeholder{
 }
   /*********************-slider********************/
 
-.p-slider {
-  background: #f0f0f0;
-}
-
 /* Change the color of the slider handle when not hovered or focused */
 .p-slider .p-slider-handle {
   width: 15px;
   height: 15px;
-  background: #7584f5;
-  border-color: var(--maincolor);
+  background: #f0d9bb;
+  border-color: var(--whitecolor);
 }
 
 /* Change the color of the slider handle when hovered */
 .p-slider .p-slider-handle:hover {
-  background: #7584f5;
-  border-color: #7584f5;
+  background: #f2e3cf;
+  border-color: #f2e3cf;
 }
 
 /* Change the color of the slider range between handles */
 .p-slider .p-slider-range {
-  background: #7584f5;
+  background: #b0a291;
+}
+  /*********************-slider********************/
+/* Custom styles with new background colors */
+.p-tabview{
+  background-color: transparent !important;
+}
+
+.p-tabview .p-tabview-nav {
+  background: transparent;  
+  border-bottom: 1px solid var(--bordercolor); /* New border color for tab view navigation */
+}
+
+.p-tabview .p-tabview-nav li .p-tabview-nav-link {
+  background: var(--soft-darktranscolor); 
+  color: var(--whitecolor);
+}
+
+.p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
+  background: var(--soft-darkcolor); /* New background color for highlighted navigation link */
+  color: var(--whitecolor);
+}
+
+.p-tabview .p-tabview-panels {
+  background: transparent; /* New background color for tab view panels */
 }

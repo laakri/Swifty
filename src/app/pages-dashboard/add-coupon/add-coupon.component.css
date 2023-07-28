@@ -21,3 +21,14 @@
 .coupon-field button{
     width: 120px;    
 }
+td button{
+    background-color: transparent !important;
+    color: black;
+    border : none;
+}
+td button:hover{
+    color: gray;
+}
+.remove-button{
+    color: red !important;
+}

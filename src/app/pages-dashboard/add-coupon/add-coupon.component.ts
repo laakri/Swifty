@@ -11,6 +11,8 @@ import { MessageService } from 'primeng/api';
 })
 export class AddCouponComponent {
   couponForm!: FormGroup;
+  coupons: Coupon[] = [];
+  cols!: any[];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -20,6 +22,18 @@ export class AddCouponComponent {
 
   ngOnInit() {
     this.initCouponForm();
+    this.getAllCoupons();
+    this.cols = [
+      { field: 'code', header: 'Coupon Code' },
+      { field: 'actions', header: '' },
+      { field: 'discount', header: 'discount ' },
+      { field: 'currentUsage', header: 'Current Usage' },
+      { field: 'maxUsage', header: 'Max Usage' },
+      { field: 'isActive', header: 'isActive' },
+      { field: 'validFrom', header: 'Valid From' },
+      { field: 'validTo', header: 'Valid To' },
+      { field: 'delete', header: 'Delete' },
+    ];
   }
 
   initCouponForm() {
@@ -34,6 +48,27 @@ export class AddCouponComponent {
     });
   }
 
+  getAllCoupons() {
+    this.couponService.getAllCoupons().subscribe(
+      (coupons) => {
+        this.coupons = coupons;
+        this.coupons.forEach((coupon) => {
+          coupon.codeMasked = true;
+        });
+      },
+      (error) => {
+        console.error('Error fetching coupons:', error);
+      }
+    );
+  }
+
+  toggleCodeVisibility(coupon: Coupon) {
+    coupon.codeMasked = !coupon.codeMasked;
+  }
+
+  getMaskedCode(code: string, masked: boolean): string {
+    return masked ? code.replace(/./g, '*') : code;
+  }
   generateRandomCode() {
     const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
     let randomCode = '';
@@ -76,5 +111,25 @@ export class AddCouponComponent {
         }
       );
     }
+  }
+  deleteCoupon(couponId: string) {
+    this.couponService.deleteCouponById(couponId).subscribe(
+      (response) => {
+        // Handle success
+        console.log('Coupon deleted successfully:', response);
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Coupon Deleted',
+          detail: 'Coupon has been deleted successfully.',
+        });
+
+        // Refresh the coupons list
+        this.getAllCoupons();
+      },
+      (error) => {
+        // Handle error
+        console.error('Error deleting coupon:', error);
+      }
+    );
   }
 }

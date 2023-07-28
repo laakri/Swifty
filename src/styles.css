@@ -218,14 +218,13 @@ input::placeholder{
   background: #b0a291;
 }
   /*********************-slider********************/
-/* Custom styles with new background colors */
 .p-tabview{
   background-color: transparent !important;
 }
 
 .p-tabview .p-tabview-nav {
   background: transparent;  
-  border-bottom: 1px solid var(--bordercolor); /* New border color for tab view navigation */
+  border-bottom: 1px solid var(--bordercolor); 
 }
 
 .p-tabview .p-tabview-nav li .p-tabview-nav-link {
@@ -234,10 +233,25 @@ input::placeholder{
 }
 
 .p-tabview .p-tabview-nav li.p-highlight .p-tabview-nav-link {
-  background: var(--soft-darkcolor); /* New background color for highlighted navigation link */
+  background: var(--soft-darkcolor); 
   color: var(--whitecolor);
 }
 
 .p-tabview .p-tabview-panels {
-  background: transparent; /* New background color for tab view panels */
+  background: transparent; 
 }
+
+  /*********************-slider********************/
+  ::ng-deep .p-table .p-table-thead > tr > th {
+    background-color: #007bff;
+    color: #fff;
+  }
+
+  ::ng-deep .p-table .p-table-tbody > tr:hover {
+    background-color: #59aa13;
+  }
+
+  ::ng-deep .p-table .p-table-tbody > tr.ui-state-highlight {
+    background-color: #cb532c;
+  }
+

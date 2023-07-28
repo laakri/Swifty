@@ -65,3 +65,49 @@
     </div>
   </form>
 </div>
+<div class="p-grid p-justify-center mt-5">
+  <div class="p-col-10 p-md-8">
+    <p-table
+      [value]="coupons"
+      [columns]="cols"
+      [paginator]="true"
+      [rows]="10"
+      [showCurrentPageReport]="true"
+    >
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th *ngFor="let col of columns">{{ col.header }}</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-coupon>
+        <tr>
+          <td>{{ getMaskedCode(coupon.code, coupon.codeMasked) }}</td>
+          <td>
+            <button
+              pButton
+              icon="pi pi-eye"
+              (click)="toggleCodeVisibility(coupon)"
+            ></button>
+          </td>
+          <td>{{ coupon.discount }} %</td>
+          <td>{{ coupon.currentUsage }}</td>
+          <td>{{ coupon.maxUsage }}</td>
+          <td>{{ coupon.isActive }}</td>
+          <td>{{ coupon.validFrom | date }}</td>
+          <td>{{ coupon.validTo | date }}</td>
+          <td>
+            <button
+              class="remove-button"
+              pButton
+              icon="pi pi-trash"
+              (click)="deleteCoupon(coupon._id)"
+            ></button>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+    <div *ngIf="!coupons || coupons.length === 0" class="p-text-center">
+      No coupons found.
+    </div>
+  </div>
+</div>

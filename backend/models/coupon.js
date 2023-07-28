@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const uniqueValidator = require("mongoose-unique-validator");
 
 const couponSchema = new mongoose.Schema(
   {
@@ -20,10 +19,30 @@ const couponSchema = new mongoose.Schema(
       type: Date,
       required: true,
     },
+    maxUsage: {
+      type: Number,
+      required: true,
+      default: 1,
+    },
+    currentUsage: {
+      type: Number,
+      required: true,
+      default: 0,
+    },
+    isActive: {
+      type: Boolean,
+      required: true,
+      default: true,
+    },
+    usedByUsers: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
   },
   { timestamps: true }
 );
-couponSchema.plugin(uniqueValidator);
 
 const Coupon = mongoose.model("Coupon", couponSchema);
 

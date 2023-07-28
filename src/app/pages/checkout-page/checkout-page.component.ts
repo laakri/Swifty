@@ -15,6 +15,12 @@ export class CheckoutPageComponent implements OnInit {
   UserAuth = null;
   totalPrice: number = 0;
   items: [] = [];
+  couponCode: string = '';
+  couponId: string = '';
+  userId: string = '';
+  isAuth: boolean = false;
+  isCouponUsed: boolean = false;
+
   constructor(
     private formBuilder: FormBuilder,
     private UsersService: UsersService,
@@ -24,6 +30,7 @@ export class CheckoutPageComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.isAuth = this.UsersService.getIsAuth();
     this.initCheckoutForm();
     this.items = JSON.parse(localStorage.getItem('cartItems') || '[]');
     this.OrderService.calculateTotalPrice(this.items).subscribe(
@@ -74,6 +81,7 @@ export class CheckoutPageComponent implements OnInit {
       email: this.checkoutForm.value.email,
       name: this.checkoutForm.value.name,
       lastname: this.checkoutForm.value.lastname,
+      couponId: this.couponId,
     };
     this.OrderService.createOrder(orderData).subscribe(
       (response) => {
@@ -90,4 +98,48 @@ export class CheckoutPageComponent implements OnInit {
     );
   }
   onCreateAccount() {}
+  applyCouponCode() {
+    // Check if the user is authenticated
+    if (this.UsersService.getIsAuth()) {
+      // Get the user ID from the UsersService if the user is authenticated
+      const userId = this.UsersService.getUserId();
+
+      this.OrderService.applyCoupon(
+        this.items,
+        this.couponCode,
+        userId
+      ).subscribe(
+        (response) => {
+          this.totalPrice = response.totalAmount;
+          this.couponId = response.couponId; // Store the couponId from the response
+
+          // Check if the coupon is still active
+          if (!response.isActive) {
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Invalid Promo Code',
+              detail: 'This coupon has reached its usage limit.',
+            });
+          } else {
+            this.isCouponUsed = true;
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Success Message',
+              detail: 'Coupon Valid',
+            });
+          }
+        },
+        (error) => {
+          console.error('Failed to apply coupon', error);
+        }
+      );
+    } else {
+      // Handle the case where the user is not authenticated (optional)
+      this.messageService.add({
+        severity: 'warn',
+        summary: 'Authentication Required',
+        detail: 'Please log in to apply the coupon.',
+      });
+    }
+  }
 }

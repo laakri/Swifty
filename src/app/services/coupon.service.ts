@@ -15,4 +15,12 @@ export class CouponService {
   addCoupon(coupon: Coupon): Observable<Coupon> {
     return this.http.post<Coupon>(`${this.apiUrl}/add-coupon`, coupon);
   }
+  // Function to get all coupons
+  getAllCoupons(): Observable<Coupon[]> {
+    return this.http.get<Coupon[]>(`${this.apiUrl}/get-coupons`);
+  }
+  deleteCouponById(couponId: string): Observable<any> {
+    const url = `${this.apiUrl}/delete/${couponId}`;
+    return this.http.delete<any>(url);
+  }
 }

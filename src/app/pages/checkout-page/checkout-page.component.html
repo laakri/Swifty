@@ -9,7 +9,7 @@
   </div>
   <div class="checkout-container" *ngIf="items.length > 0">
     <div class="left-content">
-      <div class="account-creation-banner">
+      <div class="account-creation-banner" *ngIf="!isAuth">
         <p>Want faster checkout next time?</p>
         <button pButton class="p-button-primary" (click)="onCreateAccount()">
           Create an Account
@@ -115,15 +115,34 @@
     <div class="right-content">
       <h2>Your Cart</h2>
 
-      <div class="p-inputgroup promo-code">
-        <input type="text" pInputText placeholder="Promo Code" />
-        <button
-          type="button"
-          pButton
-          icon="pi pi-check"
-          styleClass="p-button-success"
-        ></button>
-      </div>
+      <ng-container *ngIf="!isCouponUsed; else couponUsedSection">
+        <div class="p-inputgroup promo-code">
+          <input
+            type="text"
+            [(ngModel)]="couponCode"
+            pInputText
+            placeholder="Promo Code"
+          />
+          <button
+            type="button"
+            pButton
+            icon="pi pi-check"
+            styleClass="p-button-success"
+            (click)="applyCouponCode()"
+            [disabled]="!isAuth"
+          ></button>
+        </div>
+        <div *ngIf="!isAuth" class="p-error">
+          You must be logged in to use promo coupon.
+        </div>
+      </ng-container>
+
+      <ng-template #couponUsedSection>
+        <!-- Replace this with the message or image you want to show when coupon is used -->
+        <div style="text-align: center">
+          <p>Coupon {{ couponCode }} has been successfully applied! ✔️</p>
+        </div>
+      </ng-template>
 
       <div class="subtotal">
         <span>Subtotal</span>

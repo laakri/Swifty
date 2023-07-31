@@ -31,6 +31,20 @@ export class CheckoutPageComponent implements OnInit {
 
   ngOnInit() {
     this.isAuth = this.UsersService.getIsAuth();
+    this.UsersService.getUserCoupon().subscribe(
+      (response: any) => {
+        if (response.coupon) {
+          this.couponCode = response.coupon.code;
+          this.couponId = response.coupon._id;
+          this.isCouponUsed = true;
+          this.totalPrice =
+            this.totalPrice * (1 - response.coupon.discount / 100);
+        }
+      },
+      (error) => {
+        console.error('Failed ', error);
+      }
+    );
     this.initCheckoutForm();
     this.items = JSON.parse(localStorage.getItem('cartItems') || '[]');
     this.OrderService.calculateTotalPrice(this.items).subscribe(
@@ -68,6 +82,8 @@ export class CheckoutPageComponent implements OnInit {
       this.UserAuth = this.UsersService.getUserId();
     }
     const orderData = {
+      orderId: '',
+      status: '',
       user: this.UserAuth,
       products: cartItems,
       totalAmount: this.totalPrice,

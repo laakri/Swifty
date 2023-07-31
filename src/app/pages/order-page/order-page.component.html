@@ -1,33 +1,79 @@
 <div class="mainpage">
-  <div class="order-header">
+  <div *ngIf="!loading && !orderDetails" class="order-not-found">
+    <p>Order not found.</p>
+  </div>
+  <p-progressSpinner
+    *ngIf="loading && !orderDetails"
+    styleClass="custom-spinner"
+    class="order-products"
+  ></p-progressSpinner>
+  <div class="order-header" *ngIf="!loading && orderDetails">
     <h3>Thanks!</h3>
     <h1>Successful Order 🚀</h1>
     <p>Your order is on the way. It'll be shipped today. We'll inform you.</p>
   </div>
-  <div class="order-number">
-    <div class="order-number-text">Order number: 451234</div>
+  <div class="order-number" *ngIf="!loading && orderDetails">
+    <div class="order-number-text">
+      Order number: {{ orderDetails?.orderId }}
+    </div>
+    <div class="order-number-text">
+      Status:
+      <span [ngClass]="getStatusStyle(orderDetails?.status)">
+        {{ orderDetails?.status }}
+      </span>
+    </div>
     <div class="order-number-buttons">
-      <button pButton class="p-button-primary empty-button">Details</button>
-      <button pButton class="p-button-primary empty-button">Print</button>
+      <button
+        pButton
+        (click)="printOrder()"
+        class="p-button-primary empty-button"
+      >
+        Print
+      </button>
     </div>
   </div>
-  <div class="order-products">
-    <div class="order-product">
+
+  <div class="order-products" *ngIf="!loading && orderDetails">
+    <div *ngFor="let product of orderDetails?.products" class="order-product">
       <div class="order-product-left">
-        <img src="../../../assets/homepage/model3.jpg" alt="" />
+        <img [src]="product.productId.images[0].url" alt="" />
+
         <div class="order-product-left-content">
-          <div>Product Name</div>
-          <div class="left-content-size">Size | XXL</div>
-          <div>Quantity 3</div>
+          <div>{{ product.productId.name }}</div>
+          <div class="left-content-size">
+            Category | {{ product.productId.category }}
+          </div>
+          <div>Quantity {{ product.quantity }}</div>
         </div>
       </div>
       <div class="order-product-price">
-        150.00 <i style="font-size: 12px">DT</i>
+        {{ product.productId.price }} <i style="font-size: 12px">DT</i>
       </div>
     </div>
   </div>
-  <div class="order-info">
-    <div></div>
-    <div></div>
+  <div class="order-info" *ngIf="orderDetails">
+    <div class="user-info">
+      <h3>Shipping Address</h3>
+      <span>{{ orderDetails?.lastname }} {{ orderDetails?.name }} </span>
+      <span>{{ orderDetails?.email }} </span>
+      <span>{{ orderDetails?.shippingAddress }} </span>
+      <span>{{ orderDetails?.phone }} </span>
+    </div>
+
+    <div class="product-info">
+      <h3>Summary</h3>
+      <div class="product-info-div">
+        <h5>Subtotal</h5>
+        <span>36.00 <i style="font-size: 12px">DT</i></span>
+      </div>
+      <div class="product-info-div">
+        <span>Shipping</span>
+        <span>7.00 <i style="font-size: 12px">DT</i></span>
+      </div>
+      <div class="product-info-div">
+        <h3>Subtotal</h3>
+        <h3>43.00 <i style="font-size: 12px">DT</i></h3>
+      </div>
+    </div>
   </div>
 </div>

@@ -33,4 +33,14 @@ export class OrderService {
       requestBody
     );
   }
+  // Get an order by order code (orderId)
+  getOrder(orderCode: string): Observable<any> {
+    const url = `${this.apiUrl}/Get-order/${orderCode}`;
+    return this.http.get<any>(url).pipe(
+      catchError((error) => {
+        console.error('Failed to retrieve the order:', error);
+        throw error;
+      })
+    );
+  }
 }

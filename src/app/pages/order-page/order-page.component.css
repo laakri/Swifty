@@ -3,6 +3,11 @@
     margin: 30px auto;
     min-height: 570px;
 }
+.order-not-found{
+    margin-top: 100px;
+    text-align: center;
+    font-size: 20px;
+}
 .order-header{
     margin: auto 30px ;
     min-height: 120px;
@@ -32,19 +37,25 @@
 }
 .order-products{
     margin: 30px;
-    border: solid 1px var(--bordercolor);
-    padding: 20px;
-    border-radius: 5px;
-
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
+
 .order-product{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-top: solid 1px var(--bordercolor);
+    border-bottom: solid 1px var(--bordercolor);
+    padding: 20px 10px ;
+}
+.order-product:last-child{
+    border-top: none;
 }
 .order-product-left{
     display: flex;
-    gap: 20px;
+    gap: 30px;
     align-items: center;
 }
 .order-product-left-content{
@@ -62,13 +73,55 @@
     font-size: 16px;
 }
 
-
-
 .order-product img{
-    height: 140px;
-    width: 140px;
+    height: 130px;
+    width: 130px;
     border-radius:5px ;
 }
 .order-product-price{
     font-size: 20px;
 }
+.order-info{
+   min-height: 250px;
+   margin: 30px;
+   display: flex;
+    justify-content: space-between;
+}
+.order-info h4,h5{
+    height: 10px;
+}
+.user-info{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+.product-info{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.product-info-div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.status-pending {
+    color: orange;
+  }
+  
+  .status-confirmed {
+    color: green;
+  }
+  
+  .status-shipped {
+    color: blue;
+  }
+  
+  .status-delivered {
+    color: purple;
+  }
+  .status-default {
+    color: black; /* Choose the desired default color */
+  }

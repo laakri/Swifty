@@ -1,4 +1,5 @@
 export interface Order {
+  orderId: string;
   user: string | null;
   products: any[];
   totalAmount: number;
@@ -7,5 +8,6 @@ export interface Order {
   email: string;
   name: string;
   lastname: string;
-  couponId: string; // Add the couponId field
+  couponId: string;
+  status: string;
 }

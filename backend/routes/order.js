@@ -46,6 +46,26 @@ router.post("/order", async (req, res) => {
     res.status(500).json({ error: "Failed to add the order." });
   }
 });
+/****************** Get Order By Order Code ******************/
+router.get("/Get-order/:orderCode", async (req, res) => {
+  const orderCode = req.params.orderCode;
+
+  try {
+    const order = await Order.findOne({ orderId: orderCode }).populate({
+      path: "products.productId",
+      select: "_id name price category images",
+    });
+
+    if (!order) {
+      return res.status(404).json({ error: "Order not found." });
+    }
+
+    res.json(order);
+  } catch (err) {
+    console.error("Error retrieving order:", err);
+    res.status(500).json({ error: "Failed to retrieve the order." });
+  }
+});
 
 /****************** Get totalPrice for Order******************/
 
@@ -73,7 +93,6 @@ router.post("/totalPrice", async (req, res) => {
     res.status(500).json({ error: "Failed to calculate total price." });
   }
 });
-
 /****************** Apply Coupon ******************/
 router.post("/order/apply-coupon", async (req, res) => {
   try {
@@ -83,7 +102,6 @@ router.post("/order/apply-coupon", async (req, res) => {
     if (!userExists) {
       return res.status(404).json({ error: "User not found." });
     }
-
     const coupon = await Coupon.findOne({ code: couponCode });
 
     if (!coupon) {
@@ -123,6 +141,13 @@ router.post("/order/apply-coupon", async (req, res) => {
 
     await coupon.save();
 
+    // Update the user's document with the applied coupon
+    const user = await User.findByIdAndUpdate(
+      userId,
+      { appliedCoupon: coupon._id },
+      { new: true }
+    );
+
     const discountedAmount = totalAmount * (1 - coupon.discount / 100);
 
     res.json({
@@ -135,6 +160,7 @@ router.post("/order/apply-coupon", async (req, res) => {
     res.status(500).json({ error: "Failed to apply coupon." });
   }
 });
+
 async function checkUserExist(userId) {
   if (!mongoose.isValidObjectId(userId)) {
     return false;

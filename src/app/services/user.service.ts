@@ -1,6 +1,6 @@
 import { User } from '../models/user.model';
 import { HttpClient } from '@angular/common/http';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { MessageService } from 'primeng/api';
@@ -31,7 +31,12 @@ export class UsersService {
     private router: Router,
     private messageService: MessageService
   ) {}
-
+  getUserCoupon(): Observable<any> {
+    const url = `${this.apiURL}/api/users/user/coupon`;
+    const userId = this.userId;
+    const params = { userId }; // Pass the user ID as a query parameter
+    return this.http.get<any>(url, { params });
+  }
   SignUp(name: string, email: string, password: string) {
     const userData: User = {
       name: name,
@@ -424,28 +429,4 @@ export class UsersService {
   }
 
   /*************************************************/
-
-  getTeachers() {
-    this.http
-      .get<{ message: string; users: any }>(
-        this.apiURL + '/api/users/GetTeacher'
-      )
-      .pipe(
-        map((teacherData) => {
-          return teacherData.users.map((teacher: { _id: any; name: any }) => {
-            return {
-              id: teacher._id,
-              name: teacher.name,
-            };
-          });
-        })
-      )
-      .subscribe((transformedTeacher) => {
-        this.teachers = transformedTeacher;
-        this.teacherUpdate.next([...this.teachers]);
-      });
-  }
-  getTeacherUpdateListener() {
-    return this.teacherUpdate.asObservable();
-  }
 }

@@ -14,12 +14,12 @@ body{
     font-family: var(--font-family);
 
     --bordercolor: #314563;
-    --darkcolor: #111827;
-    --soft-darkcolor: #1d2538;
+    --darkcolor: #05061f;
+    --soft-darkcolor: #10162b;
     --whitecolor: #ffffff;
     --graycolor: #b1b6b8;
-    --maincolor: #726fdd;
-    --maintranscolor: #3b7fed71;
+    --maincolor: #12b4b1;
+    --hovermaincolor: #107674;
     --secendcolor: #c04e14;
     --darktranscolor: #19181ada;
     --soft-darktranscolor: #26272b69;
@@ -41,8 +41,8 @@ body.light-theme {
   --soft-darkcolor: #f0f3f7;
   --whitecolor: #000000;
   --graycolor: #444444;
-  --maincolor: #4f46e5;
-  --maintranscolor: #85586F71;
+  --maincolor: #12b4b1;
+  --hovermaincolor: #107674;
   --secendcolor: #c04e14;
   --darktranscolor: #fdfdfdce;
   --soft-darktranscolor: #94959769;
@@ -53,6 +53,7 @@ button {
   cursor: pointer;
   text-decoration: none;
 }
+
 .fas {
   font-size: 27px;
 }

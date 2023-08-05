@@ -14,7 +14,7 @@ router.post("/order", async (req, res) => {
       user,
       products,
       totalAmount,
-      status,
+
       shippingAddress,
       phone,
       email,
@@ -29,7 +29,7 @@ router.post("/order", async (req, res) => {
       user: orderUser,
       products,
       totalAmount,
-      status,
+
       shippingAddress,
       phone,
       email,

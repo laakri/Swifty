@@ -1,3 +1,42 @@
+
+.banner-container {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 28px; /* Adjust the height as needed */
+  background-color: var(--maincolor); /* Set the background color of the banner */
+}
+
+.moving-texts {
+  display: flex;
+  position: absolute;
+  align-items: center;
+  white-space: nowrap;
+  top: 0;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  right: 100%; /* Start from the right edge */
+  animation: movingAnimation 15s linear infinite; /* Adjust the animation duration as needed */
+  color: var(--darkcolor);
+}
+
+.moving-text {
+  margin-top: 3px;
+  flex-shrink: 0;
+  margin-right: 60px; /* Adjust the spacing between texts */
+}
+
+@keyframes movingAnimation {
+  from {
+    right: 100%; /* Start from the right edge */
+  }
+  to {
+    right: -100%; /* Move to the left edge */
+  }
+}
+
+
+
+
 .mainpage1 {
     background: var(--darkcolor);
     color: var(--whitecolor);
@@ -216,7 +255,7 @@ button:hover{
 
 .carousel-header span {
   font-size: 16px;
-  color: #555;
+  color: var(--graycolor);
   margin-bottom: 20px;
 }
 
@@ -262,7 +301,7 @@ text-align: center;
 .tab-view {
   display: flex;
   justify-content: center;
-  color: gray;
+  color: var(--graycolor);
   width: 100%;
 
 }

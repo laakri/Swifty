@@ -14,12 +14,12 @@
   </div>
   <div class="order-number" *ngIf="!loading && orderDetails">
     <div class="order-number-text">
-      Order number: {{ orderDetails?.orderId }}
+      Order number: {{ orderDetails.orderId }}
     </div>
     <div class="order-number-text">
       Status:
-      <span [ngClass]="getStatusStyle(orderDetails?.status)">
-        {{ orderDetails?.status }}
+      <span [ngClass]="getStatusStyle(orderDetails.status)">
+        {{ orderDetails.status }}
       </span>
     </div>
     <div class="order-number-buttons">
@@ -34,7 +34,7 @@
   </div>
 
   <div class="order-products" *ngIf="!loading && orderDetails">
-    <div *ngFor="let product of orderDetails?.products" class="order-product">
+    <div *ngFor="let product of orderDetails.products" class="order-product">
       <div class="order-product-left">
         <img [src]="product.productId.images[0].url" alt="" />
 
@@ -54,25 +54,30 @@
   <div class="order-info" *ngIf="orderDetails">
     <div class="user-info">
       <h3>Shipping Address</h3>
-      <span>{{ orderDetails?.lastname }} {{ orderDetails?.name }} </span>
-      <span>{{ orderDetails?.email }} </span>
-      <span>{{ orderDetails?.shippingAddress }} </span>
-      <span>{{ orderDetails?.phone }} </span>
+      <span>{{ orderDetails.lastname }} {{ orderDetails.name }} </span>
+      <span>{{ orderDetails.email }} </span>
+      <span>{{ orderDetails.shippingAddress }} </span>
+      <span>{{ orderDetails.phone }} </span>
     </div>
 
     <div class="product-info">
       <h3>Summary</h3>
       <div class="product-info-div">
         <h5>Subtotal</h5>
-        <span>36.00 <i style="font-size: 12px">DT</i></span>
+        <span
+          >{{ orderDetails.totalAmount }}
+          <i style="font-size: 12px">DT</i></span
+        >
       </div>
       <div class="product-info-div">
         <span>Shipping</span>
-        <span>7.00 <i style="font-size: 12px">DT</i></span>
+        <span>00 <i style="font-size: 12px">DT</i></span>
       </div>
       <div class="product-info-div">
         <h3>Subtotal</h3>
-        <h3>43.00 <i style="font-size: 12px">DT</i></h3>
+        <h3>
+          {{ orderDetails.totalAmount }} <i style="font-size: 12px">DT</i>
+        </h3>
       </div>
     </div>
   </div>

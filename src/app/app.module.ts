@@ -69,6 +69,8 @@ import { RatingModule } from 'primeng/rating';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { SliderModule } from 'primeng/slider';
 import { CalendarModule } from 'primeng/calendar';
+import { MenubarModule } from 'primeng/menubar';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -139,6 +141,7 @@ import { CalendarModule } from 'primeng/calendar';
     InputTextareaModule,
     SliderModule,
     CalendarModule,
+    MenubarModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

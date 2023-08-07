@@ -160,6 +160,9 @@ input::placeholder{
 .p-menu {
   background: var(--soft-darkcolor);  
   color: var(--whitecolor); 
+  width: 100%;
+  border: none;
+  border-radius: 0;
 }
 
 .p-menu .p-menuitem-text {

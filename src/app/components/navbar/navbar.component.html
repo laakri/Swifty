@@ -1,6 +1,6 @@
 <div class="first-toolbar toolbar">
-  <div>+216 24989104</div>
-  <div>Get free delivery on orders over $100</div>
+  <div class="first-toolbar-div">+216 24989104</div>
+  <div *ngIf="!isSmallScreen">Get free delivery on orders over $100</div>
   <div *ngIf="!isAuth">
     <button
       class="p-button-text"
@@ -29,14 +29,41 @@
 </div>
 <div
   class="second-toolbar toolbar"
-  [ngClass]="{ 'navbar-transparent': isNavbarTransparent }"
+  [ngClass]="{
+    'navbar-transparent': isNavbarTransparent,
+  }"
 >
   <div class="logo1" routerLink="">
     <img [src]="getImgSrc()" alt="Logo" />
 
     <span>Swifty</span>
   </div>
-  <div class="middle-content">
+  <div class="middle-content overlay" *ngIf="isSearchMode">
+    <div class="search-container">
+      <input
+        type="text"
+        pInputText
+        placeholder="Search..."
+        [(ngModel)]="searchQuery"
+      />
+      <button
+        type="submit"
+        class="p-button-text"
+        pButton
+        icon="pi pi-search"
+        (click)="performSearch()"
+      ></button>
+      <button
+        type="button"
+        class="p-button-text cancel-button"
+        pButton
+        icon="pi pi-times"
+        (click)="cancelSearch()"
+      ></button>
+    </div>
+  </div>
+
+  <div class="middle-content" *ngIf="!isSearchMode && !isSmallScreen">
     <button
       class="p-button-text"
       routerLinkActive="activebutton"
@@ -67,12 +94,14 @@
       pButton
     ></button>
   </div>
-  <div class="search-container">
-    <input type="text" pInputText placeholder="Search..." />
-
-    <button type="submit" pButton icon="pi pi-search"></button>
-  </div>
   <div class="right-navbar-button">
+    <button
+      type="submit"
+      pButton
+      icon="pi pi-search"
+      (click)="toggleSearchMode()"
+    ></button>
+
     <button
       class="p-button-text"
       [routerLink]="['cart']"
@@ -85,6 +114,7 @@
         [value]="cartQuantity.toString()"
       ></i>
     </button>
+
     <button
       class="p-button-text"
       (click)="change_theme()"
@@ -92,5 +122,50 @@
       icon="pi pi-sun"
       ariaLabel="campaign"
     ></button>
+    <button
+      *ngIf="isSmallScreen"
+      class="p-button-text menu-button"
+      pButton
+      type="button"
+      [ngClass]="{ 'menu-open': isMenuOpen }"
+      [icon]="isMenuOpen ? 'pi pi-times' : 'pi pi-bars'"
+      (click)="toggleMenu()"
+    ></button>
+  </div>
+</div>
+<p-menu
+  class="menu"
+  *ngIf="isSmallScreen && isMenuOpen"
+  [model]="menuItems"
+  [styleClass]="'p-d-lg-none'"
+></p-menu>
+<div class="search-results" *ngIf="isSearchMode">
+  <div *ngIf="searchResults.length > 0">
+    <div
+      *ngFor="let result of searchResults"
+      class="search-result"
+      [routerLink]="['../v/product', result.id]"
+    >
+      <div class="result-left">
+        <img
+          class="result-img"
+          src="{{ result.imageName }}
+      "
+          alt=""
+        />
+        <div class="result-text">
+          <span>{{ result.name }}</span>
+          <span>
+            {{ result.shortDescription }}
+          </span>
+        </div>
+      </div>
+      <div class="result-price">
+        <span>{{ result.price }} <i style="font-size: 12px">DT</i> </span>
+        <div class="result-price-rating">
+          <i class="pi pi-star-fill"></i>{{ result.reviewCount }}
+        </div>
+      </div>
+    </div>
   </div>
 </div>

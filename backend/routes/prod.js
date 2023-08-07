@@ -74,6 +74,44 @@ router.post("/add-product", upload.array("images"), async (req, res) => {
   }
 });
 
+/****************** Search Products ******************/
+
+router.get("/search-products", async (req, res) => {
+  try {
+    const { query } = req.query;
+    console.log(query);
+
+    const filter = {
+      $or: [
+        { name: { $regex: query, $options: "i" } },
+        { description: { $regex: query, $options: "i" } },
+        { shortDescription: { $regex: query, $options: "i" } },
+        { tags: { $in: [query] } },
+      ],
+    };
+
+    const products = await Product.find(filter);
+
+    const searchResults = products.map((product) => {
+      const firstImage =
+        product.images.length > 0 ? product.images[0].url : null;
+      return {
+        id: product.id,
+        name: product.name,
+        imageName: firstImage,
+        shortDescription: product.shortDescription,
+        price: product.price,
+        reviewCount: product.reviews.length,
+      };
+    });
+
+    res.json(searchResults);
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ error: "Failed to search products" });
+  }
+});
+
 /****************** Calculate AverageRating ******************/
 const calculateAverageRating = async (productId) => {
   try {

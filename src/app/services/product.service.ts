@@ -61,4 +61,8 @@ export class ProductService {
       payload
     );
   }
+  searchProducts(query: string): Observable<any[]> {
+    const url = `${this.apiUrl}/api/prods/search-products/?query=${query}`;
+    return this.http.get<any[]>(url);
+  }
 }

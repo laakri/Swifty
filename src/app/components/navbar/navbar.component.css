@@ -1,3 +1,4 @@
+
 .navbar-transparent {
   background-color: transparent;
 }
@@ -9,9 +10,9 @@ button {
   line-height: 1.6;
 }
 .toolbar{
+  position: relative;
     display: flex;
     align-items: center;
-    margin: auto 20px;
     background-color: var(--darkcolor);
     color: var(--whitecolor);
     justify-content: space-between;
@@ -23,6 +24,9 @@ button {
   font-size: 14px;
   display: flex;
   z-index: 1000;
+}
+.first-toolbar-div{
+  margin-left: 20px;
 }
   .first-toolbar span {
     color: var(--bordercolor);
@@ -63,6 +67,7 @@ button {
     align-items: center;
     cursor: pointer;
     gap: 10px;
+    margin-left: 20px;
   }
   
   .logo1 span {
@@ -143,4 +148,98 @@ button {
   button[type="submit"]:hover {
     background-color: rgba(0, 153, 255, 0.1);
   }
-  
+ 
+  .menu {
+    position: sticky;
+    top: 70px;
+    z-index: 1000;
+  }
+
+/* Existing CSS rules */
+
+.overlay {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(5, 6, 6, 0.5); /* Adjust the alpha value to control opacity */
+  backdrop-filter: blur(5px);
+  pointer-events: none; /* Allow interaction with elements behind the overlay */
+  z-index: 999; /* Place the overlay above other content */
+  pointer-events: auto;
+}
+.cancel-button {
+  margin-left: 10px;
+  color: var(--whitecolor);
+  font-size: 16px;
+}
+.search-results {
+  margin: auto;
+  text-align: center;
+  position: sticky;
+  top: 70px;
+  z-index: 1000;
+  max-width: 500px;
+  background-color: var(--soft-darkcolor); /* Adjust the alpha value to control opacity */
+  color: white;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  overflow: hidden;
+}
+.search-result {
+  margin-bottom: 5px;
+  padding:  10px  ;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+.search-result:hover {
+  background-color: var(--darkcolor);
+  cursor: pointer;
+}
+.result-left{
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+.result-img{
+  height: 85px;
+  width: 85px;
+  border-radius: 5px;
+}
+
+
+.result-text{
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  gap: 10px;
+}
+.result-text span:last-child{
+  color: var(--graycolor);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.result-price{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: left;
+  min-width: 60px;
+}
+.result-price-rating{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--maincolor);
+  text-align: center;
+}
+
+

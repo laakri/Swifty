@@ -40,7 +40,7 @@
 .mainpage1 {
     background: var(--darkcolor);
     color: var(--whitecolor);
-    height: calc(100vh - 120px);
+    height: calc(100vh - 150px);
     position: relative;
   }
   a,button{
@@ -52,7 +52,7 @@ button:hover{
   .homepage-background-img {
     background-image: url(../../../assets/homepage/main-image.png);
     position: absolute;
-    width: 750px;
+    width: 500px;
     height: 750px;
     background-repeat: no-repeat;
     background-size: cover;
@@ -91,7 +91,7 @@ button:hover{
     z-index: 1;
     text-align: left;
     width: 100%;
-    font-size: 60px;
+    font-size: 80px;
     margin: 30px 10px;
     line-height: 1.2;
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -169,7 +169,7 @@ button:hover{
   }
   
   .left-div {
-    background-image: url('../../../assets/homepage/fashionable-young-caucasian-brunette-hoodie-jeans-likes-listen-music-with-headphones-purple-background-technological-device-concept.jpg');
+    background-image: url('../../../assets/homepage/storefront-1-28.png');
     width: 200px;
   }
   
@@ -190,12 +190,12 @@ button:hover{
   }
   
   .top-right {
-    background-image: url('../../../assets/homepage/model3.jpg');
+    background-image: url('../../../assets/homepage/storefront-1-27.png');
     height: 100px;
   }
   
   .bottom-right {
-    background-image: url('../../../assets/homepage/full-length-portrait-amazed-beautiful-lady-jeans-curly-curious-girl-jumping.jpg');
+    background-image: url('../../../assets/homepage/storefront-1-26.png');
     margin-bottom: 0;
     height: 100px;
   }

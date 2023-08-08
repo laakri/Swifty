@@ -110,6 +110,7 @@ button {
     color: var(--whitecolor);
   }
   .middle-content{
+    position: relative;
     display: flex;
     gap: 10px;
   }
@@ -180,10 +181,10 @@ button {
 .search-results {
   margin: auto;
   text-align: center;
-  position: sticky;
+  position: absolute;
   top: 70px;
   z-index: 1000;
-  max-width: 500px;
+  width: 500px;
   background-color: var(--soft-darkcolor); /* Adjust the alpha value to control opacity */
   color: white;
   border-bottom-left-radius: 10px;

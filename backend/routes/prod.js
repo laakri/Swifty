@@ -79,7 +79,6 @@ router.post("/add-product", upload.array("images"), async (req, res) => {
 router.get("/search-products", async (req, res) => {
   try {
     const { query } = req.query;
-    console.log(query);
 
     const filter = {
       $or: [

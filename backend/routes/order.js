@@ -6,15 +6,13 @@ const Coupon = require("../models/coupon");
 const User = require("../models/user");
 const mongoose = require("mongoose");
 
-/****************** Add New Order******************/
+/****************** Add New Order ******************/
 
 router.post("/order", async (req, res) => {
   try {
     const {
       user,
       products,
-      totalAmount,
-
       shippingAddress,
       phone,
       email,
@@ -25,17 +23,57 @@ router.post("/order", async (req, res) => {
 
     const orderUser = user ? user : null;
 
+    let totalAmount = 0;
+
+    // Calculate the total amount based on products
+    if (Array.isArray(products) && products.length > 0) {
+      const totalPriceResponse = await calculateTotalPrice(products);
+      if (!totalPriceResponse.success) {
+        return res
+          .status(totalPriceResponse.statusCode)
+          .json(totalPriceResponse.error);
+      }
+      totalAmount = totalPriceResponse.totalPrice;
+    }
+
+    // Check if the coupon is provided and valid
+    if (couponId) {
+      const coupon = await Coupon.findById(couponId);
+
+      if (!coupon) {
+        return res.status(400).json({ error: "Invalid coupon." });
+      }
+
+      // Check if the coupon has expired
+      const currentDate = new Date();
+      if (
+        currentDate > coupon.validTo ||
+        coupon.currentUsage >= coupon.maxUsage
+      ) {
+        coupon.isActive = false;
+        coupon.usedByUsers = [];
+        await coupon.save();
+
+        return res.status(400).json({ error: "Coupon has expired." });
+      }
+      coupon.currentUsage += 1;
+      // Mark the coupon as used by the current user
+      coupon.usedByUsers.push(user);
+      await coupon.save();
+      // Calculate the discounted total amount
+      totalAmount *= 1 - coupon.discount / 100;
+    }
+
     const newOrder = new Order({
       user: orderUser,
       products,
       totalAmount,
-
       shippingAddress,
       phone,
       email,
       name,
       lastname,
-      couponId,
+      couponId: couponId,
     });
 
     const savedOrder = await newOrder.save();
@@ -46,6 +84,7 @@ router.post("/order", async (req, res) => {
     res.status(500).json({ error: "Failed to add the order." });
   }
 });
+
 /****************** Get Order By Order Code ******************/
 router.get("/Get-order/:orderCode", async (req, res) => {
   const orderCode = req.params.orderCode;
@@ -107,7 +146,6 @@ router.post("/order/apply-coupon", async (req, res) => {
     if (!coupon) {
       return res.status(404).json({ error: "Coupon not found." });
     }
-    // Check if the coupon has been used by the same user in the same order
     const isCouponUsed = coupon.usedByUsers.includes(userId);
     if (isCouponUsed) {
       return res
@@ -129,25 +167,15 @@ router.post("/order/apply-coupon", async (req, res) => {
 
     const totalAmount = totalPriceResponse.totalPrice;
 
-    // Check if the coupon has reached its usage limit
     if (coupon.currentUsage >= coupon.maxUsage) {
-      coupon.isActive = false;
-    } else {
-      coupon.currentUsage += 1;
+      return res
+        .status(400)
+        .json({ error: "Coupon is reached the usage limit." });
     }
 
     // Mark the coupon as used by the current user
-    coupon.usedByUsers.push(userId);
-
-    await coupon.save();
-
-    // Update the user's document with the applied coupon
-    const user = await User.findByIdAndUpdate(
-      userId,
-      { appliedCoupon: coupon._id },
-      { new: true }
-    );
-
+    // coupon.usedByUsers.push(userId);
+    //await coupon.save();
     const discountedAmount = totalAmount * (1 - coupon.discount / 100);
 
     res.json({
@@ -160,6 +188,7 @@ router.post("/order/apply-coupon", async (req, res) => {
     res.status(500).json({ error: "Failed to apply coupon." });
   }
 });
+/****************** checkUserExist ******************/
 
 async function checkUserExist(userId) {
   if (!mongoose.isValidObjectId(userId)) {
@@ -174,6 +203,8 @@ async function checkUserExist(userId) {
     return false;
   }
 }
+/****************** calculateTotalPrice ******************/
+
 async function calculateTotalPrice(items) {
   try {
     if (!Array.isArray(items)) {

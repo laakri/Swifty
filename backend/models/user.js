@@ -18,11 +18,7 @@ const userSchema = mongoose.Schema(
         ref: "Group",
       },
     ],
-    appliedCoupon: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Coupon",
-      default: null,
-    },
+
     roles: {
       type: [
         {

@@ -31,12 +31,7 @@ export class UsersService {
     private router: Router,
     private messageService: MessageService
   ) {}
-  getUserCoupon(): Observable<any> {
-    const url = `${this.apiURL}/api/users/user/coupon`;
-    const userId = this.userId;
-    const params = { userId }; // Pass the user ID as a query parameter
-    return this.http.get<any>(url, { params });
-  }
+
   SignUp(name: string, email: string, password: string) {
     const userData: User = {
       name: name,

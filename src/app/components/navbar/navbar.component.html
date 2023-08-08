@@ -61,6 +61,36 @@
         (click)="cancelSearch()"
       ></button>
     </div>
+    <div class="search-results" *ngIf="isSearchMode">
+      <div *ngIf="searchResults.length > 0">
+        <div
+          *ngFor="let result of searchResults"
+          class="search-result"
+          [routerLink]="['../v/product', result.id]"
+        >
+          <div class="result-left">
+            <img
+              class="result-img"
+              src="{{ result.imageName }}
+          "
+              alt=""
+            />
+            <div class="result-text">
+              <span>{{ result.name }}</span>
+              <span>
+                {{ result.shortDescription }}
+              </span>
+            </div>
+          </div>
+          <div class="result-price">
+            <span>{{ result.price }} <i style="font-size: 12px">DT</i> </span>
+            <div class="result-price-rating">
+              <i class="pi pi-star-fill"></i>{{ result.reviewCount }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="middle-content" *ngIf="!isSearchMode && !isSmallScreen">
@@ -139,33 +169,3 @@
   [model]="menuItems"
   [styleClass]="'p-d-lg-none'"
 ></p-menu>
-<div class="search-results" *ngIf="isSearchMode">
-  <div *ngIf="searchResults.length > 0">
-    <div
-      *ngFor="let result of searchResults"
-      class="search-result"
-      [routerLink]="['../v/product', result.id]"
-    >
-      <div class="result-left">
-        <img
-          class="result-img"
-          src="{{ result.imageName }}
-      "
-          alt=""
-        />
-        <div class="result-text">
-          <span>{{ result.name }}</span>
-          <span>
-            {{ result.shortDescription }}
-          </span>
-        </div>
-      </div>
-      <div class="result-price">
-        <span>{{ result.price }} <i style="font-size: 12px">DT</i> </span>
-        <div class="result-price-rating">
-          <i class="pi pi-star-fill"></i>{{ result.reviewCount }}
-        </div>
-      </div>
-    </div>
-  </div>
-</div>

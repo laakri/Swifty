@@ -256,44 +256,6 @@ router.post(
     });
   }
 );
-/***************-Applied Coupon-*******************/
-
-router.get("/user/coupon", async (req, res) => {
-  try {
-    const userId = req.query.userId;
-    const user = await User.findById(userId).populate("appliedCoupon");
-
-    if (!user) {
-      return res.status(404).json({ error: "User not found." });
-    }
-
-    const appliedCoupon = user.appliedCoupon;
-
-    if (!appliedCoupon) {
-      return res.json({ message: "No coupon used by the user." });
-    }
-
-    const isValid = isCouponValid(appliedCoupon);
-    if (!isValid) {
-      user.appliedCoupon = null; // Set appliedCoupon to null if the coupon is not valid
-      await user.save();
-      return res.json({
-        message: "Coupon has expired.",
-      });
-    }
-
-    res.json({ coupon: appliedCoupon });
-  } catch (err) {}
-});
-
-function isCouponValid(coupon) {
-  const currentDate = new Date();
-  if (currentDate < coupon.validFrom || currentDate > coupon.validTo) {
-    return false;
-  }
-
-  return true;
-}
 
 /***************-Delete-*******************/
 

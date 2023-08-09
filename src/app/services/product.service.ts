@@ -65,4 +65,10 @@ export class ProductService {
     const url = `${this.apiUrl}/api/prods/search-products/?query=${query}`;
     return this.http.get<any[]>(url);
   }
+  updateViewCount(productId: string) {
+    return this.http.post(
+      `${this.apiUrl}/api/prods/products/${productId}/view`,
+      {}
+    );
+  }
 }

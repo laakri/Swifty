@@ -28,6 +28,7 @@ export class ProductPageComponent implements OnInit {
   currentSkip = 0;
   hasMoreReviews: boolean = true;
   rating = 0;
+  productId!: any;
 
   constructor(
     private route: ActivatedRoute,
@@ -61,9 +62,9 @@ export class ProductPageComponent implements OnInit {
     this.isLoading = true;
 
     this.route.paramMap.subscribe((params) => {
-      const productId = params.get('id');
-      if (productId) {
-        this.getProduct(productId);
+      this.productId = params.get('id');
+      if (this.productId) {
+        this.getProduct(this.productId);
       }
     });
     this.reviews = [];
@@ -72,6 +73,15 @@ export class ProductPageComponent implements OnInit {
       rating: [5, Validators.required],
       comment: ['', Validators.required],
     });
+    this.productId = this.route.snapshot.paramMap.get('id');
+    this.productService.updateViewCount(this.productId).subscribe(
+      () => {
+        console.log('View count updated');
+      },
+      (error) => {
+        console.error('Error updating view count:', error);
+      }
+    );
     this.isLoading = false;
   }
   parseTag(tag: string): { tag: string } {

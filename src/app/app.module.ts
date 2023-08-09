@@ -70,6 +70,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { SliderModule } from 'primeng/slider';
 import { CalendarModule } from 'primeng/calendar';
 import { MenubarModule } from 'primeng/menubar';
+import { ChartModule } from 'primeng/chart';
 
 @NgModule({
   declarations: [
@@ -142,6 +143,7 @@ import { MenubarModule } from 'primeng/menubar';
     SliderModule,
     CalendarModule,
     MenubarModule,
+    ChartModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

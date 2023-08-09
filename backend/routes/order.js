@@ -25,7 +25,6 @@ router.post("/order", async (req, res) => {
 
     let totalAmount = 0;
 
-    // Calculate the total amount based on products
     if (Array.isArray(products) && products.length > 0) {
       const totalPriceResponse = await calculateTotalPrice(products);
       if (!totalPriceResponse.success) {
@@ -36,7 +35,6 @@ router.post("/order", async (req, res) => {
       totalAmount = totalPriceResponse.totalPrice;
     }
 
-    // Check if the coupon is provided and valid
     if (couponId) {
       const coupon = await Coupon.findById(couponId);
 
@@ -44,7 +42,6 @@ router.post("/order", async (req, res) => {
         return res.status(400).json({ error: "Invalid coupon." });
       }
 
-      // Check if the coupon has expired
       const currentDate = new Date();
       if (
         currentDate > coupon.validTo ||
@@ -57,11 +54,30 @@ router.post("/order", async (req, res) => {
         return res.status(400).json({ error: "Coupon has expired." });
       }
       coupon.currentUsage += 1;
-      // Mark the coupon as used by the current user
       coupon.usedByUsers.push(user);
       await coupon.save();
-      // Calculate the discounted total amount
       totalAmount *= 1 - coupon.discount / 100;
+    }
+
+    if (Array.isArray(products) && products.length > 0) {
+      for (const product of products) {
+        const purchasedQuantity = product.quantity;
+        const productId = product.productId;
+
+        // Update purchases count
+        await Product.findByIdAndUpdate(
+          productId,
+          { $inc: { purchases: purchasedQuantity } },
+          { new: true }
+        );
+
+        // Reduce product quantity in stock
+        await Product.findByIdAndUpdate(
+          productId,
+          { $inc: { quantity: -purchasedQuantity } },
+          { new: true }
+        );
+      }
     }
 
     const newOrder = new Order({

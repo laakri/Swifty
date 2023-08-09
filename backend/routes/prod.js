@@ -262,4 +262,26 @@ router.post("/get-cart-products", async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 });
+
+/****************** Udate the product views  ******************/
+
+router.post("/products/:productId/view", async (req, res) => {
+  try {
+    const productId = req.params.productId;
+    const product = await Product.findById(productId);
+
+    if (!product) {
+      return res.status(404).json({ error: "Product not found." });
+    }
+
+    product.views += 1;
+    await product.save();
+
+    res.json({ message: "View count updated." });
+  } catch (error) {
+    console.error("Error updating view count:", error);
+    res.status(500).json({ error: "Failed to update view count." });
+  }
+});
+
 module.exports = router;

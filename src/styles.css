@@ -1,7 +1,5 @@
-/* You can add global styles to this file, and also import other style files */
 @import "primeng/resources/primeng.css";
 @import "primeicons/primeicons.css";
-@import "/src/assets/theme/theme-light.css";
 
 body{
     height: 100%;
@@ -22,7 +20,7 @@ body{
     --hovermaincolor: #107674;
     --secendcolor: #c04e14;
     --darktranscolor: #19181ada;
-    --soft-darktranscolor: #26272b69;
+    --soft-darktranscolor: #10162b69;
     --buttonactive:#2e37469c;
 }
 
@@ -258,4 +256,15 @@ input::placeholder{
   ::ng-deep .p-table .p-table-tbody > tr.ui-state-highlight {
     background-color: #cb532c;
   }
+ 
+  /*********************-timeline********************/
+  
+  .p-timeline-event-opposite{
+    display: none;
+  }
 
+  .p-timeline .p-timeline-event-connector{
+    margin: 10px;
+    background-color: #7d7d7d56;
+    
+  }

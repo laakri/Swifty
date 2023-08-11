@@ -16,44 +16,28 @@ export class SidebarDashboardComponent implements OnInit {
   ngOnInit() {
     this.items = [
       {
-        label: 'Global',
-        items: [
-          {
-            label: 'Dashboard',
-            icon: 'pi pi-home',
-            routerLink: '/a/dashboard',
-          },
-        ],
+        icon: 'pi pi-home',
+        routerLink: '/a/dashboard',
       },
       {
-        label: 'Product ',
-        items: [
-          {
-            label: 'Category',
-            icon: 'pi pi-folder-open',
-            routerLink: '/a/add-category',
-          },
-          {
-            label: 'Product',
-            icon: 'pi pi-shopping-bag',
-            routerLink: '/a/add-product',
-          },
-          {
-            label: 'Coupon',
-            icon: 'pi pi-tag',
-            routerLink: '/a/add-coupon',
-          },
-          {
-            label: 'Users List',
-            icon: 'pi pi-users',
-            routerLink: '/a/list-users',
-          },
-          {
-            label: 'Product List',
-            icon: 'pi pi-list',
-            routerLink: '/a/list-product',
-          },
-        ],
+        icon: 'pi pi-folder-open',
+        routerLink: '/a/add-category',
+      },
+      {
+        icon: 'pi pi-shopping-bag',
+        routerLink: '/a/add-product',
+      },
+      {
+        icon: 'pi pi-tag',
+        routerLink: '/a/add-coupon',
+      },
+      {
+        icon: 'pi pi-users',
+        routerLink: '/a/list-users',
+      },
+      {
+        icon: 'pi pi-list',
+        routerLink: '/a/list-product',
       },
     ];
   }

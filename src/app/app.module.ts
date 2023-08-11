@@ -71,6 +71,7 @@ import { SliderModule } from 'primeng/slider';
 import { CalendarModule } from 'primeng/calendar';
 import { MenubarModule } from 'primeng/menubar';
 import { ChartModule } from 'primeng/chart';
+import { TimelineModule } from 'primeng/timeline';
 
 @NgModule({
   declarations: [
@@ -144,6 +145,7 @@ import { ChartModule } from 'primeng/chart';
     CalendarModule,
     MenubarModule,
     ChartModule,
+    TimelineModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

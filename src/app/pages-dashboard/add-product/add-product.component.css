@@ -2,15 +2,15 @@
   display: flex;
   gap: 30px;
   flex-wrap: wrap;
+  max-width: calc(100vw - 120px);
 }
 a,button{
  color: var(--whitecolor); 
 }
 .form-box{
   height: max-content;
-  min-width: 45%;
-  /*background-color: #081b32;*/
-  background-color: var(--soft-darkcolor);
+  min-width: 48%;
+  background-color: #333643  ;
   padding: 20px;
   border-radius: 10px;
 
@@ -34,10 +34,10 @@ a,button{
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    background-color: var(--darkcolor) !important;
+    background-color: #333643 !important;
   }
   input::placeholder,textarea::placeholder {
-    background-color: var(--darkcolor);
+    background-color: #333643;
     color: var(--graycolor);
   }
   .file-upload-container {

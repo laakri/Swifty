@@ -22,13 +22,50 @@
   </div>
 </div>
 
-<div class="dashboard-container">
-  <div class="card">
+<div class="latest-orders">
+  <p-timeline [value]="orderEvents">
+    <ng-template pTemplate="marker" let-event>
+      <div class="status-icon">
+        <div
+          class="status-circle"
+          [style.background-color]="getStatusColor(event.status)"
+        ></div>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="content" let-event class="order-items">
+      <div class="order-info">
+        <div class="order-details">
+          <div class="order-name">{{ event.name }} {{ event.phone }}</div>
+          <div class="order-date">{{ event.date }}</div>
+        </div>
+        <div>
+          <div class="order-price" [style.color]="getStatusColor(event.status)">
+            + {{ event.totalAmount }}
+            <span style="font-size: 12px">Dt</span>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </p-timeline>
+</div>
+
+<div class="charts-container">
+  <div class="left-card card">
     <h2>Revenue Chart</h2>
-    <p-chart type="line" [data]="revenueChartData"></p-chart>
+    <p-chart
+      id="revenueChart"
+      type="bar"
+      [data]="revenueChartData"
+      [options]="chartOptions"
+    ></p-chart>
   </div>
-  <div class="card">
+  <div class="right-card card">
     <h2>Sales Chart</h2>
-    <p-chart type="bar" [data]="salesChartData"></p-chart>
+    <p-chart
+      id="salesChart"
+      type="doughnut"
+      [data]="salesChartData"
+      [options]="chartOptionss"
+    ></p-chart>
   </div>
 </div>

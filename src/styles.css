@@ -268,3 +268,6 @@ input::placeholder{
     background-color: #7d7d7d56;
     
   }
+  .p-fileUpload{
+    background-color: var(--darkcolor) !important;
+  }

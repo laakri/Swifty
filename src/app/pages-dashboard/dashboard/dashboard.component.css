@@ -12,7 +12,6 @@
     height: 130px;
     border-radius: 10px;
     padding: 20px;
-    color: white;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
@@ -39,13 +38,11 @@
     font-weight: bold;
   }
   
-  .charts-container {
-    width: 100%;
+  .secend-content {
     margin: 20px auto;
     display: flex;
     justify-content: space-between;
     gap: 20px;
-    max-width: calc(100vw - 120px);
   }
   .card{
     background-color: var(--soft-darkcolor);
@@ -72,9 +69,8 @@
 }
 .latest-orders {
   width: 435px;
-  margin-top: 20px;
   background-color: var(--soft-darkcolor);
-  padding: 10px;
+  padding: 0 10px;
   border-radius: 10px;
 }
 
@@ -86,8 +82,6 @@
   justify-content: space-between;
   align-items: center;
 }
-
-.order-details {}
 
 
 .order-date {

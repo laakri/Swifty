@@ -43,11 +43,25 @@ export class DashboardComponent implements OnInit {
       totalAmount: '180.00',
     },
     {
+      status: 'Ordered',
+      date: '15/10/2020 10:30',
+      name: 'John Doe',
+      phone: '24-989-104',
+      totalAmount: '150.00',
+    },
+    {
       status: 'Shipped',
       date: '15/10/2020 16:15',
       name: 'Alice Smith',
       phone: '24-989-104',
       totalAmount: '220.00',
+    },
+    {
+      status: 'Delivered',
+      date: '16/10/2020 10:00',
+      name: 'Bob Johnson',
+      phone: '24-989-104',
+      totalAmount: '180.00',
     },
   ];
   getStatusColor(status: string): string {
@@ -93,7 +107,7 @@ export class DashboardComponent implements OnInit {
       },
     };
     this.salesChartData = {
-      labels: ['Product A', 'Product B', 'Product C', 'Product D'],
+      labels: ['Watches', 'Clothing', 'Gadgets', 'Accessories'],
       datasets: [
         {
           label: 'Sales',

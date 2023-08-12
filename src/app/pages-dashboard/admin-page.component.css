@@ -4,11 +4,12 @@
 }
 
 app-sidebar-dashboard {
-  height: calc( 100vh - 90px );
+  height: calc( 100vh - 95px );
   position: sticky;
 }
 
 .content {
+  max-width: calc(100vw - 120px);
   flex: 1;
   margin: 0 10px auto 70px;
   padding-left: 25px;

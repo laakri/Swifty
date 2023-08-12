@@ -10,7 +10,7 @@ a,button{
 .form-box{
   height: max-content;
   min-width: 48%;
-  background-color: #333643  ;
+  background-color: var(--soft-darkcolor)  ;
   padding: 20px;
   border-radius: 10px;
 
@@ -34,10 +34,11 @@ a,button{
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    background-color: #333643 !important;
+    background-color: var(--sof-darkcolor);
+
   }
   input::placeholder,textarea::placeholder {
-    background-color: #333643;
+    background-color: var(--sof-darkcolor);
     color: var(--graycolor);
   }
   .file-upload-container {

@@ -105,3 +105,16 @@
   font-weight: bold;
 }
 
+.third-content{
+  height: 500px;
+}
+.client-chart{
+  background-color: var(--soft-darkcolor);
+  padding:  20px 10px;
+  border-radius: 10px;
+  width: 400px;
+  height: 380px;
+}
+:host ::ng-deep .p-chart{
+  border: red solid 1px !important;
+}

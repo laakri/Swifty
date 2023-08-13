@@ -243,19 +243,6 @@ input::placeholder{
   background: transparent; 
 }
 
-  /*********************-slider********************/
-  ::ng-deep .p-table .p-table-thead > tr > th {
-    background-color: #007bff;
-    color: #fff;
-  }
-
-  ::ng-deep .p-table .p-table-tbody > tr:hover {
-    background-color: #59aa13;
-  }
-
-  ::ng-deep .p-table .p-table-tbody > tr.ui-state-highlight {
-    background-color: #cb532c;
-  }
  
   /*********************-timeline********************/
   

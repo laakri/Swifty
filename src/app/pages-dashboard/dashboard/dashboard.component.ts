@@ -19,7 +19,9 @@ export class DashboardComponent implements OnInit {
   revenueChartData: any;
   salesChartData: any;
   chartOptionss: any;
+  clientchartOptionss: any;
   chartOptions: any;
+  clientChartData: any;
   orderEvents: EventItem[] = [
     {
       status: 'Ordered',
@@ -129,7 +131,19 @@ export class DashboardComponent implements OnInit {
         },
       ],
     };
-
+    this.clientChartData = {
+      labels: ['Watches', 'Clothing', 'Gadgets', 'Accessories'],
+      datasets: [
+        {
+          label: 'Clients',
+          data: [120, 90, 180, 150, 200],
+          borderColor: 'rgba(255, 99, 132, 0.8)', // Change the color as needed
+          borderWidth: 2,
+          fill: false, // Don't fill the area under the line
+          lineTension: 0.5, // Adjust the value for the bouncy effect
+        },
+      ],
+    };
     this.chartOptionss = {
       cutout: '60%',
       offset: 20,
@@ -138,6 +152,21 @@ export class DashboardComponent implements OnInit {
         legend: {
           display: true,
           position: 'bottom',
+        },
+      },
+    };
+    this.clientchartOptionss = {
+      scales: {
+        x: {
+          display: false,
+        },
+        y: {
+          display: false,
+        },
+      },
+      plugins: {
+        legend: {
+          display: false,
         },
       },
     };

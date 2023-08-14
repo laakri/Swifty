@@ -258,3 +258,11 @@ input::placeholder{
   .p-fileUpload{
     background-color: var(--darkcolor) !important;
   }
+  /*********************-sidebar********************/
+  .p-sidebar {
+    background:var(--soft-darkcolor);
+  }
+  
+  .p-component-overlay{
+  position: relative;  
+}

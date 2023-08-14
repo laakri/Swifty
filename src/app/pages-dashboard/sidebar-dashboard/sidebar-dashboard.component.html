@@ -1,8 +1,9 @@
 <div class="sidebar">
   <div class="logo">
     <a routerLink="">
-      <img src="../../../assets/mainlogo.png" alt="Logo" />
+      <img [src]="getImgSrc()" alt="Logo" />
     </a>
   </div>
   <p-menu [style]="{ width: '70px' }" [model]="items"></p-menu>
 </div>
+<app-notification [sidebarVisible]="sidebarVisible"></app-notification>

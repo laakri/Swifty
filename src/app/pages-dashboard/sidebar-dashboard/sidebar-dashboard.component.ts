@@ -20,6 +20,10 @@ export class SidebarDashboardComponent implements OnInit {
         routerLink: '/a/dashboard',
       },
       {
+        icon: 'pi pi-bell',
+        command: () => this.toggleNotification(),
+      },
+      {
         icon: 'pi pi-folder-open',
         routerLink: '/a/add-category',
       },
@@ -40,5 +44,14 @@ export class SidebarDashboardComponent implements OnInit {
         routerLink: '/a/list-product',
       },
     ];
+  }
+  toggleNotification() {
+    this.sidebarVisible = !this.sidebarVisible;
+  }
+  getImgSrc(): string {
+    const isBrightTheme = document.body.classList.contains('light-theme');
+    return isBrightTheme
+      ? '../../../assets/mainlogo-black.png'
+      : '../../../assets/mainlogo.png';
   }
 }

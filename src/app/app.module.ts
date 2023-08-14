@@ -72,6 +72,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { MenubarModule } from 'primeng/menubar';
 import { ChartModule } from 'primeng/chart';
 import { TimelineModule } from 'primeng/timeline';
+import { NotificationComponent } from './pages-dashboard/notification/notification.component';
 
 @NgModule({
   declarations: [
@@ -97,6 +98,7 @@ import { TimelineModule } from 'primeng/timeline';
     AddCategoryComponent,
     OrderPageComponent,
     AddCouponComponent,
+    NotificationComponent,
   ],
   imports: [
     HttpClientModule,

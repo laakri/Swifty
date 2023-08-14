@@ -1,0 +1,27 @@
+<p-sidebar [(visible)]="sidebarVisible">
+  <ng-template pTemplate="header">Notification</ng-template>
+  <ng-template pTemplate="content">
+    <div class="notifications">
+      <ng-container *ngFor="let notification of notifications">
+        <div [class]="getNotificationClass(notification.type)">
+          <i [class]="getNotificationIcon(notification.type)"></i>
+          <div class="notification-content">
+            <div class="notification-title">{{ notification.title }}</div>
+            <div class="notification-message">{{ notification.message }}</div>
+            <div class="notification-time">
+              {{ notification.time | date : "medium" }}
+            </div>
+          </div>
+          <div
+            class="icon-circle"
+            [ngClass]="{
+              'seen-circle': notification.seen,
+              'unseen-circle': !notification.seen
+            }"
+          ></div>
+        </div>
+      </ng-container>
+    </div>
+  </ng-template>
+  <ng-template pTemplate="footer">Saif Is The Best</ng-template>
+</p-sidebar>

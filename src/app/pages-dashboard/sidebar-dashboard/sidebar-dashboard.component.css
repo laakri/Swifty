@@ -3,7 +3,9 @@
   position: fixed;
   height: 100vh; 
   width: 70px;
-  background-color: transparent;
+  background-color: var(--darkcolor);
+  z-index: 10 !important;
+
 }
 img{
   height: 30px;
@@ -30,3 +32,4 @@ img{
   .p-menu .p-menuitem {
     margin-bottom: 10px; 
   }
+

@@ -5,9 +5,13 @@
   <div class="p-toolbar-group-end">
     <button pButton icon="pi pi-calendar" class="p-button-text"></button>
     <button pButton icon="pi pi-user" class="p-button-text"></button>
+    <button pButton icon="pi pi-spin pi-cog" class="p-button-text"></button>
+
     <button
-      pButton
-      icon="pi pi-spin pi-cog"
       class="p-button-text"
+      (click)="change_theme()"
+      pButton
+      icon="pi pi-sun"
+      ariaLabel="campaign"
     ></button></div
 ></p-toolbar>

@@ -9,7 +9,15 @@ interface EventItem {
   color?: string;
   totalAmount?: string;
 }
-
+interface TopSellingProduct {
+  name: string;
+  sales: number;
+}
+interface StockItem {
+  name: string;
+  available: number;
+  onHold: number;
+}
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
@@ -22,6 +30,15 @@ export class DashboardComponent implements OnInit {
   clientchartOptionss: any;
   chartOptions: any;
   clientChartData: any;
+  stockChartData: any;
+  stockChartOptions: any;
+  stockItems: StockItem[] = [
+    { name: 'Product A', available: 150, onHold: 20 },
+    { name: 'Product B', available: 100, onHold: 10 },
+    { name: 'Product C', available: 200, onHold: 15 },
+    { name: 'Product D', available: 80, onHold: 5 },
+    { name: 'Product C', available: 200, onHold: 15 },
+  ];
   orderEvents: EventItem[] = [
     {
       status: 'Ordered',
@@ -66,6 +83,15 @@ export class DashboardComponent implements OnInit {
       totalAmount: '180.00',
     },
   ];
+  topSellingProducts: TopSellingProduct[] = [
+    { name: 'Product A', sales: 320 },
+    { name: 'Product B', sales: 250 },
+    { name: 'Product C', sales: 180 },
+    { name: 'Product D', sales: 150 },
+    { name: 'Product D', sales: 150 },
+    { name: 'Product B', sales: 250 },
+    { name: 'Product D', sales: 150 },
+  ];
   getStatusColor(status: string): string {
     switch (status) {
       case 'Ordered':
@@ -79,14 +105,41 @@ export class DashboardComponent implements OnInit {
     }
   }
   ngOnInit() {
+    this.stockChartData = {
+      labels: this.stockItems.map((item) => item.name),
+      datasets: [
+        {
+          label: 'Available',
+          data: this.stockItems.map((item) => item.available),
+          backgroundColor: 'rgba(75, 192, 192, 0.6)',
+        },
+        {
+          label: 'On Hold',
+          data: this.stockItems.map((item) => item.onHold),
+          backgroundColor: 'rgba(255, 99, 132, 0.6)',
+        },
+      ],
+    };
+
+    this.stockChartOptions = {
+      scales: {
+        x: {
+          stacked: true,
+        },
+        y: {
+          stacked: true,
+          beginAtZero: true,
+        },
+      },
+    };
     this.revenueChartData = {
       labels: ['January', 'February', 'March', 'April', 'May'],
       datasets: [
         {
           label: 'Revenue',
           data: [1500, 2200, 1800, 2400, 2000],
-          barPercentage: 0.1,
-          borderRadius: 10,
+          barPercentage: 0.2,
+          borderRadius: 5,
           backgroundColor: ['#12b4b1'],
         },
       ],
@@ -170,5 +223,7 @@ export class DashboardComponent implements OnInit {
         },
       },
     };
+
+    // Inside the DashboardComponent class
   }
 }

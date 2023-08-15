@@ -72,6 +72,7 @@ export class AddProductComponent implements OnInit {
     this.CategoryService.getCategories().subscribe(
       (categories) => {
         this.showedCategories = categories;
+        console.log(this.showedCategories);
       },
       (error) => {
         console.error('Failed to fetch male categories:', error);
@@ -138,19 +139,21 @@ export class AddProductComponent implements OnInit {
       return;
     }
     const productData = this.productForm.value;
-    productData.category = this.productForm.value.category.name;
-    this.productService.addProduct(productData, this.imagess).subscribe(
-      (response) => {
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Success Message',
-          detail: 'Product added successfully:',
-        });
-        /*this.productForm.reset();*/
-      },
-      (error) => {
-        console.error('Failed to add product:', error);
-      }
-    );
+    const category = this.productForm.value.category._id;
+    this.productService
+      .addProduct(productData, this.imagess, category)
+      .subscribe(
+        (response) => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success Message',
+            detail: 'Product added successfully:',
+          });
+          /*this.productForm.reset();*/
+        },
+        (error) => {
+          console.error('Failed to add product:', error);
+        }
+      );
   }
 }

@@ -9,7 +9,7 @@ import { MenuItem, MessageService } from 'primeng/api';
 export class SidebarDashboardComponent implements OnInit {
   items: MenuItem[] | undefined;
 
-  sidebarVisible: boolean = true;
+  sidebarVisible: boolean = false;
 
   constructor(private messageService: MessageService) {}
 

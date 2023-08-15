@@ -3,22 +3,22 @@
   <div class="first-content-card sales-card">
     <i class="pi pi-dollar"></i>
     <h3>Total Sales</h3>
-    <p>$50,000</p>
+    <p>{{ AnalyticsData?.totalSales.toFixed(2) }}</p>
   </div>
   <div class="first-content-card orders-card">
     <i class="pi pi-shopping-cart"></i>
-    <h3>New Orders</h3>
-    <p>120</p>
+    <h3>Total Orders</h3>
+    <p>{{ AnalyticsData?.allorders }}</p>
   </div>
   <div class="first-content-card conversion-card">
     <i class="pi pi-chart-line"></i>
     <h3>Conversion Rate</h3>
-    <p>25%</p>
+    <p>{{ AnalyticsData?.conversionRate }} %</p>
   </div>
   <div class="first-content-card visitors-card">
     <i class="pi pi-users"></i>
-    <h3>Visitors</h3>
-    <p>2,500</p>
+    <h3>Total Clients</h3>
+    <p>{{ AnalyticsData?.clients }}</p>
   </div>
 </div>
 

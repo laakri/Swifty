@@ -10,6 +10,7 @@ const orderRoutes = require("./routes/order");
 const returnRoutes = require("./routes/return");
 const couponRoutes = require("./routes/coupon");
 const reviewRoutes = require("./routes/review");
+const DashboardRoutes = require("./routes/dashboard");
 
 const app = express();
 
@@ -55,5 +56,6 @@ app.use("/api/order", orderRoutes);
 app.use("/api/return", returnRoutes);
 app.use("/api/coupon", couponRoutes);
 app.use("/api/review", reviewRoutes);
+app.use("/api/dashboard", DashboardRoutes);
 
 module.exports = app;

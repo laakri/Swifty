@@ -165,7 +165,7 @@
 
       <div class="p-field">
         <label for="category">Category</label>
-        <ng-container *ngIf="productForm.get('gender')">
+        <ng-container>
           <p-dropdown
             [options]="getCategoryOptions()"
             formControlName="category"

@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const Review = require("./review");
 
 const productSchema = new mongoose.Schema(
   {
@@ -25,7 +24,8 @@ const productSchema = new mongoose.Schema(
       required: true,
     },
     category: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Category",
       required: true,
     },
     quantity: {

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AnalyticsService } from 'src/app/services/dashboard.service';
 interface EventItem {
   status?: string;
   date?: string;
@@ -30,8 +31,13 @@ export class DashboardComponent implements OnInit {
   clientchartOptionss: any;
   chartOptions: any;
   clientChartData: any;
+  categoryChartData: any;
   stockChartData: any;
+  topSellingProducts: any;
   stockChartOptions: any;
+  AnalyticsData!: any;
+  constructor(private analyticsService: AnalyticsService) {}
+
   stockItems: StockItem[] = [
     { name: 'Product A', available: 150, onHold: 20 },
     { name: 'Product B', available: 100, onHold: 10 },
@@ -83,15 +89,7 @@ export class DashboardComponent implements OnInit {
       totalAmount: '180.00',
     },
   ];
-  topSellingProducts: TopSellingProduct[] = [
-    { name: 'Product A', sales: 320 },
-    { name: 'Product B', sales: 250 },
-    { name: 'Product C', sales: 180 },
-    { name: 'Product D', sales: 150 },
-    { name: 'Product D', sales: 150 },
-    { name: 'Product B', sales: 250 },
-    { name: 'Product D', sales: 150 },
-  ];
+
   getStatusColor(status: string): string {
     switch (status) {
       case 'Ordered':
@@ -105,6 +103,85 @@ export class DashboardComponent implements OnInit {
     }
   }
   ngOnInit() {
+    /******************* getAnalyticsData *************** */
+    this.analyticsService
+      .getAnalyticsData()
+      .subscribe((data) => (this.AnalyticsData = data));
+
+    /******************* getDailyRevenueChartData *************** */
+    this.analyticsService
+      .getDailyRevenueChartData()
+      .subscribe((data) => (this.revenueChartData = data));
+
+    this.chartOptions = {
+      scales: {
+        x: {
+          barPercentage: 0.3,
+          grid: {
+            color: 'rgba(196, 196, 196, 0.05)',
+          },
+        },
+        y: {
+          beginAtZero: true,
+          grid: {
+            color: 'rgba(196, 196, 196, 0.05)',
+          },
+        },
+      },
+    };
+    /******************* getClientChartData *************** */
+
+    this.analyticsService
+      .getClientChartData()
+      .subscribe((data) => (this.clientChartData = data));
+
+    this.chartOptionss = {
+      cutout: '60%',
+      offset: 20,
+      borderRadius: 5,
+      plugins: {
+        legend: {
+          display: true,
+          position: 'bottom',
+        },
+      },
+    };
+    /******************* getCategoryProductCountData *************** */
+    this.analyticsService.getCategoryProductCountData().subscribe((data) => {
+      this.categoryChartData = data;
+      this.salesChartData = {
+        labels: this.categoryChartData?.categoryNames,
+        datasets: [
+          {
+            label: 'Sales',
+            data: this.categoryChartData?.productCounts,
+            backgroundColor: [
+              'rgba(255, 99, 132, 0.6)',
+              'rgba(54, 162, 235, 0.6)',
+              'rgba(255, 206, 86, 0.6)',
+              'rgba(75, 192, 192, 0.6)',
+              'rgba(153, 102, 255, 0.6)',
+            ],
+            borderColor: [
+              'rgba(255, 99, 132, 1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(255, 206, 86, 1)',
+              'rgba(75, 192, 192, 1)',
+              'rgba(153, 102, 255, 1)',
+            ],
+          },
+        ],
+      };
+      console.log(this.salesChartData);
+    });
+
+    /******************* gettopSellingProductsData *************** */
+    this.analyticsService
+      .gettopSellingProductsData()
+      .subscribe((data) => (this.topSellingProducts = data));
+
+    /******************* stockChartData *************** */
+
     this.stockChartData = {
       labels: this.stockItems.map((item) => item.name),
       datasets: [
@@ -132,82 +209,7 @@ export class DashboardComponent implements OnInit {
         },
       },
     };
-    this.revenueChartData = {
-      labels: ['January', 'February', 'March', 'April', 'May'],
-      datasets: [
-        {
-          label: 'Revenue',
-          data: [1500, 2200, 1800, 2400, 2000],
-          barPercentage: 0.2,
-          borderRadius: 5,
-          backgroundColor: ['#12b4b1'],
-        },
-      ],
-    };
 
-    this.chartOptions = {
-      scales: {
-        x: {
-          barPercentage: 0.3,
-          grid: {
-            color: 'rgba(196, 196, 196, 0.05)',
-          },
-        },
-        y: {
-          beginAtZero: true,
-          grid: {
-            color: 'rgba(196, 196, 196, 0.05)',
-          },
-        },
-      },
-    };
-    this.salesChartData = {
-      labels: ['Watches', 'Clothing', 'Gadgets', 'Accessories'],
-      datasets: [
-        {
-          label: 'Sales',
-          data: [120, 90, 180, 150, 200],
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.6)',
-            'rgba(54, 162, 235, 0.6)',
-            'rgba(255, 206, 86, 0.6)',
-            'rgba(75, 192, 192, 0.6)',
-            'rgba(153, 102, 255, 0.6)',
-          ],
-          borderColor: [
-            'rgba(255, 99, 132, 1)',
-            'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)',
-            'rgba(75, 192, 192, 1)',
-            'rgba(153, 102, 255, 1)',
-          ],
-        },
-      ],
-    };
-    this.clientChartData = {
-      labels: ['Watches', 'Clothing', 'Gadgets', 'Accessories'],
-      datasets: [
-        {
-          label: 'Clients',
-          data: [120, 90, 180, 150, 200],
-          borderColor: 'rgba(255, 99, 132, 0.8)', // Change the color as needed
-          borderWidth: 2,
-          fill: false, // Don't fill the area under the line
-          lineTension: 0.5, // Adjust the value for the bouncy effect
-        },
-      ],
-    };
-    this.chartOptionss = {
-      cutout: '60%',
-      offset: 20,
-      borderRadius: 5,
-      plugins: {
-        legend: {
-          display: true,
-          position: 'bottom',
-        },
-      },
-    };
     this.clientchartOptionss = {
       scales: {
         x: {

@@ -9,7 +9,7 @@ app-sidebar-dashboard {
 .content-bg{
   position: absolute;
   left: 70px;
-  z-index: 0;
+  z-index: -1;
 
 }
 .content {

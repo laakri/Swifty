@@ -7,7 +7,6 @@ const User = require("../models/user");
 const mongoose = require("mongoose");
 
 /****************** Add New Order ******************/
-
 router.post("/order", async (req, res) => {
   try {
     const {
@@ -89,7 +88,7 @@ router.post("/order", async (req, res) => {
       email,
       name,
       lastname,
-      couponId: couponId,
+      couponId: couponId ? couponId : null, // Make couponId null if not provided
     });
 
     const savedOrder = await newOrder.save();

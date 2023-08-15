@@ -20,7 +20,7 @@ export class NotificationComponent implements OnInit {
     {
       type: 'erroor',
       title: 'Ont of Stock Alert',
-      message: 'Some products are running out of stock. Take action!',
+      message: 'Some products are running out of stock.',
       time: new Date(),
       icon: 'pi pi-exclamation-triangle',
       seen: false, // Initially unseen
@@ -28,7 +28,7 @@ export class NotificationComponent implements OnInit {
     {
       type: 'warning',
       title: 'Low Stock Alert',
-      message: 'Some products are running out of stock. Take action!',
+      message: 'Some products are running out of stock.',
       time: new Date(),
       icon: 'pi pi-exclamation-triangle',
       seen: false, // Initially unseen
@@ -36,7 +36,7 @@ export class NotificationComponent implements OnInit {
     {
       type: 'info',
       title: 'New Order Received',
-      message: 'Congratulations, a new order has been placed!',
+      message: 'A new order has been placed!',
       time: new Date(),
       icon: 'pi pi-shopping-cart',
       seen: true,

@@ -12,13 +12,15 @@
               {{ notification.time | date : "medium" }}
             </div>
           </div>
-          <div
-            class="icon-circle"
-            [ngClass]="{
-              'seen-circle': notification.seen,
-              'unseen-circle': !notification.seen
-            }"
-          ></div>
+          <a (click)="markAsRead(notification)">
+            <i
+              class="seen-icon"
+              [ngClass]="{
+                'pi pi-exclamation-circle': !notification.seen
+              }"
+              style="font-size: 14px"
+            ></i>
+          </a>
         </div>
       </ng-container>
     </div>

@@ -13,16 +13,19 @@
   
   .notification {
     display: flex;
-    align-items: center;
     border-radius: 5px;
     margin-top: 25px;
+    padding: 10px;
+    position: relative;
   }
-  
-  
+  .notification:hover {
+    background-color: var(--darkcolor);
+  }
   
   .notification i {
     font-size: 24px;
-    margin-right: 10px;
+    margin-right: 20px;
+    margin-top:10px ;
   }
   
   .notification-content {
@@ -41,7 +44,7 @@
   }
 
 
-.notification.erroor {
+.notification.error {
   color: #db6091;
 }
 
@@ -50,4 +53,10 @@
 }
 .notification.info {
   color: #5b9ebf;
+}
+.seen-icon{
+  position: absolute;
+  bottom: 10px;
+  right: 0;
+
 }

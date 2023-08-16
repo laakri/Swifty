@@ -1,5 +1,7 @@
+import { map } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { MenuItem, MessageService } from 'primeng/api';
+import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-sidebar-dashboard',
@@ -10,10 +12,21 @@ export class SidebarDashboardComponent implements OnInit {
   items: MenuItem[] | undefined;
 
   sidebarVisible: boolean = false;
+  newUnseenCount: number = 0;
+  notifications: any;
 
-  constructor(private messageService: MessageService) {}
+  constructor(
+    private messageService: MessageService,
+    private notificationService: NotificationService
+  ) {}
 
   ngOnInit() {
+    this.notificationService
+      .getNotificationsCount()
+      .subscribe((updatedNotification) => {
+        this.newUnseenCount = updatedNotification.unseenCount;
+        this.updateNotificationBadge();
+      });
     this.items = [
       {
         icon: 'pi pi-home',
@@ -45,6 +58,17 @@ export class SidebarDashboardComponent implements OnInit {
       },
     ];
   }
+
+  updateNotificationBadge() {
+    const notificationMenuItem = this.items?.find(
+      (item) => item.icon === 'pi pi-bell'
+    );
+
+    if (notificationMenuItem) {
+      notificationMenuItem.badge = this.newUnseenCount.toString();
+    }
+  }
+
   toggleNotification() {
     this.sidebarVisible = !this.sidebarVisible;
   }

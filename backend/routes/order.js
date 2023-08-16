@@ -4,6 +4,7 @@ const Order = require("../models/order");
 const Product = require("../models/prod");
 const Coupon = require("../models/coupon");
 const User = require("../models/user");
+const Notification = require("../models/notification");
 const mongoose = require("mongoose");
 
 /****************** Add New Order ******************/
@@ -88,10 +89,22 @@ router.post("/order", async (req, res) => {
       email,
       name,
       lastname,
-      couponId: couponId ? couponId : null, // Make couponId null if not provided
+      couponId: couponId ? couponId : null,
     });
 
     const savedOrder = await newOrder.save();
+
+    // Create notification for new order
+    const newOrderNotification = new Notification({
+      type: "info",
+      title: "New Order Received",
+      message: `A new order has been placed! Order code: ${savedOrder.orderId}`,
+    });
+    const newOrdersavedNotification = await newOrderNotification.save();
+    Notification.emit("newNotification", newOrdersavedNotification);
+
+    // Check stock and create notifications
+    await checkStockAndCreateNotifications(products);
 
     res.status(201).json(savedOrder.orderId);
   } catch (err) {
@@ -99,6 +112,39 @@ router.post("/order", async (req, res) => {
     res.status(500).json({ error: "Failed to add the order." });
   }
 });
+/****************** Check Stock and Create Notifications ******************/
+async function checkStockAndCreateNotifications(products) {
+  for (const product of products) {
+    const purchasedQuantity = product.quantity;
+    const productId = product.productId;
+
+    const existingProduct = await Product.findById(productId);
+    if (!existingProduct) {
+      // Handle if product not found
+      continue;
+    }
+
+    if (existingProduct.quantity === 0) {
+      const outOfStockNotification = new Notification({
+        type: "error",
+        title: "Out of Stock Alert",
+        message: `Product "${existingProduct.name}" is out of stock.`,
+      });
+
+      const outOfStocksavedNotification = await outOfStockNotification.save();
+
+      Notification.emit("newNotification", outOfStocksavedNotification);
+    } else if (existingProduct.quantity <= 10) {
+      const lowStockNotification = new Notification({
+        type: "warning",
+        title: "Low Stock Alert",
+        message: `Product "${existingProduct.name}" is running low on stock.`,
+      });
+      const lowStocksavedNotification = await lowStockNotification.save();
+      Notification.emit("newNotification", lowStocksavedNotification);
+    }
+  }
+}
 
 /****************** Get Order By Order Code ******************/
 router.get("/Get-order/:orderCode", async (req, res) => {

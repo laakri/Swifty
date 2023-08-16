@@ -1,13 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ChangeDetectorRef } from '@angular/core';
 import { SidebarDashboardComponent } from '../sidebar-dashboard/sidebar-dashboard.component';
-
-interface Notification {
-  type: string;
-  title: string;
-  message: string;
-  time: Date;
-  seen: boolean;
-}
+import { NotificationService } from '../../services/notification.service';
+import { Notification } from '../../models/notification.model';
 
 @Component({
   selector: 'app-notification',
@@ -16,33 +10,26 @@ interface Notification {
 })
 export class NotificationComponent implements OnInit {
   @Input() sidebarVisible: boolean = false;
-  notifications: any = [
-    {
-      type: 'erroor',
-      title: 'Ont of Stock Alert',
-      message: 'Some products are running out of stock.',
-      time: new Date(),
-      icon: 'pi pi-exclamation-triangle',
-      seen: false, // Initially unseen
-    },
-    {
-      type: 'warning',
-      title: 'Low Stock Alert',
-      message: 'Some products are running out of stock.',
-      time: new Date(),
-      icon: 'pi pi-exclamation-triangle',
-      seen: false, // Initially unseen
-    },
-    {
-      type: 'info',
-      title: 'New Order Received',
-      message: 'A new order has been placed!',
-      time: new Date(),
-      icon: 'pi pi-shopping-cart',
-      seen: true,
-    },
-  ];
-
+  notifications: any = [];
+  constructor(
+    private notificationService: NotificationService,
+    private cd: ChangeDetectorRef
+  ) {}
+  ngOnInit() {
+    this.fetchNotifications();
+  }
+  fetchNotifications() {
+    this.notificationService.getNotifications().subscribe(
+      (newNotification) => {
+        this.notifications.unshift(newNotification);
+        this.cd.detectChanges();
+        console.log(this.notifications);
+      },
+      (error) => {
+        console.error('Error receiving notification:', error);
+      }
+    );
+  }
   getNotificationIcon(type: string): string {
     switch (type) {
       case 'info':
@@ -51,17 +38,24 @@ export class NotificationComponent implements OnInit {
         return 'pi pi-check-circle';
       case 'warning':
         return 'pi pi-exclamation-triangle';
-      case 'erroor':
+      case 'error':
         return 'pi pi-times-circle';
       default:
         return 'pi pi-bell';
     }
   }
-  ngOnInit() {}
+
   getNotificationClass(type: string): string {
     return `notification ${type}`;
   }
-  markAsRead(notification: any) {
-    notification.seen = true;
+  markAsRead(notification: Notification) {
+    this.notificationService.markNotificationAsRead(notification._id).subscribe(
+      (updatedNotification) => {
+        notification.seen = true;
+      },
+      (error) => {
+        console.error('Error marking notification as read:', error);
+      }
+    );
   }
 }

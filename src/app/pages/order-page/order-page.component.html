@@ -12,73 +12,66 @@
     <h1>Successful Order 🚀</h1>
     <p>Your order is on the way. It'll be shipped today. We'll inform you.</p>
   </div>
-  <div class="order-number" *ngIf="!loading && orderDetails">
-    <div class="order-number-text">
-      Order number: {{ orderDetails.orderId }}
-    </div>
-    <div class="order-number-text">
-      Status:
-      <span [ngClass]="getStatusStyle(orderDetails.status)">
-        {{ orderDetails.status }}
-      </span>
-    </div>
-    <div class="order-number-buttons">
-      <button
-        pButton
-        (click)="printOrder()"
-        class="p-button-primary empty-button"
-      >
-        Print
-      </button>
-    </div>
-  </div>
 
-  <div class="order-products" *ngIf="!loading && orderDetails">
-    <div *ngFor="let product of orderDetails.products" class="order-product">
-      <div class="order-product-left">
-        <img [src]="product.productId.images[0].url" alt="" />
-
-        <div class="order-product-left-content">
-          <div>{{ product.productId.name }}</div>
-          <div class="left-content-size">
-            Category | {{ product.productId.category }}
-          </div>
-          <div>Quantity {{ product.quantity }}</div>
+  <!--------------------------------------------------->
+  <div *ngIf="!loading && orderDetails">
+    <div class="orders-section-header">
+      <div class="orders-section-header_item">
+        <div>Order Number</div>
+        <div>{{ orderDetails.orderId }}</div>
+      </div>
+      <div class="orders-section-header_item">
+        <div>Order Date</div>
+        <div class="order-status-details">
+          <i
+            [class]="getOrderStatusInfo(orderDetails.status).icon"
+            [style.color]="getOrderStatusInfo(orderDetails.status).color"
+          ></i>
+          <span [style.color]="getOrderStatusInfo(orderDetails.status).color">{{
+            orderDetails.status
+          }}</span>
         </div>
       </div>
-      <div class="order-product-price">
-        {{ product.productId.price }} <i style="font-size: 12px">DT</i>
+
+      <div class="orders-section-header_item">
+        <div>Total Amount</div>
+        <div>
+          {{ orderDetails.totalAmount }} <i style="font-size: 12px">DT</i>
+        </div>
+      </div>
+    </div>
+    <div class="orders">
+      <div class="order-details">
+        <div
+          *ngFor="let product of orderDetails.products"
+          class="order-product"
+        >
+          <div class="order-product-left">
+            <img [src]="product.productId.images[0].url" alt="image" />
+            <div class="order-product-left-content">
+              <div>{{ product.productId.name }}</div>
+              <div class="left-content-size">
+                Category | {{ product.productId.category }}
+              </div>
+              <div>Quantity {{ product.quantity }}</div>
+            </div>
+          </div>
+          <div class="order-product-price">
+            {{ product.productId.price }} <i style="font-size: 12px">DT</i>
+          </div>
+        </div>
       </div>
     </div>
   </div>
   <div class="order-info" *ngIf="orderDetails">
     <div class="user-info">
-      <h3>Shipping Address</h3>
-      <span>{{ orderDetails.lastname }} {{ orderDetails.name }} </span>
-      <span>{{ orderDetails.email }} </span>
-      <span>{{ orderDetails.shippingAddress }} </span>
-      <span>{{ orderDetails.phone }} </span>
-    </div>
-
-    <div class="product-info">
-      <h3>Summary</h3>
-      <div class="product-info-div">
-        <h5>Subtotal</h5>
-        <span
-          >{{ orderDetails.totalAmount }}
-          <i style="font-size: 12px">DT</i></span
-        >
-      </div>
-      <div class="product-info-div">
-        <span>Shipping</span>
-        <span>00 <i style="font-size: 12px">DT</i></span>
-      </div>
-      <div class="product-info-div">
-        <h3>Subtotal</h3>
-        <h3>
-          {{ orderDetails.totalAmount }} <i style="font-size: 12px">DT</i>
-        </h3>
-      </div>
+      <h3>Shipping Informations</h3>
+      <span
+        ><b> Name : </b>{{ orderDetails.lastname }} {{ orderDetails.name }}
+      </span>
+      <span> <b> Email : </b> {{ orderDetails.email }} </span>
+      <span><b> Address : </b> {{ orderDetails.shippingAddress }} </span>
+      <span> <b> Phone : </b>{{ orderDetails.phone }} </span>
     </div>
   </div>
 </div>

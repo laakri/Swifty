@@ -1,0 +1,111 @@
+.mainpage{
+    max-width: 1300px;
+    margin: 30px auto;
+    min-height: 570px;
+    padding: 10px;
+}
+  
+  .top-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;  
+  }
+  .search-section {
+    width: 300px;
+    border: var(--bordercolor) solid 1px;
+    border-radius: 5px;
+  }
+  .search-section input{
+    border: none ;
+  }
+  .search-icon {
+   background-color: var(--darkcolor) !important;
+   border: none;
+   cursor: pointer;
+   overflow: hidden;
+  }
+  .search-icon:hover {
+    background-color: var(--soft-darktranscolor) !important;
+   }
+  
+  .orders-section-header {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid var(--bordercolor);
+    border-top-left-radius:5px ;
+    border-top-right-radius: 5px;
+    background-color: var(--soft-darktranscolor) !important;
+    overflow: hidden;
+  }
+  
+  .orders-section-header_item {
+    flex: 1;
+    border-right: 1px solid var(--bordercolor);
+    padding-left: 20px;
+
+}
+.orders-section-header_item div{
+    font-size: 18px;
+    margin: 10px;
+
+}
+  .order-status-details{
+    display: flex ;
+    gap: 20px;
+    align-items: center;
+    font-size: 18px;
+    background-color: var(--darkcolor);
+    border-radius:10px ;
+    padding: 5px 10px;
+    width: max-content;
+}
+  .orders {
+    min-height: 150px;
+    border: 1px solid var(--bordercolor);
+    border-top: none;
+    border-bottom-left-radius:5px ;
+    border-bottom-right-radius: 5px;
+  }
+  
+ 
+.order-product{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: solid 1px var(--bordercolor);
+    border-bottom: solid 1px var(--bordercolor);
+    padding: 20px 10px ;
+}
+.order-product:last-child{
+    border-top: none;
+}
+.order-product-left{
+    display: flex;
+    gap: 30px;
+    align-items: center;
+}
+.order-product-left-content{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-size: 20px;
+    font-weight: 550;
+}
+.order-product-left-content div:last-child{
+    font-size: 17px;
+}
+.left-content-size{
+    color: var(--graycolor);
+    font-size: 16px;
+}
+
+.order-product img{
+    height: 130px;
+    width: 130px;
+    border-radius:5px ;
+}
+.order-product-price{
+    font-size: 20px;
+}

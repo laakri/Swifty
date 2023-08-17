@@ -42,18 +42,18 @@ export class OrderPageComponent implements OnInit {
     // Open the browser's print dialog
     window.print();
   }
-  getStatusStyle(status: string | undefined): string {
+  getOrderStatusInfo(status: string | undefined) {
     switch (status) {
       case 'Pending':
-        return 'status-pending';
-      case 'Confirmed':
-        return 'status-confirmed';
-      case 'Shipped':
-        return 'status-shipped';
-      case 'Delivered':
-        return 'status-delivered';
+        return { icon: 'pi pi-clock', color: 'orange' };
+      case 'Processing':
+        return { icon: 'pi pi-refresh', color: 'blue' };
+      case 'Completed':
+        return { icon: 'pi pi-check', color: 'green' };
+      case 'Cancelled':
+        return { icon: 'pi pi-times', color: 'red' };
       default:
-        return 'status-default';
+        return { icon: 'pi pi-question', color: 'gray' };
     }
   }
 }

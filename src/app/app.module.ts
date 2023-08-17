@@ -24,6 +24,9 @@ import { UsersListComponent } from './pages-dashboard/users-list/users-list.comp
 import { AddCategoryComponent } from './pages-dashboard/add-category/add-category.component';
 import { OrderPageComponent } from './pages/order-page/order-page.component';
 import { AddCouponComponent } from './pages-dashboard/add-coupon/add-coupon.component';
+import { NotificationComponent } from './pages-dashboard/notification/notification.component';
+import { OrderHistoryComponent } from './pages/order-history/order-history.component';
+
 /**********  Prime NG *************** */
 
 import { ButtonModule } from 'primeng/button';
@@ -72,7 +75,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { MenubarModule } from 'primeng/menubar';
 import { ChartModule } from 'primeng/chart';
 import { TimelineModule } from 'primeng/timeline';
-import { NotificationComponent } from './pages-dashboard/notification/notification.component';
+import { AccordionModule } from 'primeng/accordion';
 
 @NgModule({
   declarations: [
@@ -99,6 +102,7 @@ import { NotificationComponent } from './pages-dashboard/notification/notificati
     OrderPageComponent,
     AddCouponComponent,
     NotificationComponent,
+    OrderHistoryComponent,
   ],
   imports: [
     HttpClientModule,
@@ -148,6 +152,7 @@ import { NotificationComponent } from './pages-dashboard/notification/notificati
     MenubarModule,
     ChartModule,
     TimelineModule,
+    AccordionModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

@@ -17,6 +17,7 @@ import { UsersListComponent } from './pages-dashboard/users-list/users-list.comp
 import { AddCategoryComponent } from './pages-dashboard/add-category/add-category.component';
 import { OrderPageComponent } from './pages/order-page/order-page.component';
 import { AddCouponComponent } from './pages-dashboard/add-coupon/add-coupon.component';
+import { OrderHistoryComponent } from './pages/order-history/order-history.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/v/home', pathMatch: 'full' },
@@ -32,6 +33,8 @@ const routes: Routes = [
       { path: 'categorie', component: CategorieComponent },
       { path: 'checkout', component: CheckoutPageComponent },
       { path: 'order/:id', component: OrderPageComponent },
+      { path: 'profile', component: OrderHistoryComponent },
+
       {
         path: 'auth',
         component: AuthenticationComponent,

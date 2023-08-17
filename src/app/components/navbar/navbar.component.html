@@ -1,6 +1,8 @@
 <div class="first-toolbar toolbar">
   <div class="first-toolbar-div">+216 24989104</div>
-  <div *ngIf="!isSmallScreen">Get free delivery on orders over $100</div>
+  <div class="first-toolbar-div" *ngIf="!isSmallScreen">
+    Get free delivery on orders over $100
+  </div>
   <div *ngIf="!isAuth">
     <button
       class="p-button-text"
@@ -16,8 +18,14 @@
       routerLink="auth/login"
     ></button>
   </div>
-
   <div *ngIf="isAuth">
+    <button
+      type="submit"
+      class="p-button-text"
+      icon="pi pi-user"
+      pButton
+      routerLink="profile"
+    ></button>
     <button
       class="p-button-text"
       label="Logout"

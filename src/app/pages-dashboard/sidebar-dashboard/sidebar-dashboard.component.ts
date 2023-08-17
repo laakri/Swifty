@@ -60,12 +60,13 @@ export class SidebarDashboardComponent implements OnInit {
   }
 
   updateNotificationBadge() {
-    const notificationMenuItem = this.items?.find(
+    const notificationMenuItem = this.items!.find(
       (item) => item.icon === 'pi pi-bell'
     );
 
     if (notificationMenuItem) {
       notificationMenuItem.badge = this.newUnseenCount.toString();
+      notificationMenuItem.badgeStyleClass = 'custom-badge';
     }
   }
 

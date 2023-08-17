@@ -60,3 +60,9 @@
   right: 0;
 
 }
+.custom-badge {
+  background-color: red; /* or any other color you prefer for danger */
+  font-size: 10px; /* or adjust as needed */
+  padding: 2px 5px; /* adjust padding as needed */
+  color: white; /* text color for the badge */
+}

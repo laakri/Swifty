@@ -1,6 +1,11 @@
 <div class="mainpage">
   <div class="big-text">Shopping Cart</div>
-  <ng-container *ngIf="cartItems.length === 0" class="empty-cart-message">
+  <p-progressSpinner *ngIf="loading" class="custom-spinner"></p-progressSpinner>
+
+  <ng-container
+    *ngIf="cartItems.length === 0 && !loading"
+    class="empty-cart-message"
+  >
     <div class="empty-cart-message">
       <i class="pi pi-shopping-cart empty-cart-icon"></i>
       <p>Your cart is empty. Click below to explore our products.</p>
@@ -14,7 +19,8 @@
       </button>
     </div>
   </ng-container>
-  <div class="page-content" *ngIf="cartItems.length > 0">
+
+  <div class="page-content" *ngIf="cartItems.length > 0 && !loading">
     <div class="product-section">
       <div *ngFor="let item of cartItems">
         <div class="product">
@@ -81,7 +87,14 @@
         <h3>Order total</h3>
         <h3>{{ (+subtotals + 7).toFixed(2) }}</h3>
       </div>
-      <button pButton label="Checkout" (click)="checkout()"></button>
+      <button
+        pButton
+        label="Checkout"
+        (click)="checkout()"
+        [disabled]="buttonloading"
+      >
+        <span *ngIf="buttonloading" class="pi pi-spin pi-spinner"></span>
+      </button>
     </div>
   </div>
 </div>

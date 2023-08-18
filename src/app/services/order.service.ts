@@ -43,4 +43,8 @@ export class OrderService {
       })
     );
   }
+  getOrdersByUserId(userId: string): Observable<any[]> {
+    const url = `${this.apiUrl}/orders/${userId}`;
+    return this.http.get<any[]>(url);
+  }
 }

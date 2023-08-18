@@ -12,6 +12,7 @@ const couponRoutes = require("./routes/coupon");
 const reviewRoutes = require("./routes/review");
 const dashboardRoutes = require("./routes/dashboard");
 const notificationRoutes = require("./routes/notification");
+const recommendRoutes = require("./routesAI/recommend");
 
 const app = express();
 
@@ -59,5 +60,6 @@ app.use("/api/coupon", couponRoutes);
 app.use("/api/review", reviewRoutes);
 app.use("/api/dashboard", dashboardRoutes);
 app.use("/api/notification", notificationRoutes);
+app.use("/api/recommend", recommendRoutes);
 
 module.exports = app;

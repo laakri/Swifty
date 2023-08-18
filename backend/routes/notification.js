@@ -52,9 +52,6 @@ router.get("/unseen-count", async (req, res) => {
 
     Notification.on("newNotification", () => {
       updateUnseenCount();
-      res.write(
-        `event: unseenCountUpdate\ndata: ${JSON.stringify({ unseenCount })}\n\n`
-      );
     });
 
     req.on("close", () => {

@@ -3,10 +3,16 @@
     <button pButton icon="pi pi-angle-right" class="p-button-text"></button>
   </div>
   <div class="p-toolbar-group-end">
-    <button pButton icon="pi pi-calendar" class="p-button-text"></button>
-    <button pButton icon="pi pi-user" class="p-button-text"></button>
     <button pButton icon="pi pi-spin pi-cog" class="p-button-text"></button>
-
+    <button pButton icon="pi pi-user" class="p-button-text"></button>
+    <button class="p-button-text" pButton (click)="toggleNotification()">
+      <i
+        class="pi pi-bell"
+        severity="danger"
+        pBadge
+        [value]="newUnseenCount.toString()"
+      ></i>
+    </button>
     <button
       class="p-button-text"
       (click)="change_theme()"
@@ -15,3 +21,7 @@
       ariaLabel="campaign"
     ></button></div
 ></p-toolbar>
+<app-notification
+  [sidebarVisible]="sidebarVisible"
+  (updateUnseen)="markAsRead()"
+></app-notification>

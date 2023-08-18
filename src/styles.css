@@ -201,7 +201,6 @@ input::placeholder{
 }
   /*********************-slider********************/
 
-/* Change the color of the slider handle when not hovered or focused */
 .p-slider .p-slider-handle {
   width: 15px;
   height: 15px;
@@ -209,13 +208,11 @@ input::placeholder{
   border-color: var(--whitecolor);
 }
 
-/* Change the color of the slider handle when hovered */
 .p-slider .p-slider-handle:hover {
   background: #f2e3cf;
   border-color: #f2e3cf;
 }
 
-/* Change the color of the slider range between handles */
 .p-slider .p-slider-range {
   background: #b0a291;
 }

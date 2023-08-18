@@ -297,5 +297,23 @@ async function calculateTotalPrice(items) {
     };
   }
 }
+/****************** GET orders by userID ******************/
+
+router.get("/orders/:userId", async (req, res) => {
+  try {
+    const userId = req.params.userId;
+
+    // Fetch orders using the userID
+    const orders = await Order.find({ user: userId }).populate({
+      path: "products.productId",
+      select: "_id name price category images",
+    });
+
+    res.status(200).json(orders);
+  } catch (error) {
+    console.error("Error fetching orders:", error);
+    res.status(500).json({ error: "Error fetching orders" });
+  }
+});
 
 module.exports = router;

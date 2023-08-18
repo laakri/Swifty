@@ -1,4 +1,11 @@
-import { Component, Input, OnInit, ChangeDetectorRef } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  ChangeDetectorRef,
+  Output,
+  EventEmitter,
+} from '@angular/core';
 import { SidebarDashboardComponent } from '../sidebar-dashboard/sidebar-dashboard.component';
 import { NotificationService } from '../../services/notification.service';
 import { Notification } from '../../models/notification.model';
@@ -10,6 +17,8 @@ import { Notification } from '../../models/notification.model';
 })
 export class NotificationComponent implements OnInit {
   @Input() sidebarVisible: boolean = false;
+  @Output() updateUnseen = new EventEmitter<void>();
+
   notifications: any = [];
   constructor(
     private notificationService: NotificationService,
@@ -23,13 +32,13 @@ export class NotificationComponent implements OnInit {
       (newNotification) => {
         this.notifications.unshift(newNotification);
         this.cd.detectChanges();
-        console.log(this.notifications);
       },
       (error) => {
         console.error('Error receiving notification:', error);
       }
     );
   }
+
   getNotificationIcon(type: string): string {
     switch (type) {
       case 'info':
@@ -52,6 +61,7 @@ export class NotificationComponent implements OnInit {
     this.notificationService.markNotificationAsRead(notification._id).subscribe(
       (updatedNotification) => {
         notification.seen = true;
+        this.updateUnseen.emit();
       },
       (error) => {
         console.error('Error marking notification as read:', error);

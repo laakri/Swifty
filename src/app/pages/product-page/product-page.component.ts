@@ -18,13 +18,13 @@ import { FormBuilder, Validators } from '@angular/forms';
 export class ProductPageComponent implements OnInit {
   quantity: number = 1;
   product: Product | undefined;
-  responsiveOptions: any[]; // Add responsiveOptions property
-  activeIndex: number = 0; // Add activeIndex property
+  responsiveOptions: any[];
+  activeIndex: number = 0;
   averageRating: number = 2.5;
   showReviewForm: boolean = false;
   reviewForm: any;
   reviews: Review[] = [];
-  isLoading: boolean = true; // Add the isLoading variable
+  isLoading: boolean = true;
   currentSkip = 0;
   hasMoreReviews: boolean = true;
   rating = 0;
@@ -59,8 +59,6 @@ export class ProductPageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.isLoading = true;
-
     this.route.paramMap.subscribe((params) => {
       this.productId = params.get('id');
       if (this.productId) {

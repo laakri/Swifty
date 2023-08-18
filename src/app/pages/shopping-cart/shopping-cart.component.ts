@@ -13,6 +13,8 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 })
 export class ShoppingCartComponent implements OnInit {
   cartItems: any[] = [];
+  loading: boolean = true;
+  buttonloading: boolean = false;
 
   constructor(
     private productService: ProductService,
@@ -43,6 +45,7 @@ export class ShoppingCartComponent implements OnInit {
     return cartItems.reduce((sum: number) => sum + 1, 0);
   }
   removeProduct(item: any) {
+    this.loading = true;
     const updatedCartItems = this.cartItems.filter(
       (product) => product.id !== item.id
     );
@@ -56,6 +59,7 @@ export class ShoppingCartComponent implements OnInit {
     localStorage.setItem('cartItems', updatedCartItemsJson);
     const totalQuantity = this.getTotalCartQuantity();
     this.cartBadgeService.updateCartQuantity(totalQuantity);
+    this.loading = false;
   }
 
   getCartItems() {
@@ -81,9 +85,11 @@ export class ShoppingCartComponent implements OnInit {
             status: status,
           };
         });
+        this.loading = false;
       },
       (error) => {
         console.error('Error:', error);
+        this.loading = false;
       }
     );
   }
@@ -113,6 +119,8 @@ export class ShoppingCartComponent implements OnInit {
   }
 
   checkout() {
+    this.buttonloading = true;
+
     const outOfStockItems = this.cartItems.filter(
       (item) => item.status === 'Out of stock'
     );
@@ -138,5 +146,6 @@ export class ShoppingCartComponent implements OnInit {
         },
       });
     }
+    this.buttonloading = false;
   }
 }

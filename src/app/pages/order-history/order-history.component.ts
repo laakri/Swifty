@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { UsersService } from '../../services/user.service';
+import { OrderService } from '../../services/order.service';
 @Component({
   selector: 'app-order-history',
   templateUrl: './order-history.component.html',
@@ -7,74 +8,50 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrderHistoryComponent implements OnInit {
   orderHistory: any;
+  userId: string = '';
+  userName: string = '';
+  searchInput: string = '';
+  filteredOrders: any[] = [];
+  loading: boolean = true;
 
-  constructor() {}
+  constructor(
+    private UsersService: UsersService,
+    private OrderService: OrderService
+  ) {}
 
   ngOnInit(): void {
-    // Simulate loading order history
-    this.loadFakeOrderHistory();
+    this.userId = this.UsersService.getUserId();
+    this.userName = this.UsersService.getUserName();
+    this.loadOrderHistory(this.userId);
   }
 
-  loadFakeOrderHistory() {
-    // Fake data for order history
-    const fakeOrders = [
-      {
-        orderId: '156152',
-        orderDate: new Date('2023-02-07'),
-        totalAmount: 123.0,
-        status: 'Pending',
-
-        products: [
-          {
-            name: 'Product A',
-            quantity: 2,
-            category: 'bitchs',
-            images: '../../../assets/t-shirt.png',
-            price: 150,
-          },
-          {
-            name: 'Product A',
-            quantity: 2,
-            category: 'bitchs',
-            images: '../../../assets/t-shirt.png',
-            price: 150,
-          },
-        ],
+  loadOrderHistory(userId: string) {
+    this.OrderService.getOrdersByUserId(userId).subscribe(
+      (orders) => {
+        this.orderHistory = orders;
+        this.filteredOrders = orders;
+        this.loading = false;
       },
-      {
-        orderId: '156152',
-        orderDate: new Date('2023-02-07'),
-        totalAmount: 123.0,
-        status: 'Completed',
-
-        products: [
-          {
-            name: 'Product A',
-            quantity: 2,
-            category: 'bitchs',
-            images: '../../../assets/t-shirt.png',
-            price: 150,
-          },
-          {
-            name: 'Product A',
-            quantity: 2,
-            category: 'bitchs',
-            images: '../../../assets/t-shirt.png',
-            price: 150,
-          },
-          {
-            name: 'Product A',
-            quantity: 2,
-            category: 'bitchs',
-            images: '../../../assets/t-shirt.png',
-            price: 150,
-          },
-        ],
-      },
-    ];
-
-    this.orderHistory = fakeOrders;
+      (error) => {
+        console.error('Error fetching order history:', error);
+        this.loading = false;
+      }
+    );
   }
+  applySearchFilter() {
+    this.loading = true;
+
+    if (!this.searchInput) {
+      this.filteredOrders = this.orderHistory; // If search input is empty, show all orders
+    } else {
+      const lowerCaseSearch = this.searchInput.toLowerCase();
+      this.filteredOrders = this.orderHistory.filter((order: any) =>
+        order.orderId.toLowerCase().includes(lowerCaseSearch)
+      );
+    }
+    this.loading = false;
+  }
+
   getOrderStatusInfo(status: string) {
     switch (status) {
       case 'Pending':

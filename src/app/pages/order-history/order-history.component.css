@@ -1,10 +1,36 @@
 .mainpage{
     max-width: 1300px;
     margin: 30px auto;
-    min-height: 570px;
+    min-height: 590px;
     padding: 10px;
 }
-  
+
+.empty-cart-message {
+  margin: 20px auto;
+  padding: 20px 30px 40px 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 380px;
+  gap: 20px;
+}
+.empty-cart-message p{
+  font-size: 18px;
+  text-align: center;
+}
+
+.empty-cart-icon {
+  font-size: 4rem;
+  color: var(--graycolor);
+  margin-bottom: 10px;
+}
+
+.custom-spinner{
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+}
   .top-section {
     display: flex;
     align-items: center;

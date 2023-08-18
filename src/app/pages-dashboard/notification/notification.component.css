@@ -2,7 +2,6 @@
     background:var(--soft-darkcolor);
     z-index: 9 !important;
     color: var(--whitecolor);
-    padding-left: 70px;
     width: calc(70px + 360px);
     border-right: var(--darkcolor) solid 2px;
   }

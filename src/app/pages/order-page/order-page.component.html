@@ -1,12 +1,13 @@
 <div class="mainpage">
-  <div *ngIf="!loading && !orderDetails" class="order-not-found">
-    <p>Order not found.</p>
-  </div>
   <p-progressSpinner
-    *ngIf="loading && !orderDetails"
+    *ngIf="loading"
     styleClass="custom-spinner"
     class="order-products"
   ></p-progressSpinner>
+  <div *ngIf="!loading && !orderDetails" class="order-not-found">
+    <p>Order not found Or Error.</p>
+  </div>
+
   <div class="order-header" *ngIf="!loading && orderDetails">
     <h3>Thanks!</h3>
     <h1>Successful Order 🚀</h1>

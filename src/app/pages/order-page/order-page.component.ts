@@ -23,6 +23,7 @@ export class OrderPageComponent implements OnInit {
       this.orderId = params['id'];
       this.loadOrderDetails();
     });
+    this.loading = false;
   }
 
   loadOrderDetails() {

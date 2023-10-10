@@ -22,8 +22,9 @@ export class UsersService {
   private usernameListener = new Subject<String>();
   private authStatusListener = new Subject<boolean>();
   private authAdminStatusListener = new Subject<boolean>();
-  private userUpdated = new Subject<User[]>();
   private teacherUpdate = new Subject<User[]>();
+  private userUpdated = new Subject<any[]>();
+
   apiURL = 'http://localhost:4401';
 
   constructor(
@@ -417,6 +418,38 @@ export class UsersService {
         this.users = transformedUser;
         this.userUpdated.next([...this.users]);
       });
+  }
+
+  getUserBySearchUpdateListener() {
+    return this.userUpdated.asObservable();
+  }
+
+  /*************************************************/
+
+  getusers() {
+    return this.http
+      .get<{ message: string; users: any[] }>(this.apiURL + '/api/users/data')
+      .pipe(
+        map((userData) => {
+          return userData.users.map(
+            (user: {
+              _id: any;
+              name: any;
+              email: any;
+              phonenum: any;
+              verified: any;
+            }) => {
+              return {
+                userId: user._id,
+                name: user.name,
+                email: user.email,
+                phonenum: user.phonenum,
+                verified: user.verified,
+              };
+            }
+          );
+        })
+      );
   }
 
   getUserUpdateListener() {

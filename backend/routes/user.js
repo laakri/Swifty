@@ -142,11 +142,11 @@ router.patch(
   }
 );
 
-/*************-Get Users-********** 
+/*************-Get Users-********** */
 
 router.get("/data", (req, res, next) => {
-  User.find({ roles: "student" })
-    .select(["-phonenum", "-password", "-email", "-location", "-__v"])
+  User.find({ roles: "user" })
+    .select(["-password", "-imgPath", "-location", "-orders", "-__v"])
     .then((documents) => {
       res.status(200).json({
         message: "Users data runs seccesfully !",

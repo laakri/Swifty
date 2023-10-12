@@ -21,32 +21,31 @@
   </div>
 </div>
 
-<div class="product-table">
-  <p-table
-    [value]="products"
-    [paginator]="true"
-    [rows]="10"
-    [rowsPerPageOptions]="[2, 10, 20]"
-    [totalRecords]="totalRecords"
-    [loading]="loading"
-  >
-    <ng-template pTemplate="header">
-      <tr>
-        <th>Name</th>
-        <th>Price</th>
-        <th>Category</th>
-        <th>Quantity</th>
-        <th>Average Rating</th>
-      </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-product>
-      <tr>
-        <td>{{ product.name }}</td>
-        <td>{{ product.price }}</td>
-        <td>{{ product.category }}</td>
-        <td>{{ product.quantity }}</td>
-        <td>{{ product.averageRating }}</td>
-      </tr>
-    </ng-template>
-  </p-table>
-</div>
+<p-table [value]="products" [rows]="10" [paginator]="true" [pageLinks]="3">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Image</th>
+      <th>Name</th>
+      <th>Category</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>Purchases</th>
+      <th>Views</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-product>
+    <tr>
+      <td>
+        <div class="product-image">
+          <img [src]="product.images[0].url" alt="{{ product.name }}" />
+        </div>
+      </td>
+      <td>{{ product.name }}</td>
+      <td>{{ product.category }}</td>
+      <td>{{ product.shortDescription }}</td>
+      <td>$ {{ product.price }}</td>
+      <td>{{ product.purchases }} Purchases</td>
+      <td>{{ product.views }} Views</td>
+    </tr>
+  </ng-template>
+</p-table>

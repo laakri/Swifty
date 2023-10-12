@@ -112,7 +112,9 @@ router.post("/order", async (req, res) => {
     res.status(500).json({ error: "Failed to add the order." });
   }
 });
+
 /****************** Check Stock and Create Notifications ******************/
+
 async function checkStockAndCreateNotifications(products) {
   for (const product of products) {
     const purchasedQuantity = product.quantity;

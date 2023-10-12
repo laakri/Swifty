@@ -263,3 +263,61 @@ input::placeholder{
   .p-component-overlay{
   position: relative;  
 }
+  /*********************-table********************/
+
+
+/* Change table header background and text color */
+.p-datatable .p-datatable-header {
+  background: var(--soft-darkcolor) !important;
+  color: var(--whitecolor) !important;
+}
+
+/* Change table footer background and text color */
+.p-datatable .p-datatable-footer {
+  background: var(--soft-darkcolor) !important;
+  color: var(--whitecolor) !important;
+}
+
+/* Change table row background and text color */
+.p-datatable .p-datatable-tbody>tr {
+  background: var(--soft-darkcolor) !important;
+  color: var(--whitecolor) !important;
+}
+
+/* Change table row hover background and text color */
+.p-datatable .p-datatable-tbody>tr:hover {
+  background: var(--darkcolor) !important;
+  color: var(--whitecolor) !important;
+}
+
+/* Change table cell border color */
+.p-datatable .p-datatable-tbody>tr>td {
+  border-color: var(--bordercolor) !important;
+}
+
+/* Change table header cell background and text color */
+.p-datatable .p-datatable-thead>tr>th {
+  background: var(--soft-darkcolor) !important;
+  color: var(--whitecolor) !important;
+}
+
+/* Change table striped row background */
+.p-datatable.p-datatable-striped .p-datatable-tbody>tr:nth-child(even) {
+  background: var(--soft-darkcolor) !important;
+}
+
+/* Change table striped row hover background */
+.p-datatable.p-datatable-striped .p-datatable-tbody>tr:nth-child(even):hover {
+  background: var(--darkcolor) !important;
+}
+  /*********************-paginator********************/
+
+
+.p-paginator {
+  background: var(--soft-darkcolor) !important;
+  color: var(--whitecolor) !important;
+  border: solid #0b213f;
+  border-width: 1px;
+  padding: .5rem 1rem;
+  border-radius: 6px;
+}

@@ -318,4 +318,33 @@ router.get("/orders/:userId", async (req, res) => {
   }
 });
 
+/******************  Get all the Orders for the dashboard   *********************** */
+router.get("/GetOrders", async (req, res) => {
+  try {
+    const query = {};
+
+    if (req.query.search) {
+      const searchRegex = new RegExp(req.query.search, "i");
+
+      query.$or = [
+        { orderId: searchRegex },
+        { name: searchRegex },
+        { lastname: searchRegex },
+        { phone: searchRegex },
+        { email: searchRegex },
+      ];
+    }
+
+    // Sort by order status with "Pending" first
+    const orders = await Order.find(query)
+      .sort({ status: 1 }) // Sort by status in ascending order
+      .exec();
+
+    res.json({ orders });
+  } catch (error) {
+    console.error("Error:", error);
+    res.status(500).json({ error: "Failed to fetch orders" });
+  }
+});
+
 module.exports = router;

@@ -1,0 +1,61 @@
+/* orders.component.css */
+.p-inputgroup {
+    margin-bottom: 1rem;
+  }
+  .delete-button{
+    margin-top:20px ;
+    padding: 10px 18px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: rgb(219, 53, 53)  ;
+    color: white;
+  }
+  .ok-button{
+    position: absolute;
+    bottom: 20px;
+  }
+  .btn {
+    padding: 8px 16px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: transparent;
+    color: var(--whitecolor);
+    border:var(--whitecolor) solid 1px;
+    cursor: pointer;
+  }
+  /* Style the search input */
+  .p-inputgroup-addon {
+    background: #071426;
+    border: none;
+    color: #ffffff;
+    border-radius: 6px 0 0 6px;
+  }
+  
+  /* Style the table header and footer */
+  th,
+  .p-paginator,
+  .p-paginator-top,
+  .p-paginator-bottom {
+    background: #071426 !important;
+    color: #ffffff !important;
+  }
+  
+  /* Style the table rows */
+  .p-datatable .p-datatable-tbody>tr {
+    background: #071426 !important;
+    color: #ffffff !important;
+  }
+  
+  /* Style the table row hover */
+  .p-datatable .p-datatable-tbody>tr:hover {
+    background: #0d1a2c !important;
+    color: #ffffff !important;
+  }
+  
+  /* Style the table cell border */
+  .p-datatable .p-datatable-tbody>tr>td {
+    border-color: #071426 !important;
+  }
+  

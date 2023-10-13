@@ -18,6 +18,7 @@ import { AddCategoryComponent } from './pages-dashboard/add-category/add-categor
 import { OrderPageComponent } from './pages/order-page/order-page.component';
 import { AddCouponComponent } from './pages-dashboard/add-coupon/add-coupon.component';
 import { OrderHistoryComponent } from './pages/order-history/order-history.component';
+import { OrdersListComponent } from './pages-dashboard/orders-list/orders-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/v/home', pathMatch: 'full' },
@@ -55,6 +56,7 @@ const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'add-product', component: AddProductComponent },
       { path: 'list-product', component: ProductListComponent },
+      { path: 'order-product', component: OrdersListComponent },
       { path: 'list-users', component: UsersListComponent },
       { path: 'add-category', component: AddCategoryComponent },
       { path: 'add-coupon', component: AddCouponComponent },

@@ -26,6 +26,7 @@ import { OrderPageComponent } from './pages/order-page/order-page.component';
 import { AddCouponComponent } from './pages-dashboard/add-coupon/add-coupon.component';
 import { NotificationComponent } from './pages-dashboard/notification/notification.component';
 import { OrderHistoryComponent } from './pages/order-history/order-history.component';
+import { OrdersListComponent } from './pages-dashboard/orders-list/orders-list.component';
 
 /**********  Prime NG *************** */
 
@@ -76,6 +77,8 @@ import { MenubarModule } from 'primeng/menubar';
 import { ChartModule } from 'primeng/chart';
 import { TimelineModule } from 'primeng/timeline';
 import { AccordionModule } from 'primeng/accordion';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
+import { DialogModule } from 'primeng/dialog';
 
 @NgModule({
   declarations: [
@@ -103,6 +106,7 @@ import { AccordionModule } from 'primeng/accordion';
     AddCouponComponent,
     NotificationComponent,
     OrderHistoryComponent,
+    OrdersListComponent,
   ],
   imports: [
     HttpClientModule,
@@ -153,6 +157,8 @@ import { AccordionModule } from 'primeng/accordion';
     ChartModule,
     TimelineModule,
     AccordionModule,
+    DynamicDialogModule,
+    DialogModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
